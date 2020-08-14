@@ -11,7 +11,7 @@
   * [知识](linux/kb.md)
 
 * 系统软件
-  * [Docker](soft/sys/Docker.md)
+  * [Docker](soft/sys/docker.md)
   * [Kubernetes](soft/sys/k8s.md)
   * [虚拟机](soft/sys/vm.md)
 
