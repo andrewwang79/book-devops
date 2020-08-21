@@ -218,7 +218,9 @@ DatabaseMirror db.de.clamav.net
 DatabaseMirror db.jp.clamav.net
 ```
 ## [压缩解压](https://www.cnblogs.com/joshua317/p/6170839.html)
--C：设置程序当前工作目录
+* -C：设置程序当前工作目录
+* tar -rvf  通过r追加文件，只能用于tar
+* tar -tf a.tar.gz   在不解压的情况下查看压缩包的内容
 
 | 方式 | 操作 | 示例 |
 | -- | -- | -- |
@@ -228,7 +230,9 @@ DatabaseMirror db.jp.clamav.net
 |  | 压缩相对目录 | tar -zcvf example.tar.gz -C /path 相对dir |
 |  | 解压 | tar -zxvf example.tar.gz  -C /path |
 | zip | 压缩目录 | zip -r example.zip abc |
-|  | 解压 | unzip example.zip |
+|  | 解压，可以用于windows的文件 | unzip example.zip |
+| gzip | 压缩tar文件到tar.gz，自动成为a.tar.gz，目录结构不变 | gzip a.tar |
+|  | 解压tar.gz文件到tar，自动成为a.tar | gzip -d a.tar.gz |
 
 ## CURL命令
 * [做Http的Get/Post请求](https://www.jianshu.com/p/a8b648e96753)
