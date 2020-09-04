@@ -69,7 +69,7 @@ apt-get install aptitude // 软件包安装情况的软件
 * [自己做yum缓存包](https://blog.csdn.net/bbg221/article/details/78360618)
 
 ## 系统信息
-* lsb_release -a // Ubuntu系统版本
+* cat /etc/issue       lsb_release -a // Ubuntu系统版本
 * last reboot // 重启记录
 * [Linux上如何查看物理CPU个数，核数，线程数](https://www.cnblogs.com/ivictor/p/6208573.html)
 * cat /proc/cpuinfo |grep MHz|uniq // 查看CPU内核频率
@@ -398,3 +398,6 @@ hwclock -r // 确定bios时间正确，不正确手工调整
 hwclock -w // 写入正确时间到bios
 hwclock --hctosys // bios时间同步到操作系统
 ```
+
+## [Lib文件缺失的通用解决办法](https://www.jianshu.com/p/289205fae296)
+apt-file search libOpenGL.so
