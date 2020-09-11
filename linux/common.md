@@ -226,8 +226,7 @@ DatabaseMirror db.jp.clamav.net
 | -- | -- | -- |
 | tar(打包) | 打包 | tar -cvf example.tar files/dir |
 |  | 解包 | tar -xvf example.tar  -C /path |
-| tar.gz/tgz | 压缩绝对目录 | tar -zcvf example.tar.gz 绝对dir |
-|  | 压缩相对目录 | tar -zcvf example.tar.gz -C /path 相对dir |
+| tar.gz/tgz | 压缩 | tar -zcvf example.tar.gz 绝对路径 <br> tar -zcvf example.tar.gz -C /path 相对路径 |
 |  | 解压 | tar -zxvf example.tar.gz  -C /path |
 | zip | 压缩目录 | zip -r example.zip abc |
 |  | 解压，可以用于windows的文件 | unzip example.zip |
@@ -398,6 +397,3 @@ hwclock -r // 确定bios时间正确，不正确手工调整
 hwclock -w // 写入正确时间到bios
 hwclock --hctosys // bios时间同步到操作系统
 ```
-
-## [Lib文件缺失的通用解决办法](https://www.jianshu.com/p/289205fae296)
-apt-file search libOpenGL.so
