@@ -1,7 +1,6 @@
 * 概要
   * [Introduction](README.md)
   * [DevOps](dev_ops.md)
-  * [版本环境发布](version.md)
 
 * Linux
   * [常用](linux/common.md)
@@ -50,4 +49,3 @@
 
 * 参考
   * [Windows](ref/Windows.md)
-  * [网络知识](ref/net.md)
