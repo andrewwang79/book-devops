@@ -3,6 +3,7 @@
 
 ## CentOS
 1. [Centos7 系统优化](https://www.jianshu.com/p/0a06b306449a)
+1. 安装chrome浏览器：rpm -i https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 ## Ubuntu
 1. [Shell重定向](https://blog.csdn.net/u011630575/article/details/52151995)

@@ -67,38 +67,9 @@ service docker start
   1. 区别基础镜像和业务镜像，前者可用于export，后者export时ENV和CMD等都会忽略
   1. 没有前台运行CMD的docker(特别是基础镜像)，后台开启时会自动关闭。可以通过"docker run -it"前台开启，然后"docker exec -it"进行具体操作
 
-1. Dockerfile文件格式
-  * [docker——Dockerfile创建镜像](http://www.cnblogs.com/niloay/p/6261784.html)
-  * CMD和ENTRYPOINT区别，前者会被docker run替代，后者不会被忽略，一定会被执行：https://www.cnblogs.com/sparkdev/p/8461576.html
-
-1. 脚本构建image
-  * 创建文件Dockfile
-  * docker build -t image:tag .
-  * [Dockerfile构建镜像详情](http://blog.51cto.com/nginxs/1893058)
-
 1. image存储
   1. save成文件
   1. 上传到公共云。[docker镜像上传到阿里云](http://www.cnblogs.com/afangxin/p/6601099.html)
-
-### Dockerfile
-```
-# tomcat网站示例[已废弃]，目录下要有网站目录和server.xml
-
-FROM tomcat
-MAINTAINER andrew
-LABEL version="1.0"
-
-ENV SITE_NAME hi
-ENV SITE_HOME /usr/local/tomcat/webapps/$SITE_NAME
-RUN mkdir -p "$SITE_HOME"
-
-COPY $SITE_NAME $SITE_HOME
-COPY server.xml /usr/local/tomcat/conf/server.xml
-
-EXPOSE 80
-CMD ["catalina.sh", "run"]
-
-```
 
 ### MySql数据分离
 * [使用Docker快速搭建MySql，并进行数据卷分离](http://www.jianshu.com/p/57420240e877)
@@ -164,7 +135,10 @@ docker stop myNginx && docker rm myNginx
 docker restart myNginx
 ```
 1. 关闭所有实例：docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
-1. 关闭名称匹配的实例：docker stop $(docker ps -a -q --filter="name=XYZ") && docker rm $(docker ps -a -q --filter="name=XYZ")
+1. 关闭内容匹配的实例：docker ps -a | grep "XYZ" | awk '{print $1}' | xargs docker stop && docker ps -a | grep "XYZ" | awk '{print $1}' | xargs docker rm
+1. 关闭实例名称匹配的实例：docker stop $(docker ps -a -q --filter="name=XYZ") && docker rm $(docker ps -a -q --filter="name=XYZ")
+1. 删除内容匹配镜像：docker images -a | grep "XYZ" | awk '{print $3}' | xargs docker rmi
+1. 删除none的镜像：docker images -a | grep "<none>" | awk '{print $3}' | xargs docker rmi
 1. 外部运行container实例的脚本：docker exec -d myHttpd sh -c "echo 'export LC_ALL=zh_CN.UTF-8'  >>  /etc/profile"
 
 ### 全部
@@ -198,94 +172,3 @@ docker restart myNginx
 * docker system
 * docker system prune // 清理
 * docker system prune -a // 没使用的image也会清理，慎用
-
-## 运行示例
-### nginx
-```
-docker stop myNginx && docker rm myNginx
-docker run \
-  --name myNginx \
-  -d -p 80:80 \
-  -e "LANG=C.UTF-8" \
-  -v /docker/conf/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
-  -v /docker/conf/nginx/conf.d:/etc/nginx/conf.d \
-  nginx
-docker cp /etc/localtime myNginx:/etc/localtime
-```
-
-### mysql
-```
-docker stop myMysql && docker rm myMysql
-docker run \
-  --name myMysql \
-  -d -p 3312:3306 \
-  -e "LANG=C.UTF-8" -e MYSQL_ROOT_PASSWORD=123456 \
-  -v /docker/conf/mysql/mysql.cnf:/etc/mysql/mysql.cnf:ro \
-  -v /docker/data/mysql:/var/lib/mysql \
-  -v /docker/log/mysql:/var/log/mysql \
-  mysql
-docker cp /etc/localtime myMysql:/etc/localtime
-
-// 设置远程访问，建议设置复杂的root密码
-docker exec -it myMysql /bin/bash
-mysql -uroot -p -P3312
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION; FLUSH PRIVILEGES; EXIT;
-```
-
-
-### mongo
-```
-docker stop myMongo && docker rm myMongo
-docker run \
-  --name myMongo \
-  -d -p 23313:27017 \
-  -e "LANG=C.UTF-8" \
-  -v /docker/data/mongo:/data/db \
-  mongo
-docker cp /etc/localtime myMongo:/etc/localtime
-```
-
-### activemq
-```
-docker stop myActivemq && docker rm myActivemq
-docker run \
-  --name myActivemq \
-  -d -p 1883:1883 -p 5672:5672 -p 3313:8161 -p 61613:61613 -p 61614:61614 -p 3314:61616 \
-  -e "LANG=C.UTF-8" \
-  -v /docker/conf/activemq/activemq.xml:/opt/activemq/conf/activemq.xml:ro \
-  -v /docker/conf/activemq/jetty.xml:/opt/activemq/conf/jetty.xml:ro \
-  -v /docker/conf/activemq/jetty-realm.properties:/opt/activemq/conf/jetty-realm.properties:ro \
-  -v /docker/data/activemq:/opt/activemq/data \
-  webcenter/activemq
-docker cp /etc/localtime myActivemq:/etc/localtime
-```
-
-# docker-compose
-* 是命令，不是服务，不需要先启动
-
-## 命令
-1. 启动
-docker-compose up -d
-1. 停止
-docker-compose stop
-1. 强制删除(动态扩展的容器也可以一并删除)
-docker-compose rm -f
-1. 查看指定compose文件对应的容器清单和状态
-docker-compose ps
-
-## 资料
-1. [Docker Compose 方式下的容器网络基础知识点](https://michael728.github.io/2019/06/15/docker-compose-networks)，https://docs.docker.com/compose/networking/
-```
-不设置name，name会是"目录_abc"
-networks:
-  abc:
-    name: abc
-```
-1. docker启动后不关闭的命令(docker无命令会自动关闭)：tail -f /dev/null
-1. [语法](https://www.cnblogs.com/freefei/p/5311294.html)
-1. [控制docker-compose中服务的启动顺序](https://blog.csdn.net/xiao_jun_0820/article/details/78676765)
-```
-depends_on:
-  - "db"
-command: ["./wait-for-it.sh", "db:3306", "--", "python", "app.py"]
-```
