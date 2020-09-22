@@ -25,7 +25,6 @@
   * [源码管理Git](soft/dev/scm.md)
   * [Nexus(maven仓库私服)](soft/dev/nexus.md)
   * [文件传输](soft/dev/transfer.md)
-  * [测试](soft/dev/test.md)
 
 * 网络服务软件
   * [Nginx](soft/web/Nginx.md)
