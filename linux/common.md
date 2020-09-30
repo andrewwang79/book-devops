@@ -188,12 +188,13 @@ cat ~/.ssh/id_rsa.pub | ssh root@192.168.161.138 "mkdir ~/.ssh; cat >> ~/.ssh/au
   1. [crontab不能执行git等命令](http://blog.csdn.net/gggxin/article/details/34434811)
   1. [UBUNTU开启CRONTAB日志记录及解决NO MTA INSTALLED, DISCARDING OUTPUT](https://blog.csdn.net/disappearedgod/article/details/43191693)
   1. [crontab不会缺省的从用户profile文件中读取环境变量参数，需要手工在脚本加载profile等文件](https://blog.csdn.net/weixin_36343850/article/details/79217611)，source /etc/profile
+  1. [命令执行时间太长时防止多个并发运行](https://www.itdaan.com/tw/9d223190aa07c50d064b243281238c1f)
 1. 安装：yum -y install crontab
 1. 编辑：crontab -e
 
 ```
 30 01 * * * sh /bin/backup.sys.sh // 每天1点30分
-*/10 * * * * /bin/abc.sh > /dev/null 2>&1 // 每隔10分钟
+*/10 * * * * flock -xn ./tmp/abc.lock -c "/bin/abc.sh > /dev/null 2>&1" // 每隔10分钟，上一个如在运行则会取消本次执行
 ```
 
 1. 重启：service crond restart
