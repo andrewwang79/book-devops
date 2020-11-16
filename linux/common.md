@@ -126,7 +126,6 @@ apt-get install aptitude // 软件包安装情况的软件
   * lsof -i :27017 | awk '{print $2}' | xargs kill -9
 
 ## 进程查询
-* ps -ef | grep defunct // 僵尸进程
 * ps -ef | grep 进程号 // 查看进程对应的程序
 * ps -ef | grep java // 查看匹配名称的进程(java)
 * ps -ef | grep nginx | wc -l // 查看运行的进程总数
@@ -234,9 +233,6 @@ DatabaseMirror db.jp.clamav.net
 | gzip | 压缩tar文件到tar.gz，自动成为a.tar.gz，目录结构不变 | gzip a.tar |
 |  | 解压tar.gz文件到tar，自动成为a.tar | gzip -d a.tar.gz |
 
-## CURL命令
-* [做Http的Get/Post请求](https://www.jianshu.com/p/a8b648e96753)
-
 ## windows和linux回车不一样的处理(LF/CRLF)
 * dos2unix/unix2dos：find . -type f -exec dos2unix {} \;
 
@@ -299,20 +295,29 @@ https://blog.csdn.net/CSDN_duomaomao/article/details/77822883)
 
 ### 服务端相关操作
 ```
-mkdir -p /backup/ && chmod -R 777 /backup/
-nano /etc/exports // 设置分享权限，21是客户端
+安装nfs
+mkdir -p /backup/ && chmod -R 777 /backup/ // 全部权限
+nano /etc/exports // 设置分享权限：/backup/是服务端目录，172.16.1.21是客户端
   /backup/ 172.16.1.21(rw,sync)
 exportfs -arv // 重新加载/etc/exports文件
 systemctl restart nfs // 重启NFS
 ```
 
+服务机：
+
+开放
+  nano /etc/exports
+  /backup/ 172.16.2.137(rw,sync) // 对客户机172.16.2.137开放服务机的目录/backup/
+客户机：
+mount -t nfs 172.16.2.137:/backup/
+
 ### 客户端相关操作
 ```
 mkdir -p /biz/
-nano /etc/fstab // 设置开机自动加载目录，12是服务端
+nano /etc/fstab // 设置开机自动挂载目录[可选]，172.16.1.12是服务端
 172.16.1.12:/backup/ /biz/ nfs rw
 
-mount -t nfs 172.16.1.12:/backup/ /biz/
+mount -t nfs 172.16.1.12:/backup/ /biz/ // 手工挂载目录
 umount /biz/
 ```
 
@@ -398,3 +403,10 @@ hwclock -r // 确定bios时间正确，不正确手工调整
 hwclock -w // 写入正确时间到bios
 hwclock --hctosys // bios时间同步到操作系统
 ```
+
+## 僵尸进程和孤儿进程
+* 资料
+  * https://www.cnblogs.com/Anker/p/3271773.html
+  * https://mozillazg.com/2017/07/python-how-to-generate-kill-clean-zombie-process.html
+* ps -ef | grep defunct // 查询僵尸进程
+* ps -e -o ppid,stat,cmd | grep Z | cut -d" " -f2 | xargs kill -9 // kill僵尸进程

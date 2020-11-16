@@ -115,6 +115,12 @@ http内：client_max_body_size 100m;
 ### 添加ssl支持
 [操作参考](http://nginx.org/en/docs/http/configuring_https_servers.html)
 
+### 支持http2
+```
+配置文件的server段落加http2：listen 443 ssl http2;
+重启：nginx -s reload
+```
+
 ### 压缩配置
 [操作参考](http://www.cnblogs.com/qiangweikang/p/gzip_on.html)
 

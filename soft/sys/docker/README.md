@@ -57,6 +57,12 @@ service docker start
 重启docker
 ```
 
+###  上传到公共镜像仓库
+```
+docker tag xxx:1.0 hub.docker.com/wangyaqi/xxx:1.0
+docker push hub.docker.com/wangyaqi/xxx:1.0
+```
+
 ### 内存使用
 * 容器默认没有内存限制
 * [参数说明](https://blog.csdn.net/CSDN_duomaomao/article/details/78567859)
@@ -161,9 +167,9 @@ docker restart myNginx
 * docker rmi image // 删除docker image
 * docker kill container // 杀死docker实例，类似stop
 * docker logs container // 查看日志
-* docker save -o image.tar image:tag // image保存成image文件。docker save -o r.tar redis
+* docker save -o image.tar image:tag // 镜像保存成image文件【无损】。docker save -o r.tar redis
 * docker load -i image.tar // 加载image文件，和save配套。docker load -i r.tar
-* docker export container > image.tar // 容器导出成image文件，无metadata和历史
+* docker export container > image.tar // 容器导出成image文件，【无metadata和历史】
 * cat image.tar | docker import - image:tag // 导入image文件，和export配套
 * docker import --change 'CMD ["/usr/bin/supervisord"]' image.tar image:tag // 加参数导入
 * docker commit -p container image:tag // [保存container的数据到image](https://www.runoob.com/docker/docker-commit-command.html)
@@ -172,3 +178,4 @@ docker restart myNginx
 * docker system
 * docker system prune // 清理
 * docker system prune -a // 没使用的image也会清理，慎用
+* docker cp container-name:/container-path/ /host-path/ // 命令需在宿主机执行，可以宿主机和容器互拷。例子是从容器到宿主机。

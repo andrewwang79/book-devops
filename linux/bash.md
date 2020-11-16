@@ -1,7 +1,7 @@
 # bash脚本
 
 ## 命令使用
-1. \`cmd`，$(cmd) // 反引号执行命令，可以将结果保存到变量
+1. \`cmd`，$(cmd) // 反引号执行命令【不同于shell内的函数调用，相当于执行命令】，可以将结果保存到全局变量或者输出io返回。return返回值只能是整数，非0(错误)都会退出整个程序
 1. "$(dirname "$path")" // 获取path的上级目录全路径
 1. "$(basename "$path")" // 获取path的名称
 1. echo PWD:\`pwd` // 显示当前路径
@@ -54,7 +54,22 @@ else
 fi
 
 // 变量是否存在
-if [ ! ${var} ]; then
+if [ ${var} ]; then
+    echo "exist"
+else
+    echo "not exist"
+fi
+
+// 变量相等
+if test ${var} = "123"; then
+fi
+
+//  变量比较
+if [ "${var}"x != ""x ]
+then
+  echo "exist ${var}"
+else
+  echo "not exist"
 fi
 
 // 大小写忽略的正则式匹配
@@ -73,7 +88,7 @@ if [ "$?" == 0 ]; then // 命令返回是空
 fi
 
 // 目录存在
-if [ ! -d "${dir}" ]; then
+if [ -d "${dir}" ]; then
 fi
 
 // 文件存在
@@ -92,6 +107,20 @@ for k in ${!map[*]}; do
     key=${k}
     val=${map[$k]}
 done
+```
+
+### 获取函数的return：以下代码单独可以，放到复杂环境无效(原因未知)
+```
+function func1(){
+  return 3
+}
+
+# 在$()的圆括号中可以执行linux命令,当然也包括执行函数
+res1=$(func1)
+# 变量res2将会接收函数的返回值，这里是3。在调用和获取间不能执行任何命令，比如echo
+res2=`echo $?`
+echo $res2
+echo $res1
 ```
 
 ## 方案

@@ -17,9 +17,16 @@
   1. 先跑系统的，再跑用户的
   1. 先跑bashrc，再跑profile(登录状态)
 
-## 僵尸进程和孤儿进程资料
-* https://www.cnblogs.com/Anker/p/3271773.html
-* https://mozillazg.com/2017/07/python-how-to-generate-kill-clean-zombie-process.html
-
 ## 系统日志
 * (journal日志](https://www.cnblogs.com/jiuchongxiao/p/9222953.html)
+
+## 软件安装
+### ffmpeg
+1. ffmpeg -version
+1. centos：https://www.jianshu.com/p/11a3e9c91c38
+1. debian：apt update && apt-get install -y ffmpeg
+
+### chrome
+1. google-chrome --version
+1. centos：yum install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+1. Ubuntu：wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && dpkg -i google-chrome-stable_current_amd64.deb && rm -f google-chrome-stable_current_amd64.deb

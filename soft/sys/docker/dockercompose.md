@@ -1,7 +1,7 @@
 # docker-compose
 * 是命令，不是服务，不需要先启动
 
-## 命令
+## [命令](https://yeasy.gitbook.io/docker_practice/compose/commands)
 1. 启动
 docker-compose up -d
 1. 停止
@@ -25,7 +25,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
     networks:
       - XX-network
-
 networks:
   XX-network:
     name: XX-network
@@ -39,6 +38,7 @@ networks:
 networks:
   abc:
     name: abcd
+    driver: bridge
 ```
 1. docker启动后不关闭的命令(docker无命令会自动关闭)：tail -f /dev/null
 1. [语法](https://www.cnblogs.com/freefei/p/5311294.html)
