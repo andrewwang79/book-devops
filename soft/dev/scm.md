@@ -255,7 +255,7 @@ git branch -D master && git branch -m master && git push -f origin master // 删
 1. [Learn Git Branching](https://learngitbranching.js.org/)，很好的示范
 1. **[git push & git pull 推送/拉取分支](http://blog.csdn.net/litianze99/article/details/52452521)**
 1. **[Git - 分支的新建与合并](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6)**
-1. [SourceTree使用流程和方法](s/SourceTree.docx)
+1. [SourceTree使用流程和方法](/s/SourceTree.docx)
 1. [git – 简易指南](http://www.bootcss.com/p/git-guide/)
 1. [强制删除远程分支上的某次提交](http://blog.csdn.net/qqxiaoqiang1573/article/details/68074847)
 1. [Git下的冲突解决](http://www.cnblogs.com/sinojelly/archive/2011/08/07/2130172.html)
