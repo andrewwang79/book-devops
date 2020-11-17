@@ -18,8 +18,8 @@
 ## 环境清单
 1. 每个环境都有一套：执行程序，数据库，配置
 
-| 环境 | 对应分支 | 执行程序 | 数据库 | 设置 | 说明 |
-| :----: | ---- | ---- |
+| 环境 | 对应分支 | 执行程序 | 数据库 | 设置 |
+| :----: | ---- | ---- | ---- | ---- |
 | 开发环境 | dev+feature | 开发人员自行搭建，独立 | 可复用测试数据库 | 可复用测试配置 |
 | 测试环境 | dev | 独立 | 独立 | 独立 |
 | 发布环境 | release或者hotfix | 独立 | 可复用测试数据库 | 独立 |
@@ -67,7 +67,8 @@
 1. 基于当前分支创建新分支/切换分支：git branch <分支>
 1. 删除分支：git branch -d <远程分支>
 
-### commit[add命令](https://www.yiibai.com/git/git_add.html)
+### commit
+1. [add命令](https://www.yiibai.com/git/git_add.html)
 1. git add -f . && git commit -m "msg" && git push // 快速提交
 1. git checkout -b abc && git push origin abc:abc // 本地创建分支并推送到远程同名分支
 1. 添加所有的文件，包括删除的[所有跟踪文件中被修改过或已删除文件,所有未跟踪的文件]：git add -A .
@@ -230,7 +231,8 @@ git init && git config core.sparseCheckout true && echo "design/" >> .git/info/s
 git remote add -f origin url && git pull origin master
 ```
 
-### [重置branch](https://blog.csdn.net/weixin_33974433/article/details/87963137):分支存在但所有commit记录清空了，一般用于master
+### [重置branch](https://blog.csdn.net/weixin_33974433/article/details/87963137)
+* 结果是重建分支，一般用于master。其他分支直接删除即可。
 ```
 思路：用空分支替换需重置的branch(master)
 步骤：
@@ -241,9 +243,19 @@ git branch -D master && git branch -m master && git push -f origin master // 删
 ```
 
 ### [git 免除账号密码的设置](http://blog.csdn.net/guang11cheng/article/details/50537759)
-  * git config --global credential.helper store // 记住账号密码
-  * rm ~/.git-credentials // 取消账号密码记忆
+* git config --global credential.helper store // 记住账号密码
+* rm ~/.git-credentials // 取消账号密码记忆
+
 1. 忽略SSL证书：git config --global http.emptyAuth true
+
+### git和编辑器的LF设置
+```
+// atom
+Settings -> Packages -> Line Ending Selector -> change the “Default line ending” setting to “LF” instead of “OS Default”.
+// Git : https://blog.csdn.net/weixin_33859665/article/details/93834202
+git config --global core.autocrlf false
+git config --global core.safecrlf true
+```
 
 ### gitlfs
 1. gitlfs安装后默认git clone是下载lfs文件的
