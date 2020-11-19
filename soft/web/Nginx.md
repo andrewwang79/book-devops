@@ -109,11 +109,15 @@ html不缓存，其他都缓存。nginx.conf的server调整，放在“location 
 
 ### 文件上传大小配置
 [操作参考](http://blog.csdn.net/zhangxl0113/article/details/52780778)
-
+```
 nginx.conf调整：
 http内：client_max_body_size 100m;
+```
 ### 添加ssl支持
 [操作参考](http://nginx.org/en/docs/http/configuring_https_servers.html)
+
+### nginx超时时间
+https://zhuanlan.zhihu.com/p/86972758
 
 ### 支持http2
 ```
