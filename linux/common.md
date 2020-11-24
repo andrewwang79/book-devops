@@ -99,6 +99,7 @@ apt-get install aptitude // 软件包安装情况的软件
 * [提取文件名和目录名](https://www.cnblogs.com/nzbbody/p/4391802.html)
 * 统计文件夹下文件的个数: sudo ls -lR | grep "^-" | wc -l
 * 统计文件夹下文件夹的个数: sudo ls -lR | grep "^d" | wc -l
+* 分割文件批量改后缀：ls | grep .part. | xargs -n1 -i{} mv {} {}.tar.gz // XX.part.11变成XX.part.11.tar.gz
 
 ## 文件
 * [find示例](http://blog.csdn.net/windowschengxisheji/article/details/51019280)
@@ -364,10 +365,10 @@ umount /biz/
 * cut -d ' ' -f 1 // 分隔符是' '，取第一列
 * awk '{print $1}' // 无条件的取第一列
 
-## sha256和md5
+## sha
 ```
-sha256sum file // 签名 sha512sum
-find ${path} -type f -not \( -name '.*' \) -print0 | xargs -0 sha256sum | sort > path.sign // 指定目录的所有文件签名排序保存
+sha512sum file // 签名 sha512sum
+find ${path} -type f -not \( -name '.*' \) -print0 | xargs -0 sha512sum | sort > sign.sha512 // 指定目录的所有文件签名排序保存
 ```
 
 ## 大文件分割合并

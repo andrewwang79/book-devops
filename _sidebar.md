@@ -22,7 +22,8 @@
   * [Python](soft/dev/Python.md)
   * [Ruby](soft/dev/Ruby.md)
   * [编译Maven](soft/dev/compile.md)
-  * [源码管理Git](soft/dev/scm.md)
+  * [源码管理-Git](soft/dev/git.md)
+  * [源码管理-Gitlab](soft/dev/gitlab.md)
   * [Nexus(maven仓库私服)](soft/dev/nexus.md)
   * [文件传输](soft/dev/transfer.md)
 
