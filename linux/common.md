@@ -219,9 +219,11 @@ DatabaseMirror db.de.clamav.net
 DatabaseMirror db.jp.clamav.net
 ```
 ## [压缩解压](https://www.cnblogs.com/joshua317/p/6170839.html)
-* -C：设置程序当前工作目录
-* tar -rvf  通过r追加文件，只能用于tar
-* tar -tf a.tar.gz   在不解压的情况下查看压缩包的内容
+* -C PATH// 设置程序当前工作目录
+* tar -rvf // 通过r追加文件，只能用于tar
+* tar -tf a.tar.gz // 在不解压的情况下查看压缩包的内容
+* tar -zcvf a.tar.gz -C /opt/ a // 压缩/opt/a/目录，压缩文件相对目录是/a，不是/opt/a/
+* tar -zxvf a.tar.gz -C /opt/b/ --strip-components 1 // 解压时去掉压缩文件的首层目录，把a的内容放到/opt/b/下面
 
 | 方式 | 操作 | 示例 |
 | -- | -- | -- |
@@ -409,5 +411,5 @@ hwclock --hctosys // bios时间同步到操作系统
 * 资料
   * https://www.cnblogs.com/Anker/p/3271773.html
   * https://mozillazg.com/2017/07/python-how-to-generate-kill-clean-zombie-process.html
-* ps -ef | grep defunct // 查询僵尸进程
-* ps -e -o ppid,stat,cmd | grep Z | cut -d" " -f2 | xargs kill -9 // kill僵尸进程
+* ps -e -o ppid,stat,cmd | grep defunct // 查询僵尸进程
+* ps -e -o ppid,stat,cmd | grep defunct | cut -d" " -f2 | xargs kill -9 // kill僵尸进程

@@ -4,6 +4,9 @@
 1. [CentOS安装Python3.6](http://blog.csdn.net/u011404495/article/details/54883310)
 1. [Ubuntu安装Python3.5](http://blog.csdn.net/bebemo/article/details/51350484)
 
+## 语法
+1. 获取环境变量：os.getenv('INTRANET_HOST')
+
 ## 命令
 ```
 python3, exit()

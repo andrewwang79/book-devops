@@ -90,6 +90,9 @@ fi
 // 目录存在
 if [ -d "${dir}" ]; then
 fi
+// 目录不存在
+if [ ! -d "${dir}" ]; then
+fi
 
 // 文件存在
 if [ -f "${file}" ]
