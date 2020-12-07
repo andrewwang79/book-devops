@@ -43,6 +43,7 @@
   * [Spark](soft/base/Spark.md)
   * [Storm](soft/base/Storm.md)
   * [Disconf](soft/base/Disconf.md)
+  * [dubbo](soft/base/dubbo.md)
 
 * 运维软件
   * [Jenkins](soft/ops/Jenkins.md)
