@@ -179,3 +179,4 @@ docker restart myNginx
 * docker system prune // 清理
 * docker system prune -a // 没使用的image也会清理，慎用
 * docker cp container-name:/container-path/ /host-path/ // 命令需在宿主机执行，可以宿主机和容器互拷。例子是从容器到宿主机。
+* docker update --restart=no/always <CONTAINER ID> 取消/生效docker镜像自启动
