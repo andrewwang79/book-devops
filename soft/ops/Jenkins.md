@@ -24,3 +24,19 @@
 * [常用环境变量](https://blog.csdn.net/qq_41030861/article/details/105171222)
 * [片段生成器](http://%domain%/job/%jobName%/pipeline-syntax/)
 * [官方共享库](https://www.jenkins.io/zh/doc/book/pipeline/shared-libraries/), [共享库](https://www.qikqiak.com/post/jenkins-shared-library-demo/)
+```
+1 共享库开发
+新建共享库的git
+写个静态类，如/vars/util.groovy
+可以在里面使用linux的shell
+sh """
+  ls
+"""
+2 共享库设置到Jenkins
+菜单 : 系统管理-系统设置-Global Pipeline Libraries。设置如下：
+Library Name : 可以自定义，当前示例用了common
+Default version : 共享库的git分支号
+3 共享库使用(业务pipeline文件)
+@Library('common')_
+util.静态函数()
+```
