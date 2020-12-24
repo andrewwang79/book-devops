@@ -274,8 +274,8 @@ sudo systemctl restart sshd
 ## 硬盘
 * df // 硬盘容量
 * du -sh path // 某一指定路径容量
-* du /home --max-depth=1 -h // 显示第一层目录的空间容量
-* du . --max-depth=1 | sort -nr // 顺序排序，显示空间容量
+* du . --max-depth=1 -h // 显示当前目录的空间容量
+* du . --max-depth=1 -h | sort -nr // 顺序排序显示当前目录的空间容量
 * df -ih // 索引文件情况
 * lsof | grep deleted // 显示已删除文件
 * fdisk -l // 查看系统磁盘设备信息
@@ -413,3 +413,6 @@ hwclock --hctosys // bios时间同步到操作系统
   * https://mozillazg.com/2017/07/python-how-to-generate-kill-clean-zombie-process.html
 * ps -e -o ppid,stat,cmd | grep defunct // 查询僵尸进程
 * ps -e -o ppid,stat,cmd | grep defunct | cut -d" " -f2 | xargs kill -9 // kill僵尸进程
+
+## 系统日志
+* 清除journal日志 : journalctl --vacuum-size=500M https://blog.csdn.net/ithomer/article/details/89530790

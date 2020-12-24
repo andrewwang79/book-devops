@@ -104,6 +104,21 @@ docker默认的网络模式是bridge，默认网段是172.17.0.1/16(下一个网
 * 进入容器：docker exec -it CONTAINER sh
 * [软件包管理](https://blog.csdn.net/hxpjava1/article/details/80221307)：apk add。[支持包查询](https://pkgs.alpinelinux.org/packages)
 
+### 删除日志文件
+```
+find /var/lib/docker/containers/ -name *-json.log
+cat /dev/null > *-json.log
+rm -f *-json.log
+```
+### 删除无效镜像和容器
+```
+docker stop $(docker ps -a | grep "Exited" | awk '{print $1 }')
+docker rm $(docker ps -a | grep "Exited" | awk '{print $1 }')
+docker rmi $(docker images | grep "none" | awk '{print $3}')
+
+确保系统使用中且无异常，执行：docker system prune -a && docker volume prune
+```
+
 ## 命令
 ### 常用
 1. 登录实例

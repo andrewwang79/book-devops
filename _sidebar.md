@@ -4,13 +4,15 @@
 
 * Linux
   * [常用](linux/common.md)
+  * [服务器软硬件配置](linux/config.md)
   * [脚本](linux/bash.md)
   * [网络](linux/net.md)
   * [编辑器](linux/editor.md)
   * [知识](linux/kb.md)
 
 * 系统软件
-  * [Docker](soft/sys/docker/README.md)
+  * Docker
+    * [Docker](soft/sys/docker/README.md)
     * [DockerCompose](soft/sys/docker/dockercompose.md)
     * [Dockerfile](soft/sys/docker/dockerfile.md)
     * [最佳实践](soft/sys/docker/practice.md)
