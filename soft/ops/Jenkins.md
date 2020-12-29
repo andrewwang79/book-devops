@@ -38,5 +38,7 @@ Library Name : 可以自定义，当前示例用了common
 Default version : 共享库的git分支号
 3 共享库使用(业务pipeline文件)
 @Library('common')_
-util.静态函数()
+script {
+  util.静态函数(参数)
+}
 ```

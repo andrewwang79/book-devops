@@ -370,7 +370,7 @@ umount /biz/
 ## sha
 ```
 sha512sum file // 签名 sha512sum
-find ${path} -type f -not \( -name '.*' \) -print0 | xargs -0 sha512sum | sort > sign.sha512 // 指定目录的所有文件签名排序保存
+find . -type f -not \( -name '.*' \) -print0 | xargs -0 sha512sum | sort > sign.sha512 // 指定目录的所有文件签名排序保存
 ```
 
 ## 大文件分割合并

@@ -32,6 +32,24 @@ systemctl disable firewalld.service #禁止firewall开机启动
 1. [整理Mysql "Too many connections" 解决办法](https://blog.csdn.net/q549244663/article/details/78205247)
 1. [生产环境中MySQL Drop 删除(百G级、T级)大表的解决方法](http://www.jiagoumi.com/work/1487.html)
 
+### binlog
+#### 启用
+```
+mysql.cnf
+  server-id = 1
+  log_bin = /var/log/mysql/mysql-bin.log
+  max_binlog_size = 1000M
+  binlog-format = row
+
+docker启用需要修改路径权限，如chgrp -R 999 ./log && chown -R docker ./log
+```
+#### 命令
+```
+mysql回滚到指定时间点: http://static.kancloud.cn/ichenpeng/blog/1514019
+闪回: https://www.cnblogs.com/gered/p/10765749.html
+看 mysqlbinlog mysql-bin.000003 -v
+```
+
 ## 管理命令
 1. 启动：service mysql restart
 1. 登录客户端：mysql -u{account} -p{pwd} -h{ip} -P{port}。如mysql -uroot -p123123 -h192.168.1.10 -P3311
@@ -112,13 +130,11 @@ select * from information_schema.PROCESSLIST where info is not null; // show pro
 * 语句实践
 ```
 drop TABLE `t_txtest`;
-
 CREATE TABLE `t_txtest` (
 `id` bigint(20) NOT NULL default '0',
 `value` varchar(32) default NULL,
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB
-
 set session transaction isolation level read uncommitted;
 START TRANSACTION;
 SELECT * FROM t_txtest;
