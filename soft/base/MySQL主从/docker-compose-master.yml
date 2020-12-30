@@ -1,0 +1,38 @@
+version: '2'
+services:
+  mysql-master:
+    image: mysql:5.7.21
+    restart: always
+    container_name: mysql-master
+    ports:
+      - "12345:3306"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./master/mysql.cnf:/etc/mysql/mysql.cnf:ro
+      - ./master/data:/var/lib/mysql
+      - ./master/log:/var/log/mysql
+    environment:
+      - LANG=C.UTF-8
+      - MYSQL_ROOT_PASSWORD=123456
+    networks:
+      - devops
+  mysql-slave:
+      image: mysql:5.7.21
+      restart: always
+      container_name: mysql-slave
+      ports:
+        - "12346:3306"
+      volumes:
+        - /etc/localtime:/etc/localtime
+        - ./slave/mysql.cnf:/etc/mysql/mysql.cnf:ro
+        - ./slave/data:/var/lib/mysql
+        - ./slave/log:/var/log/mysql
+      environment:
+        - LANG=C.UTF-8
+        - MYSQL_ROOT_PASSWORD=123456
+      networks:
+        - devops
+networks:
+  devops:
+    name: devops
+    driver: bridge

@@ -1,0 +1,6 @@
+[mysqld]
+lower_case_table_names=1
+character-set-server = utf8
+
+log_bin=mysql-bin
+server_id=1

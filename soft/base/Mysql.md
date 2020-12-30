@@ -41,14 +41,30 @@ mysql.cnf
   max_binlog_size = 1000M
   binlog-format = row
 
-docker启用需要修改路径权限，如chgrp -R 999 ./log && chown -R docker ./log
+docker启用需要修改路径权限，如chgrp -R docker . && chown -R 999 .
 ```
-#### 命令
+#### 使用
 ```
 mysql回滚到指定时间点: http://static.kancloud.cn/ichenpeng/blog/1514019
-闪回: https://www.cnblogs.com/gered/p/10765749.html
+闪回(delete部分): https://www.cnblogs.com/gered/p/10765749.html#autoid-3-2-0
 看 mysqlbinlog mysql-bin.000003 -v
 ```
+
+### 主从
+```
+mysql.cnf master
+  server-id = 2
+  log_bin = mysql-bin
+mysql.cnf slave
+  server-id = 2
+  log_bin = mysql-bin
+  read_only=1
+  log_slave_updates=1
+```
+
+* https://www.jianshu.com/p/b0cf461451fb
+* http://static.kancloud.cn/ichenpeng/blog/1134189
+* 错误处理: https://blog.51cto.com/suifu/1845114
 
 ## 管理命令
 1. 启动：service mysql restart
