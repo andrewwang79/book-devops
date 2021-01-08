@@ -91,8 +91,8 @@ apt-get install aptitude // 软件包安装情况的软件
 ## 文件和目录
 * mkdir -p /d1/d2 // 自动创建多层
 * mv/cp item1 item2 // 当前目录所有内容(不含目录的层级)移动/拷贝到上一级目录
-* /bin/cp -R dir1 dir2 // 不提示覆盖，cp默认有-i
-* mv/cp dir1/* ./ // dir1目录所有内容(不含dir1层级)移动/拷贝到当前目录。如dir1里有个dir2目录，则当前目录下有个dir2目录，没有dir1目录
+* /bin/cp -R dir1 dir2 // 用/bin/cp不提示覆盖overwrite，cp默认有-i
+* mv/cp dir1/* ./ 比如cp -rf /etc/abc/* /opt/abc/，会把/etc/abc/下的内容拷贝到/opt/abc/，不会到/opt/abc/abc/  // dir1目录所有内容(不含dir1层级)移动/拷贝到当前目录。如dir1里有个dir2目录，则当前目录下有个dir2目录，没有dir1目录
 * mv/cp dir1 ./ // dir1目录移动/拷贝到当前目录。即当前目录下有个dir1目录
 * ln -s src_dir dest_dir // [建立软连接](https://www.cnblogs.com/peida/archive/2012/12/11/2812294.html)，从dest_dir链接到src_dir，如cd dest_dir
 * ls -a dir1 // 查看隐藏文件
@@ -144,6 +144,8 @@ apt-get install aptitude // 软件包安装情况的软件
   * 注意，如目标路径后面是"/*"，则全部文件拷贝到目标路径根目录。
 * sync -av --exclude excludePath /data/src/ /data/dest // 本地同步，排除文件夹(/data/src/excludePath)
 * [远程同步](https://www.howtoing.com/rsync-local-remote-file-synchronization-commands/)
+  * 语法：rsync 源端目录 目标端目录，如rsync abc/ backup/abc，目标端目录不要加/否则会在下层再创建个目录abc
+  * 使用"--delete"选项，需注意源端和目标端，反了会数据丢失！目标端rsync会先删除目标端目录下已经存在，但源端目录不存在的文件。也就是目标端"多则删之，少则补之"。
   * rsync -avz --delete /src_path account@host:/dest_path // 同步删除了的文件，确保两个目录一致
   * rsync -avz --remove-source-files backup.tar /tmp/backups/ // 同步后自动删除源文件，场景是每次都是个新文件
 
@@ -170,7 +172,8 @@ service iptables stop
 ```
 cat ~/.ssh/id_rsa.pub | ssh root@192.168.161.138 "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys" // 同时创建目录.ssh
 ```
-## [自动输入密码设置](http://blog.itpub.net/27042095/viewspace-745587/)
+## 自动输入密码设置
+* [资料](http://blog.itpub.net/27042095/viewspace-745587/)
 1. 安装expect
 1. 脚本
 ```
@@ -218,7 +221,8 @@ DatabaseMirror db.us.clamav.net
 DatabaseMirror db.de.clamav.net
 DatabaseMirror db.jp.clamav.net
 ```
-## [压缩解压](https://www.cnblogs.com/joshua317/p/6170839.html)
+## 压缩解压
+* [资料](https://www.cnblogs.com/joshua317/p/6170839.html)
 * -C PATH// 设置程序当前工作目录
 * tar -rvf // 通过r追加文件，只能用于tar
 * tar -tf a.tar.gz // 在不解压的情况下查看压缩包的内容
@@ -363,7 +367,8 @@ umount /biz/
 | 管道 | 作为标准输入 | echo "--help" \| cat | 输入"cat"，手工输入--help |
 | xargs | 作为命令参数 | echo "--help" \| xargs cat | 输入"cat --help" |
 
-## [字符截取命令：cut, printf, awk, sed](https://www.cnblogs.com/farwish/p/4806018.html)
+## 字符截取命令
+* [cut, printf, awk, sed](https://www.cnblogs.com/farwish/p/4806018.html)
 * cut -d ' ' -f 1 // 分隔符是' '，取第一列
 * awk '{print $1}' // 无条件的取第一列
 

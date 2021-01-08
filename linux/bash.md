@@ -60,6 +60,12 @@ else
     echo "not exist"
 fi
 
+// bool值判断
+var=true
+if [ ${var} = true ]; then
+    echo 'var is true'
+fi
+
 // 变量相等
 if test ${var} = "123"; then
 fi

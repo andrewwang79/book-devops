@@ -258,6 +258,7 @@ git config --global core.safecrlf true
 ```
 
 ### gitlfs
+1. [安装详见gitlab](./soft/dev/gitlab)
 1. gitlfs安装后默认git clone是下载lfs文件的
 1. 不下载lfs文件 配置: git config --global filter.lfs.smudge "git-lfs smudge --skip"
 1. 下载lfs文件 配置: git config --global filter.lfs.smudge "git-lfs smudge -- %f"
