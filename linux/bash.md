@@ -1,19 +1,21 @@
 # bash脚本
 
 ## 命令使用
-1. \`cmd`，$(cmd) // 反引号执行命令【不同于shell内的函数调用，相当于执行命令】，可以将结果保存到全局变量或者输出io返回。return返回值只能是整数，非0(错误)都会退出整个程序
-1. "$(dirname "$path")" // 获取path的上级目录全路径
-1. "$(basename "$path")" // 获取path的名称
-1. echo PWD:\`pwd` // 显示当前路径
-1. exit // 退出
-1. $(date +%s) // 自1970年到现在的秒数
-1. $(date +%Y%m%d-%H%M%S) // 年月日时分秒
-1. ls $DIR | grep .jar | awk '{print "'$DIR'/"$0}' | tr "\n" ":" // 把目录里的所有jar文件用":"组成字符串
-1. . data.properties，source data.properties // 加载属性文件的变量成为临时环境变量
-1. .source common.sh // 加载通用函数
-1. grep $old -rl $path | xargs -r sed -i "s#$old#$new#g" // 替换path下所有文件内容old->new
-1. var=${1:-"DefaultValue"}
- // 设置var值，输入参数1不存在则是默认值。[参考](http://www.mojidong.com/linux/2012/09/08/shell-set-default-value/)
+```
+`cmd`，$(cmd) // 反引号执行命令【不同于shell内的函数调用，相当于执行命令】，可以将结果保存到全局变量或者输出io返回。return返回值只能是整数，非0(错误)都会退出整个程序
+$(cd ..; pwd) // 获取上层的绝对路径
+$(dirname "$path") // 获取path的上级目录绝对路径，path必须是绝对路径
+$(basename "$path") // 获取path的名称，path必须是绝对路径
+echo PWD:\`pwd` // 显示当前路径
+exit 0 // 退出，0是成功，>0是错误
+$(date +%s) // 自1970年到现在的秒数
+$(date +%Y%m%d-%H%M%S) // 年月日时分秒
+ls $DIR | grep .jar | awk '{print "'$DIR'/"$0}' | tr "\n" ":" // 把目录里的所有jar文件用":"组成字符串
+. data.properties，source data.properties // 加载属性文件的变量成为临时环境变量
+source common.sh // 加载通用函数
+grep $old -rl $path | xargs -r sed -i "s#$old#$new#g" // 替换path下所有文件内容old->new
+var=${1:-"DefaultValue"} // 设置var值，输入参数1不存在则是默认值。[参考](http://www.mojidong.com/linux/2012/09/08/shell-set-default-value/)
+```
 
 ## 参数使用
 1. 输入参数使用：$N。$1第一个参数
@@ -47,7 +49,7 @@ case "${Number}" in
 
 ```
 // 输入参数1是否存在
-if [ -n "$1" ] ;then
+if [ -n "$1" ]; then
     echo "exist"
 else
     echo "not exist"
@@ -82,17 +84,6 @@ fi
 if echo "${DB_Ver}" | grep -Eqi '^8.0.|^5.7.|^10.2.'; then
 fi
 
-// 命令执行
-if ! command; then
-  echo "cmd failed";
-  exit 1;
-fi
-
-// 命令执行结果判断
-netstat -apn | grep 8080
-if [ "$?" == 0 ]; then // 命令返回是空
-fi
-
 // 目录存在
 if [ -d "${dir}" ]; then
 fi
@@ -103,6 +94,17 @@ fi
 // 文件存在
 if [ -f "${file}" ]
 then
+fi
+
+// 命令执行
+if ! command; then
+  echo "cmd failed"
+  exit 1
+fi
+
+// 命令执行结果判断
+netstat -apn | grep 8080
+if [ "$?" == 0 ]; then // 命令返回是空
 fi
 ```
 

@@ -1,7 +1,8 @@
 # docker-compose
 * 是命令，不是服务，不需要先启动
 
-## [命令](https://yeasy.gitbook.io/docker_practice/compose/commands)
+## 命令
+* 资料: https://yeasy.gitbook.io/docker_practice/compose/commands, https://www.kancloud.cn/panpan_w/panpan_w/718250
 1. 启动
 docker-compose up -d
 1. 停止
