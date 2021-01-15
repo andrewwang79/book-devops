@@ -32,6 +32,46 @@ systemctl disable firewalld.service #禁止firewall开机启动
 1. [整理Mysql "Too many connections" 解决办法](https://blog.csdn.net/q549244663/article/details/78205247)
 1. [生产环境中MySQL Drop 删除(百G级、T级)大表的解决方法](http://www.jiagoumi.com/work/1487.html)
 
+### 性能
+* MySQL5.7中新增的sys schema。是由一系列对象（视图、存储过程、存储方法、表和触发器）组成的schema，它本身不采集和存储什么信息，而是将performance_schema 和 information_schema中的数据以更容易理解的方式总结出来归纳为“视图”。
+* [MySQL-Performance-Schema和sys-schema介绍](https://rj03hou.github.io/mysql/MySQL-Performance-Schema%E5%92%8Csys-schema%E4%BB%8B%E7%BB%8D/)
+* [MySql监控分析视图-sys schema](https://cloud.tencent.com/developer/article/1674623)
+* [MySQL监控三部曲：四大性能指标](http://support.aiops.com/hc/kb/article/1286867/)
+* [我必须得告诉大家的MySQL优化原理 - 知乎](https://zhuanlan.zhihu.com/p/63671792)
+* [﻿从 MySQL 执行原理告诉你：为什么分页场景下，请求速度非常慢](https://youyou-tech.com/2019/12/08/%E4%BB%8EMySQL%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86%E5%91%8A%E8%AF%89%E4%BD%A0%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%86%E9%A1%B5%E5%9C%BA/)
+* [Mysql性能优化神器Explain使用](https://c.m.163.com/news/a/F2SAA50I0517P77J.html﻿)
+* [MySQL CPU 使用率高的原因和解决方法](https://blog.csdn.net/u011239989/article/details/72863333)
+
+#### 常用语句
+1. 查询表的访问量 : select table_schema,table_name,sum(io_read_requests+io_write_requests) as io from schema_table_statistics group by table_schema,table_name order by io desc;
+1. [MysqlWorkBench性能分析工具--性能仪表盘](https://www.jianshu.com/p/bb42f18ae5c3), 耗时sql清单
+1. [Mysql监控执行速度慢的语句](http://www.2cto.com/database/201304/201668.html)
+```
+show variables like 'log_slow_queries';
+show variables like 'long_query_time';
+show variables like 'slow_query_log_file';
+SET GLOBAL log_slow_queries = ON;
+SET GLOBAL long_query_time = 1;
+```
+1. [查看mysql正在执行的SQL语句](https://www.iteye.com/blog/qq85609655-2113960) : select * from information_schema.PROCESSLIST where info is not null; // show processlist;
+
+### 四种事务隔离级的说明
+* [四种事务隔离级的说明](https://www.cnblogs.com/zhoujinyi/p/3437475.HTML)
+* 语句实践
+```
+drop TABLE `t_txtest`;
+CREATE TABLE `t_txtest` (
+`id` bigint(20) NOT NULL default '0',
+`value` varchar(32) default NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB
+set session transaction isolation level read uncommitted;
+START TRANSACTION;
+SELECT * FROM t_txtest;
+INSERT INTO t_txtest VALUES (1, 'a');
+commit;
+```
+
 ### binlog
 #### 启用
 ```
@@ -119,41 +159,3 @@ select concat('select "', TABLE_name, '", count(*) from ', TABLE_SCHEMA, '.', TA
 ## 安装
 * [安装](http://www.cnblogs.com/jerrylz/p/5645224.html)
 * [ubuntu下彻底卸载mysql后重新安装](https://blog.csdn.net/chudongfang2015/article/details/52154903)
-
-## 知识
-1. [我必须得告诉大家的MySQL优化原理 - 知乎](https://zhuanlan.zhihu.com/p/63671792)
-1. [﻿从 MySQL 执行原理告诉你：为什么分页场景下，请求速度非常慢](https://youyou-tech.com/2019/12/08/%E4%BB%8EMySQL%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86%E5%91%8A%E8%AF%89%E4%BD%A0%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%86%E9%A1%B5%E5%9C%BA/)
-
-### 性能
-1. 数据统计
-  * [MysqlWorkBench性能分析工具--性能仪表盘](https://www.jianshu.com/p/bb42f18ae5c3),特别是耗时sql清单
-1. 慢查询
-  * [Mysql监控执行速度慢的语句](http://www.2cto.com/database/201304/201668.html)
-```
-show variables like 'log_slow_queries';
-show variables like 'long_query_time';
-show variables like 'slow_query_log_file';
-SET GLOBAL log_slow_queries = ON;
-SET GLOBAL long_query_time = 1;
-```
-1. [查看mysql正在执行的SQL语句](https://www.iteye.com/blog/qq85609655-2113960)
-select * from information_schema.PROCESSLIST where info is not null; // show processlist;
-1. [Mysql性能优化神器Explain使用](https://c.m.163.com/news/a/F2SAA50I0517P77J.html﻿)
-1. [MySQL CPU 使用率高的原因和解决方法](https://blog.csdn.net/u011239989/article/details/72863333)
-
-### 四种事务隔离级的说明
-* [四种事务隔离级的说明](https://www.cnblogs.com/zhoujinyi/p/3437475.HTML)
-* 语句实践
-```
-drop TABLE `t_txtest`;
-CREATE TABLE `t_txtest` (
-`id` bigint(20) NOT NULL default '0',
-`value` varchar(32) default NULL,
-PRIMARY KEY (`id`)
-) ENGINE=InnoDB
-set session transaction isolation level read uncommitted;
-START TRANSACTION;
-SELECT * FROM t_txtest;
-INSERT INTO t_txtest VALUES (1, 'a');
-commit;
-```
