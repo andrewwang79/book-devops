@@ -1,11 +1,13 @@
 # Jenkins
 ## 命令
-  * service jenkins restart
+* service jenkins restart
 
 ## 语法
 
 ## 使用
 * 工作目录参数：%workspace%
+* [提交代码触发](https://medium.com/@xfstart07/devops-gitlab-%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%E8%A7%A6%E5%8F%91-jenkins-%E9%83%A8%E7%BD%B2-43601d7baf34)
+* [Pipeline发送邮件](https://blog.csdn.net/u011541946/article/details/84034272)
 
 ## 资料
 * [Ubuntu安装](http://blog.csdn.net/fenglailea/article/details/25919367)

@@ -272,6 +272,10 @@ git config --global core.safecrlf true
 1. [SourceTree使用流程和方法](https://devops.wangyaqi.cn/s/SourceTree.docx)
 1. [git – 简易指南](http://www.bootcss.com/p/git-guide/)
 1. [强制删除远程分支上的某次提交](http://blog.csdn.net/qqxiaoqiang1573/article/details/68074847)
+```
+git reset --hard HEAD~1
+git push origin master -f
+```
 1. [Git下的冲突解决](http://www.cnblogs.com/sinojelly/archive/2011/08/07/2130172.html)
 1. [git多账号提交适配](https://www.jianshu.com/p/d696b5fef750)
 1. [git中detached HEAD、amend、rebase和reset](https://cloud.tencent.com/developer/article/1446002)
