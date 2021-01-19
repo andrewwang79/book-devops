@@ -162,7 +162,8 @@ service iptables stop
 * [chkconfig命令](http://man.linuxde.net/chkconfig)
 * [ Ubuntu下使用sysv-rc-conf管理服务](http://blog.csdn.net/gatieme/article/details/45251389)
 
-## [远程免密码登录设置](http://www.2cto.com/os/201304/205141.html)
+## 远程免密码登录设置
+* [远程免密码登录设置](http://www.2cto.com/os/201304/205141.html)
 * 步骤：
   1. 本地：生成公共密钥，用默认值。ssh-keygen -t rsa
   1. 本地：公共密钥上传到远程。scp ~/.ssh/id_rsa.pub root@192.168.161.138:/root/.ssh/id_rsa.136.pub
@@ -310,6 +311,7 @@ exportfs -arv // 重新加载/etc/exports文件
 systemctl restart nfs // 重启NFS
 ```
 
+```
 服务机：
 
 开放
@@ -317,6 +319,7 @@ systemctl restart nfs // 重启NFS
   /backup/ 172.16.2.137(rw,sync) // 对客户机172.16.2.137开放服务机的目录/backup/
 客户机：
 mount -t nfs 172.16.2.137:/backup/
+```
 
 ### 客户端相关操作
 ```
@@ -338,10 +341,6 @@ umount /biz/
 
 ## 审计log
 /var/log/auth.log*
-
-## 调试
-* [gdb](https://www.cnblogs.com/sting2me/p/7745551.html)
-* [五种利用strace查故障的简单方法](https://blog.csdn.net/csdn265/article/details/70050168)
 
 ## 监控
 * watch -n 1 -d 'ps -ef | grep java' // 每秒钟执行一次命令，定时执行
