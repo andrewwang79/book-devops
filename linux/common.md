@@ -92,6 +92,7 @@ apt-get install aptitude // 软件包安装情况的软件
 * mkdir -p /d1/d2 // 自动创建多层
 * mv/cp item1 item2 // 当前目录所有内容(不含目录的层级)移动/拷贝到上一级目录
 * /bin/cp -R dir1 dir2 // 用/bin/cp不提示覆盖overwrite，cp默认有-i
+* /bin/cp -R /dir1/. /dir2/ // 拷贝所有文件，含隐藏文件
 * mv/cp dir1/* ./ 比如cp -rf /etc/abc/* /opt/abc/，会把/etc/abc/下的内容拷贝到/opt/abc/，不会到/opt/abc/abc/  // dir1目录所有内容(不含dir1层级)移动/拷贝到当前目录。如dir1里有个dir2目录，则当前目录下有个dir2目录，没有dir1目录
 * mv/cp dir1 ./ // dir1目录移动/拷贝到当前目录。即当前目录下有个dir1目录
 * ln -s src_dir dest_dir // [建立软连接](https://www.cnblogs.com/peida/archive/2012/12/11/2812294.html)，从dest_dir链接到src_dir，如cd dest_dir
@@ -212,8 +213,11 @@ cat ~/.ssh/id_rsa.pub | ssh root@192.168.161.138 "mkdir ~/.ssh; cat >> ~/.ssh/au
   1. 远程免密码登录设置(远程是备份机)
   1. 编写备份脚本，将其设置成定时任务。备份内容如配置文件，运营文件，数据库等
 * 备份机：创建备份目录
+
 ## 安全
-* openssl x509 -in mycert.crt -out mycert.pem -outform PEM // ssl的crt生成pem
+* [HTTPS证书转换成PEM格式](https://help.aliyun.com/document_detail/40526.html)
+* openssl x509 -in mycert.crt -out mycert.pem -outform PEM // ssl的crt生成pem, der/crt是X.509的(ASCII), pem是X.509的(Base64)
+
 ## 杀毒
 * [ClamAV](http://wiki.ubuntu.org.cn/ClamAV)
 * 镜像网络
