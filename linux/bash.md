@@ -73,8 +73,7 @@ if test ${var} = "123"; then
 fi
 
 //  变量比较
-if [ "${var}"x != ""x ]
-then
+if [ "${var}"x != ""x ]; then
   echo "exist ${var}"
 else
   echo "not exist"
@@ -104,19 +103,26 @@ fi
 
 // 命令执行结果判断
 netstat -apn | grep 8080
-if [ "$?" == 0 ]; then // 命令返回是空
+if [ "$?" == 0 ]; then // 命令返回是0，表示执行成功
 fi
 ```
 
 ### 循环
 ```
-for item in ${array[@]}; do
+// array
+declare -A abc_array
+abc_array=(135 136 158)
+for item in ${abc_array[@]}; do
   echo "${item}"
 done
 
-for k in ${!map[*]}; do
+// map
+declare -A abc_map
+abc_map[jim]=135
+abc_map=([jim]=135 [tom]=136 [lucy]=158)
+for k in ${!abc_map[@]}; do
     key=${k}
-    val=${map[$k]}
+    val=${abc_map[$k]}
 done
 ```
 
@@ -163,6 +169,7 @@ done < $file
 * [shell脚本中的if 参数-a至-z](https://blog.csdn.net/shenhuxi_yu/article/details/53047012)
 * [if多条件判断](https://www.cnblogs.com/jjzd/p/6397495.html)
 * [Shell编程中Shift的用法](https://www.cnblogs.com/image-eye/archive/2011/08/20/2147153.html)
+* [遍历目录下的文件](https://www.cnblogs.com/kaituorensheng/archive/2012/12/19/2825376.html)
 
 ### 工具
 * [sed](http://jalan.space/2017/01/22/2017-01-22-shell-sed-replace-text/)
