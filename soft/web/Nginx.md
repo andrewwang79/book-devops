@@ -88,6 +88,7 @@ location /img/ {
 ## 资料
 * [nginx优化25条 - Dig All Possible](http://www.z-dig.com/nginx-optimization-25.html)
 * [nginx常量](https://www.yuque.com/hello-qtl5f/oa6pqr/lgfh4n)
+* [nginx 之 proxy_pass详解](https://www.jianshu.com/p/b010c9302cd0)
 * [Nginx简单防御CC攻击的两种方法](http://zhangguangzhi.top/2017/10/26/Nginx%E7%AE%80%E5%8D%95%E9%98%B2%E5%BE%A1CC%E6%94%BB%E5%87%BB%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95/)
 * 网站配置目录
   * Ubuntu：/etc/nginx/sites-enabled/，以后也是用centos目录

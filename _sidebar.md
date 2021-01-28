@@ -30,6 +30,7 @@
   * [文件传输](soft/dev/transfer.md)
 
 * 网络服务软件
+  * [openresty](soft/web/openresty.md)
   * [Nginx](soft/web/Nginx.md)
   * [Apache](soft/web/Apache.md)
   * [Tomcat](soft/web/Tomcat.md)

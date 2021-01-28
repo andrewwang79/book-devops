@@ -3,6 +3,7 @@
 ## 安装
 * [CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
 * [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+* [镜像仓库](https://hub.docker.com/)
 
 ## 资料
 ### 重要
