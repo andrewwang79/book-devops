@@ -25,6 +25,22 @@ var=${1:-"DefaultValue"} // 设置var值，输入参数1不存在则是默认值
 1. declare -A map // 字典定义
 
 ## 常用语法
+### 脚本执行错误后退出
+* [设置Shell脚本执行错误自动退出](https://lintingbin2009.github.io/2017/07/06/%E8%AE%BE%E7%BD%AEShell%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C%E9%94%99%E8%AF%AF%E8%87%AA%E5%8A%A8%E9%80%80%E5%87%BA/)
+
+```
+文件级别
+#!/bin/bash
+set -e
+
+错误会被忽略的写法：command1错误后不会退出，因为错误被&&吃掉了。所以重要逻辑不要用&&等命令连续符
+command1 && command2
+command1 || command2
+
+命令级别
+command || exit 1
+```
+
 ### 获取函数返回值
 ```
 function fa() {
@@ -104,6 +120,10 @@ fi
 // 命令执行结果判断
 netstat -apn | grep 8080
 if [ "$?" == 0 ]; then // 命令返回是0，表示执行成功
+  echo "success"
+else
+  echo "fail"
+  exit 1
 fi
 ```
 
@@ -128,7 +148,7 @@ done
 
 ### 获取函数的return：以下代码单独可以，放到复杂环境无效(原因未知)
 ```
-function func1(){
+function func1() {
   return 3
 }
 

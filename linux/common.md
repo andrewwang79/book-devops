@@ -90,7 +90,7 @@ apt-get install aptitude // 软件包安装情况的软件
 
 ## 文件和目录
 * mkdir -p /d1/d2 // 自动创建多层
-* mv/cp item1 item2 // 当前目录所有内容(不含目录的层级)移动/拷贝到上一级目录
+* mv/cp src dest // 【dest目录存在则dest目录下是src目录，dest目录不存在则dest目录下是src目录里的具体内容】。
 * /bin/cp -R dir1 dir2 // 用/bin/cp不提示覆盖overwrite，cp默认有-i
 * /bin/cp -R /dir1/. /dir2/ // 拷贝所有文件，含隐藏文件
 * mv/cp dir1/* ./ 比如cp -rf /etc/abc/* /opt/abc/，会把/etc/abc/下的内容拷贝到/opt/abc/，不会到/opt/abc/abc/  // dir1目录所有内容(不含dir1层级)移动/拷贝到当前目录。如dir1里有个dir2目录，则当前目录下有个dir2目录，没有dir1目录

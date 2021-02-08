@@ -1,5 +1,6 @@
 # 常用
 1. [ip](http://os.51cto.com/art/201406/441461.htm)
+  * mac=$(ip link show eth0 | awk '/ether/ {print $2}') //  获取网卡eth0的mac地址
 1. [ifconfig](http://blog.csdn.net/sdvch/article/details/12587515)
 1. netstat
   * netstat -lntp // 查看开启了哪些端口
