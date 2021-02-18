@@ -33,7 +33,8 @@
 1. traceroute www.baidu.com -路由跃点检查
 1. [linux绑定域名和IP](http://ttwang.iteye.com/blog/1955590)
 
-# [路由](http://baike.baidu.com/link?url=3OWZNh6IVWlbyjsJIk41NClQT2ueZ8i3AQszfA_M8zTjP9GbZ77PdvA7xEQGCWY7vncnOD0jOy9jnKl20zCvH_)
+# 路由
+* [资料](http://baike.baidu.com/link?url=3OWZNh6IVWlbyjsJIk41NClQT2ueZ8i3AQszfA_M8zTjP9GbZ77PdvA7xEQGCWY7vncnOD0jOy9jnKl20zCvH_)
 * [设置](http://www.centoscn.com/CentOS/help/2014/0113/2351.html)
 * [永久路由](http://blog.csdn.net/yuanchao99/article/details/18992567)
 * 使用route 命令添加的路由，机器重启或者网卡重启后路由就失效
@@ -42,10 +43,12 @@
   * nano /etc/sysctl.conf或者/etc/sysctl.d/99-sysctl.conf
   * 追加内容：net.ipv4.ip_forward = 1
 
-# [网桥(brctl)](http://blog.csdn.net/x_nazgul/article/details/20233237)
+# 网桥
+* [brctl](http://blog.csdn.net/x_nazgul/article/details/20233237)
 * [配置](http://fp-moon.iteye.com/blog/1468650)
 
 # [防火墙(iptables)](http://blog.chinaunix.net/uid-26495963-id-3279216.html)
+
 ## 命令
 * iptables -nvL INPUT // 查看定义规则的详细信息
 * iptables -A INPUT -p tcp --dport 5672 -j ACCEPT // 接受5672端口的TCP访问。-A是添加到最后一个，-I是添加到第一个
@@ -91,6 +94,7 @@ sudo /etc/init.d/networking restart
 # 网络监控
 * [Linux服务器上监控网络带宽的18个常用命令](https://blog.csdn.net/yygydjkthh/article/details/75269537)：iftop
 * [mtr](https://docs.ucloud.cn/unet/troubleshooting)
+* [网络工具netcat](https://www.runoob.com/linux/linux-comm-nc.html): nc -nvz 127.0.0.1 80 // 端口扫描
 
 ```
 tcpdump

@@ -351,6 +351,10 @@ umount /biz/
 
 ## ssh
 * sh -p port user@host  如：ssh -p 2222 pika@192.168.0.111
+* [sshpass](https://www.cnblogs.com/mianbaoshu/p/9648241.html)
+  * 命令带密码登录: sshpass -p password ssh -p 2222 pika@192.168.0.111
+  * 命令带密码文件登录: sshpass -f mypasswd.txt ssh -p 2222 pika@192.168.0.111 // echo 'password' >mypasswd.txt
+  * 命令带密码文件SCP: sshpass -f mypasswd.txt scp -r -p 2222 pika@192.168.0.111:/opt/foo/ .
 
 ## diff
 * diff -r dir1 dir2 // 目录比对
