@@ -94,7 +94,6 @@
 1. git reset .
 1. 清除当前目录下所有没commit的管理文件的修改：git checkout .
 1. 清除当前目录下所有非管理文件：git -C . clean -xdf
-1. [撤销合并](http://blog.psjay.com/posts/git-revert-merge-commit/)，需指定parent：git revert -m 1 <提交号(7位)>   m参数的值可以是1或2，对应parent在merge commit信息中的顺序，1是合并目标，2是合并来源
 1. [Git查看和修改账户](https://blog.csdn.net/junloin/article/details/75197880), git config
 
 ## 操作
@@ -160,6 +159,7 @@
 他人
 >>>>>>>6853e5ff961e684d3a6c02d4d06183b5ff330dcc
 ```
+* 取消合并: git merge --abort
 
 ### 仓库迁移
 * https://help.github.com/cn/articles/duplicating-a-repository
@@ -231,7 +231,15 @@ git init && git config core.sparseCheckout true && echo "design/" >> .git/info/s
 git remote add -f origin url && git pull origin master
 ```
 
-### [重置branch](https://blog.csdn.net/weixin_33974433/article/details/87963137)
+### 强制删除远程分支上的某次提交
+1. [强制删除远程分支上的某次提交](http://blog.csdn.net/qqxiaoqiang1573/article/details/68074847)
+```
+git reset --hard HEAD~1
+git push origin master -f
+```
+
+### 重置branch
+* [重置branch](https://blog.csdn.net/weixin_33974433/article/details/87963137)
 * 结果是重建分支，一般用于master。其他分支直接删除即可。
 ```
 思路：用空分支替换需重置的branch(master)
@@ -242,7 +250,8 @@ echo linux > README.md && git add -A && git commit -am "Initial commit" // 空�
 git branch -D master && git branch -m master && git push -f origin master // 删除master，将空分支提交到master
 ```
 
-### [git 免除账号密码的设置](http://blog.csdn.net/guang11cheng/article/details/50537759)
+### git 免除账号密码的设置
+* [git 免除账号密码的设置](http://blog.csdn.net/guang11cheng/article/details/50537759)
 * git config --global credential.helper store // 记住账号密码
 * rm ~/.git-credentials // 取消账号密码记忆
 
@@ -271,11 +280,6 @@ git config --global core.safecrlf true
 1. **[Git - 分支的新建与合并](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6)**
 1. [SourceTree使用流程和方法](https://devops.wangyaqi.cn/s/SourceTree.docx)
 1. [git – 简易指南](http://www.bootcss.com/p/git-guide/)
-1. [强制删除远程分支上的某次提交](http://blog.csdn.net/qqxiaoqiang1573/article/details/68074847)
-```
-git reset --hard HEAD~1
-git push origin master -f
-```
 1. [Git下的冲突解决](http://www.cnblogs.com/sinojelly/archive/2011/08/07/2130172.html)
 1. [git多账号提交适配](https://www.jianshu.com/p/d696b5fef750)
 1. [git中detached HEAD、amend、rebase和reset](https://cloud.tencent.com/developer/article/1446002)
