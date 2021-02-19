@@ -180,6 +180,12 @@ while read -r line; do
 done < $file
 ```
 
+### 不同颜色效果的输出文字
+* [使用echo输出带颜色的字体](https://www.cnblogs.com/linusflow/p/7399761.html)
+```
+echo -e "\033[4;32;47m"hi\""\033[0m" // hi"
+```
+
 ## 资料
 ### 语法
 * [SHELL(bash)脚本编程二：语法](https://segmentfault.com/a/1190000008080537)

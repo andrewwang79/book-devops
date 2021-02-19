@@ -23,6 +23,7 @@
 ## 流水线
 ### 资料
 * [官方资料](https://www.jenkins.io/zh/doc/book/pipeline/)
+* [官方示例](https://www.jenkins.io/doc/pipeline/examples/)
 * [jenkins pipeline基础语法与示例](https://www.jianshu.com/p/f1167e8850cd)
 * [常用环境变量](https://blog.csdn.net/qq_41030861/article/details/105171222)
 * [片段生成器](http://%domain%/job/%jobName%/pipeline-syntax/)
