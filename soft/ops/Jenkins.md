@@ -46,9 +46,30 @@ msBuild {
 * [msBuild](https://jenkinsci.github.io/job-dsl-plugin/#method/javaposse.jobdsl.dsl.helpers.step.StepContext.msBuild)
 * [Jenkins的Pipeline脚本在美团餐饮SaaS中的实践 - 美团技术团队](https://tech.meituan.com/2018/08/02/erp-cd-jenkins-pipeline.html)
 
+#### 使用groovy库
+```
+import java.net.URLEncoder
+git_password = URLEncoder.encode("${GIT_PASSWORD}")
+echo "${git_password}" // 必须要有单引号或者双引号
+```
+#### shell内的变量定义使用
+* [shell内的变量定义使用](https://stackoverflow.com/questions/34013854/jenkins-workflow-environment-variables-causing-a-failure/44296015)
+```
+sh """
+  _match=`ls`
+  if [ -z \${_match} ] ;then
+  fi
+"""
+```
+
+def pp="${PRODUCT}"
+def productGitUrl=aaa.get(PRODUCT)
+
+
 ### 共享库
 * 采用groovy
 * [官方共享库](https://www.jenkins.io/zh/doc/book/pipeline/shared-libraries/), [共享库](https://www.qikqiak.com/post/jenkins-shared-library-demo/)
+
 ```
 1 共享库开发
 新建共享库的git

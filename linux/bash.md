@@ -31,7 +31,7 @@ var=${1:-"DefaultValue"} // 设置var值，输入参数1不存在则是默认值
 ```
 --文件级别--
 #!/bin/bash
-set -e // 只需要加到主程序文件，不需要加到依赖文件
+set -e // 任何错误会退出。只需要加到主程序文件，不需要加到依赖文件。忽略错误是"set +e"
 
 文件中错误会被忽略的写法：用命令连接符(&&, ||)拼接命令，前面命令(command1)错误后不会触发退出，因为错误被命令连接符捕获处理了。
 重要逻辑不要用命令连接符，简单确定逻辑可用，比如cd && ls
@@ -72,11 +72,10 @@ else
     echo "not exist"
 fi
 
-// 变量是否存在
-if [ ${var} ]; then
-    echo "exist"
+if [ -z ${var} ];then
+	echo "not exist"
 else
-    echo "not exist"
+  echo "exist"
 fi
 
 // bool值判断
