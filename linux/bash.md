@@ -3,7 +3,8 @@
 ## 命令使用
 ```
 `cmd`，$(cmd) // 反引号执行命令【不同于shell内的函数调用，相当于执行命令】，可以将结果保存到全局变量或者输出io返回。return返回值只能是整数，非0(错误)都会退出整个程序
-$(cd ..; pwd) // 获取上层的绝对路径
+dir=$(cd .; pwd) // 获取上层的绝对路径
+dir=$(cd ..; pwd) // 获取上层的绝对路径
 $(dirname "$path") // 获取path的上级目录绝对路径，path必须是绝对路径
 $(basename "$path") // 获取path的名称，path必须是绝对路径
 echo PWD:\`pwd` // 显示当前路径
@@ -12,7 +13,7 @@ $(date +%s) // 自1970年到现在的秒数
 $(date +%Y%m%d-%H%M%S) // 年月日时分秒
 ls $DIR | grep .jar | awk '{print "'$DIR'/"$0}' | tr "\n" ":" // 把目录里的所有jar文件用":"组成字符串
 . data.properties，source data.properties // 加载属性文件的变量成为临时环境变量
-source common.sh // 加载通用函数
+source common.sh // 加载通用函数文件，如果“加载文件”加载了x.sh，那相当于当前文件也加载了x.sh。不要用相对路径加载，因为相对路径是相对于第一个执行的bash文件的路径。
 grep $old -rl $path | xargs -r sed -i "s#$old#$new#g" // 替换path下所有文件内容old->new
 var=${1:-"DefaultValue"} // 设置var值，输入参数1不存在则是默认值。[参考](http://www.mojidong.com/linux/2012/09/08/shell-set-default-value/)
 ```
@@ -72,6 +73,7 @@ else
     echo "not exist"
 fi
 
+// 变量var是否存在
 if [ -z ${var} ];then
 	echo "not exist"
 else
@@ -84,11 +86,18 @@ if [ ${var} = true ]; then
     echo 'var is true'
 fi
 
-// 变量相等
+// 字符串变量比较
 if test ${var} = "123"; then
 fi
 
-//  变量比较
+// 字符串变量startwith，要用&必须使用两个中括号
+if [[ "${var}" != "" && "${var}" == B* ]]; then
+  echo 'var start with B'
+else
+  echo "Not matched"
+fi
+
+//  字符串变量比较
 if [ "${var}"x != ""x ]; then
   echo "exist ${var}"
 else
@@ -158,6 +167,18 @@ res1=$(func1)
 res2=`echo $?`
 echo $res2
 echo $res1
+```
+
+### json解析
+```
+jsontext='{"version" : "si", "ackage_time" : "eti"}'
+ver=$(echo $jsontext | jq ".version")
+echo ver
+```
+
+### 文件操作
+```
+text=$(cat ./p.txt)
 ```
 
 ## 方案
