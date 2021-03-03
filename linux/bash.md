@@ -22,8 +22,8 @@ var=${1:-"DefaultValue"} // 设置var值，输入参数1不存在则是默认值
 1. 输入参数使用：$N。$1第一个参数
 1. 变量定义和赋值，等号左右不能有空格：P1="ppp"
 1. 变量使用：${P1}，$P1
-1. declare -a array // 数组定义
-1. declare -A map // 字典定义
+1. declare -a array // 数组定义。由整数索引的数组
+1. declare -A map // 字典定义。由字符串索引的关联数组
 
 ## 常用语法
 ### 脚本执行错误后退出
@@ -60,6 +60,10 @@ if [[ ! "${Number}" =~ ^[1-5,q]$ ]]; then
 echo "${CFAILURE}input error! Please only input 1~4 and q${CEND}"
 else
 case "${Number}" in
+  1) echo hi;;
+  2) echo hi;;
+  *) echo hi;;
+esac
 ```
 
 ### 判断
@@ -136,11 +140,12 @@ else
 fi
 ```
 
-### 循环
+### 循坏遍历数组/字典
 ```
 // array
-declare -A abc_array
+declare -a abc_array
 abc_array=(135 136 158)
+abc_array=(s1 s2)
 for item in ${abc_array[@]}; do
   echo "${item}"
 done
@@ -215,8 +220,10 @@ echo -e "\033[4;32;47m"hi\""\033[0m" // hi"
 * [$() ` `，${}，$[] $(())，[ ] (( )) [[ ]]作用与区别](https://blog.csdn.net/x1269778817/article/details/46535729)
 * [shell脚本中的if 参数-a至-z](https://blog.csdn.net/shenhuxi_yu/article/details/53047012)
 * [if多条件判断](https://www.cnblogs.com/jjzd/p/6397495.html)
+* [switch和case](https://blog.csdn.net/guodongxiaren/article/details/39758457)
 * [Shell编程中Shift的用法](https://www.cnblogs.com/image-eye/archive/2011/08/20/2147153.html)
 * [遍历目录下的文件](https://www.cnblogs.com/kaituorensheng/archive/2012/12/19/2825376.html)
+* [Shell脚本递归遍历目录](https://www.jianshu.com/p/edbdff7a83c9)
 
 ### 工具
 * [sed](http://jalan.space/2017/01/22/2017-01-22-shell-sed-replace-text/)
