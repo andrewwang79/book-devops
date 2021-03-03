@@ -231,19 +231,28 @@ DatabaseMirror db.jp.clamav.net
 * -C PATH// 设置程序当前工作目录
 * tar -rvf // 通过r追加文件，只能用于tar
 * tar -tf a.tar.gz // 在不解压的情况下查看压缩包的内容
-* tar -zcvf a.tar.gz -C /opt/ a // 压缩/opt/a/目录，压缩文件相对目录是/a，不是/opt/a/
-* tar -zxvf a.tar.gz -C /opt/b/ --strip-components 1 // 解压时去掉压缩文件的首层目录，把a的内容放到/opt/b/下面
 
 | 方式 | 操作 | 示例 |
 | -- | -- | -- |
 | tar(打包) | 打包 | tar -cvf example.tar files/dir |
 |  | 解包 | tar -xvf example.tar  -C /path |
-| tar.gz/tgz | 压缩 | tar -zcvf example.tar.gz 绝对路径 <br> tar -zcvf example.tar.gz -C /path 相对路径 |
-|  | 解压 | tar -zxvf example.tar.gz  -C /path |
+| tar.gz/tgz | 压缩 |  |
+|  | 解压 |  |
 | zip | 压缩目录 | zip -r example.zip abc |
 |  | 解压，可以用于windows的文件 | unzip example.zip |
 | gzip | 压缩tar文件到tar.gz，自动成为a.tar.gz，目录结构不变 | gzip a.tar |
 |  | 解压tar.gz文件到tar，自动成为a.tar | gzip -d a.tar.gz |
+
+### tar.gz
+1. 压缩
+  1. tar -zcvf e.tar.gz path // path可以是相对路径或绝对路径，压缩包里根目录是path。
+  1. tar -zcvf e.tar.gz -C dir path // 被压缩目录是“dir/path”，压缩包里根目录是path。
+    1. tar -zcvf abc.tar.gz -C /opt/ abc // 被压缩目录是/opt/abc/，压缩包里根目录是abc
+1. 解压
+  1. tar -zxvf example.tar.gz // 压缩包的文件放到当前目录下
+  1. tar -zxvf example.tar.gz -C dir // 压缩包的文件放到目录dir下
+  1. tar -zxvf a.tar.gz -C /opt/b/ --strip-components 1 // 把a的内容放到/opt/b/下面(不含a目录)
+    1. --strip-components 1：取压缩包第几层文件夹文件，1就相当于解压时去掉压缩包的根目录
 
 ## windows和linux回车不一样的处理(LF/CRLF)
 * dos2unix/unix2dos：find . -type f -exec dos2unix {} \;
