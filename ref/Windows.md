@@ -34,3 +34,4 @@ cmd：ipconfig /flushdns
 * [windows CMD命令大全及详细解释和语法](http://xstarcd.github.io/wiki/windows/windows_cmd_syntax.html)
 * 时间: %date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%%time:~6,2%
 * [Windows: Ignore errors with Xcopy and RoboCopy](https://djlab.com/2010/12/windows-ignore-errors-with-xcopy-and-robocopy/)
+* Win10 SSH 免密登录 linux : https://zhuanlan.zhihu.com/p/80364375, https://blog.csdn.net/lisongjia123/article/details/78513244

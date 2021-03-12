@@ -2,8 +2,6 @@
 ## 命令
 * service jenkins restart
 
-## 语法
-
 ## 使用
 * 工作目录参数：%workspace%
 * [提交代码触发](https://medium.com/@xfstart07/devops-gitlab-%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%E8%A7%A6%E5%8F%91-jenkins-%E9%83%A8%E7%BD%B2-43601d7baf34)
@@ -25,6 +23,7 @@
 * [官方资料](https://www.jenkins.io/zh/doc/book/pipeline/)
 * [官方示例](https://www.jenkins.io/doc/pipeline/examples/)
 * [jenkins pipeline基础语法与示例](https://www.jianshu.com/p/f1167e8850cd)
+* [Groovy语法](https://www.w3cschool.cn/groovy/)
 * [常用环境变量](https://blog.csdn.net/qq_41030861/article/details/105171222)
 * [片段生成器](http://%domain%/job/%jobName%/pipeline-syntax/)
   * [msbuild](https://jenkinsci.github.io/job-dsl-plugin/#method/javaposse.jobdsl.dsl.helpers.step.StepContext.msBuild)
@@ -40,11 +39,30 @@ msBuild {
   unstableIfWarnings()
 }
 ```
+* environment里只能是字符串，不能放list等
 
 ### 开发
 * [json读写](https://blog.csdn.net/u011541946/article/details/83833289)
 * [msBuild](https://jenkinsci.github.io/job-dsl-plugin/#method/javaposse.jobdsl.dsl.helpers.step.StepContext.msBuild)
 * [Jenkins的Pipeline脚本在美团餐饮SaaS中的实践 - 美团技术团队](https://tech.meituan.com/2018/08/02/erp-cd-jenkins-pipeline.html)
+
+#### 常用语法
+```
+script里局部函数除了赋值和echo要$和引号，其他都是直接使用
+
+script {
+  if (params.USE_OPENGL1 == true) { // bool
+  }
+  if (params.ARCH == "32") { // enum
+  }
+
+  def _targetPath="${packageName}/123" // 必须要有单引号或者双引号
+
+  if (_targetPath == "123") {
+  }
+
+}
+```
 
 #### 使用groovy库
 ```
@@ -88,3 +106,10 @@ script {
   util.静态函数(参数)
 }
 ```
+
+## 插件
+* [Jenkins 插件开发](https://www.chenshaowen.com/blog/how-to-develop-the-plugin-of-jenkins.html)
+* [Jenkins 插件开发之旅：两天内从 idea 到发布](https://cloud.tencent.com/developer/article/1426418)
+* [插件扩张点](https://www.jenkins.io/doc/developer/extensions/): 插件的继承类
+* 脚本命令行: http://%jenkins%/script
+* [官方市场](https://plugins.jenkins.io/)
