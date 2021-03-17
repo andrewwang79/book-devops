@@ -55,7 +55,9 @@
 
 ## 命令脚本
 ### branch
-1. git clone -b master --single-branch --depth=1 URL // 只克隆指定的版本，克隆深度是1
+1. git clone URL 目录 // 下载到指定目录，默认是仓库名。默认分支是master
+1. git clone --depth 1 URL // 克隆最后一次commit。加快速度，会有信息吗？
+1. git clone -b master --single-branch URL // 克隆指定的版本。加快速度，非本分支信息缺失
 1. 显示当前分支：git branch
 1. 显示所有分支，含远程分支：git branch -va
 1. 显示分支的提交记录：git show-branch
@@ -75,21 +77,18 @@
 1. 查看所有的commit提交记录：git log
 1. 查看所有的commit提交记录(含文件清单)：git log --name-status
 1. 查看最新的commit：git show
-1. 查看指定commit hashID的所有修改：git show commitId
-1. 查看某次commit中具体某个文件的修改：git show commitId fileName
+1. 查看指定commit的所有修改：git show commitSHA
+1. 查看某次commit中具体某个文件的修改：git show commitSHA fileName
 
 ### 其他
 1. git fetch && git reset --hard @{upstream} && git clean -ffdx // [重置目录到服务器状态](https://bitmingw.com/2018/01/28/git-branch-factory-reset/)
 1. git status // 显示当前目录的文件情况
 1. git blame file_path // 显示文件内容的具体修改情况
 1. git cat-file -p commitid // 显示提交号的具体内容
-1. git show commitid // 显示提交号的具体内容
-1. "git clone --depth 1 <url> <目录>" // 下载最后一次commit，加快速度
 1. **指定在特定目录执行git：git -C <目录> 执行命令**
 1. 拉取当前分支：git pull
 1. 拉取分支：git pull <远程主机> <远程分支>:<本地分支>，git pull origin master:master
 1. 合并分支(远程分支合并到当前分支)：git merge <远程分支>
-1. 查看提交信息：git show <提交号(7位)>
 1. 清除当前目录所有commit冲突的文件，不会回退：git reset hard
 1. git reset .
 1. 清除当前目录下所有没commit的管理文件的修改：git checkout .

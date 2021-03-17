@@ -8,11 +8,11 @@
 * 环境变量永久新增方法：文件追加行，如export path=$path:/path1:/pahtN
   * 于/etc/profile文件：对所有用户生效(永久的)
   * 用户目录下的.bash_profile文件，对单一用户生效(永久的)
-* source /etc/profile // 重新加载和生效文件
-* echo $HOME // 显示环境变量HOME
-* export HELLO="Hello!" // 临时设置一个新的环境变量hello
-* env // 显示所有的环境变量
+* 环境变量在当前session的新增方法：export HELLO="Hello!"
 * readonly TEST // 将环境变量TEST设为只读
+* source /etc/profile // 人工重新加载和生效文件
+* echo $HOME // 显示环境变量HOME
+* env // 显示所有的环境变量
 
 ## 软件安装卸载
 | 安装方式 | CentOS | Ubuntu |
