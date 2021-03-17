@@ -95,6 +95,8 @@ apt-get install aptitude // 软件包安装情况的软件
 * /bin/cp -R /dir1/. /dir2/ // 拷贝所有文件，含隐藏文件
 * mv/cp dir1/* ./ 比如cp -rf /etc/abc/* /opt/abc/，会把/etc/abc/下的内容拷贝到/opt/abc/，不会到/opt/abc/abc/  // dir1目录所有内容(不含dir1层级)移动/拷贝到当前目录。如dir1里有个dir2目录，则当前目录下有个dir2目录，没有dir1目录
 * mv/cp dir1 ./ // dir1目录移动/拷贝到当前目录。即当前目录下有个dir1目录
+* cp -rf path1 path2 destPath // 多个目录复制到目标路径
+* mv path1 path2 -t destPath // 多个目录移动到目标路径
 * ln -s src_dir dest_dir // [建立软连接](https://www.cnblogs.com/peida/archive/2012/12/11/2812294.html)，从dest_dir链接到src_dir，如cd dest_dir
 * ls -a dir1 // 查看隐藏文件
 * [提取文件名和目录名](https://www.cnblogs.com/nzbbody/p/4391802.html)

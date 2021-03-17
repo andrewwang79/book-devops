@@ -12,6 +12,7 @@
 ## 批处理
 ```
 md a\b // 创建多层目录
+rd /s/q build // 删除目录
 rd /s/q build & md build & cd build cmd // 一行命令执行多条指令 https://blog.csdn.net/yrk0556/article/details/104308866
 
 set BOOLVAL=true # 其他值都是false

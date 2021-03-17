@@ -32,7 +32,20 @@ networks:
     driver: bridge
 ```
 
-## 资料
+## 使用
+1. 环境变量
+https://www.jianshu.com/p/c87d4031413c
+https://zhuanlan.zhihu.com/p/55486428
+https://segmentfault.com/a/1190000023655147
+```
+定义变量：
+export DB_PORT=3306 && export DB_IP=111 && docker-compose config
+DB_PORT=3306 DB_IP=111 docker-compose config
+使用：
+${nginx_port}:80
+${nginx_port-81}:80 // -后面是默认值
+```
+
 1. [Docker Compose 方式下的容器网络基础知识点](https://michael728.github.io/2019/06/15/docker-compose-networks)，https://docs.docker.com/compose/networking/
 ```
 指定网络名，不设置name会是"当前目录_abc"

@@ -3,14 +3,25 @@
 目录是"dockerfiletest_0.1"
 
 ### 在dockerA里执行dockerB
+#### 宿主机上启动dockerA
 ```
-# 1. 宿主机上启动dockerA
 docker stop dockerA && docker rm dockerA
+// dockerA运行参数配置：
 docker run -d --cap-add=ALL --name dockerA -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -v /usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7 ImageA:0.1
 
-# 2. dockerA里执行dockerB(dockerfiletest:0.1)
-# 等同于在宿主机上执行dockerB，所以此处的/home就是宿主机的/home
-# ttttt是写到的文件名。b.out返回值是1，a.out返回值是0
+docker-compose参数配置：
+volumes:
+  - /var/run/docker.sock:/var/run/docker.sock # 此两行配置后可在容器内运行docker命令
+  - /usr/bin/docker:/usr/bin/docker
+privileged: true
+cap_add:
+  - SYS_PTRACE
+```
+
+#### dockerA里执行dockerB(dockerfiletest:0.1)
+```
+// 等同于在宿主机上执行docker命令，所以此处所有的定义都是基于宿主机的，比如volume的/home就是宿主机的/home
+// dockerfiletest:0.1参数说明：ttttt是写到的文件名，b.out是执行的文件。其中b.out返回值是1，a.out返回值是0
 docker run -v /home:/data dockerfiletest:0.1 ttttt b.out
 ```
 

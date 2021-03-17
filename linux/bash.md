@@ -26,6 +26,11 @@ var=${1:-"DefaultValue"} // 设置var值，输入参数1不存在则是默认值
 1. declare -A map // 字典定义。由字符串索引的关联数组
 
 ## 常用语法
+### 命令连接符(&&, ||)的区别
+1. cmd1 ; cmd2	cmd1 和 cmd2 都会 被执行
+1. cmd1 && cmd2	如果 cmd1 执行 成功 则执行 cmd2
+1. cmd1 || cmd2	如果 cmd1 执行 失败 则执行 cmd2
+
 ### 脚本执行错误后退出
 * [设置Shell脚本执行错误自动退出](https://lintingbin2009.github.io/2017/07/06/%E8%AE%BE%E7%BD%AEShell%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C%E9%94%99%E8%AF%AF%E8%87%AA%E5%8A%A8%E9%80%80%E5%87%BA/)
 
@@ -130,14 +135,23 @@ if ! command; then
   exit 1
 fi
 
-// 命令执行结果判断
+// 命令执行结果判断，处理错误
+// 命令返回是0，表示执行成功
 netstat -apn | grep 8080
-if [ "$?" == 0 ]; then // 命令返回是0，表示执行成功
+// 方案1
+if [ $? -ne 0 ]; then
+    echo 'fail'
+    exit 1
+fi
+// 方案2
+if [ $? == 0 ]; then
   echo "success"
 else
   echo "fail"
   exit 1
 fi
+// 方案3
+netstat -apn | grep 8080 || ! echo 'fail' || exit 1
 ```
 
 ### 循坏遍历数组/字典

@@ -7,6 +7,12 @@ ubuntu16：
 https://github.com/git-lfs/git-lfs/releases，页面下载AMD64版本
 tar -xzvf git-lfs-linux-arm64-v2.8.0.tar.gz
 ./install.sh
+
+dockerfile安装：
+WORKDIR $INSTALL_PATH
+RUN mkdir $INSTALL_PATH/gitlfs  && tar -xvzf /data/devops/git-lfs-linux-amd64-v2.13.2.tar.gz
+WORKDIR $INSTALL_PATH/gitlfs
+RUN ./install.sh
 ```
 
 # docker里路径

@@ -46,10 +46,29 @@ msBuild {
 * [msBuild](https://jenkinsci.github.io/job-dsl-plugin/#method/javaposse.jobdsl.dsl.helpers.step.StepContext.msBuild)
 * [Jenkins的Pipeline脚本在美团餐饮SaaS中的实践 - 美团技术团队](https://tech.meituan.com/2018/08/02/erp-cd-jenkins-pipeline.html)
 
+#### groovy语法
+* [Groovy集合（map）](https://blog.csdn.net/dora_310/article/details/52877750)
+* [Groovy List 常用操作](https://blog.csdn.net/coderinchina/article/details/92081323)
+
 #### 常用语法
 ```
-script里局部函数除了赋值和echo要$和引号，其他都是直接使用
+// 局部变量使用
+script里局部变量除了赋值和echo时要$和引号，其他都是直接使用。比如
+def pp="${PRODUCT}"
+def productGitUrl=aaa.get(PRODUCT)
 
+// 输入参数
+要$和引号
+
+// 代码下载方法，第二种可以拉lfs文件
+dir("${PRODUCT_NAME}/abc") {
+  git branch: '${branch}', credentialsId: CREDENTIAL, url: '${url}'
+}
+dir("${PRODUCT_NAME}/abc") {
+  checkout([$class: 'GitSCM', branches: [[name: '${branch}']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'GitLFSPull']], submoduleCfg: [], userRemoteConfigs: [[credentialsId: CREDENTIAL, url: '${url}']]])
+}
+
+// 参数判断
 script {
   if (params.USE_OPENGL1 == true) { // bool
   }
@@ -70,7 +89,7 @@ import java.net.URLEncoder
 git_password = URLEncoder.encode("${GIT_PASSWORD}")
 echo "${git_password}" // 必须要有单引号或者双引号
 ```
-#### shell内的变量定义使用
+#### bash内定义的变量如何使用【加"\"】
 * [shell内的变量定义使用](https://stackoverflow.com/questions/34013854/jenkins-workflow-environment-variables-causing-a-failure/44296015)
 ```
 sh """
@@ -79,10 +98,6 @@ sh """
   fi
 """
 ```
-
-def pp="${PRODUCT}"
-def productGitUrl=aaa.get(PRODUCT)
-
 
 ### 共享库
 * 采用groovy
