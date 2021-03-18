@@ -385,14 +385,14 @@ umount /biz/
 | 管道 | 作为标准输入 | echo "--help" \| cat | 输入"cat"，手工输入--help |
 | xargs | 作为命令参数 | echo "--help" \| xargs cat | 输入"cat --help" |
 
-## 字符截取命令
+## 字符串分割截取命令
 * [cut, printf, awk, sed](https://www.cnblogs.com/farwish/p/4806018.html)
 * cut -d ' ' -f 1 // 分隔符是' '，取第一列
 * awk '{print $1}' // 无条件的取第一列
 
-## sha
+## sha签名
 ```
-sha512sum file // 签名 sha512sum
+sha512sum file | awk '{print $1}' > file.sha512 // 签名 sha512sum
 find . -type f -not \( -name '.*' \) -print0 | xargs -0 sha512sum | sort > sign.sha512 // 指定目录的所有文件签名排序保存
 ```
 

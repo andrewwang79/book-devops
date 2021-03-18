@@ -40,6 +40,7 @@ msBuild {
 }
 ```
 * environment里只能是字符串，不能放list等
+* [【Jenkins】Pipeline遇到的问题和解决方法](https://blog.csdn.net/DynastyRumble/article/details/105678447)
 
 ### 开发
 * [json读写](https://blog.csdn.net/u011541946/article/details/83833289)
@@ -89,9 +90,12 @@ import java.net.URLEncoder
 git_password = URLEncoder.encode("${GIT_PASSWORD}")
 echo "${git_password}" // 必须要有单引号或者双引号
 ```
-#### bash内定义的变量如何使用【加"\"】
-* [shell内的变量定义使用](https://stackoverflow.com/questions/34013854/jenkins-workflow-environment-variables-causing-a-failure/44296015)
+#### bash相关
+* [jenkins pipeline中获取shell命令的标准输出或者状态](https://blog.csdn.net/liurizhou/article/details/86670092)
+* [shell内的变量定义使用](https://stackoverflow.com/questions/34013854/jenkins-workflow-environment-variables-causing-a-failure/44296015),【加"\"】
 ```
+result = sh(script: "<shell command>", returnStatus: true).trim()
+
 sh """
   _match=`ls`
   if [ -z \${_match} ] ;then
