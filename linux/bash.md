@@ -6,7 +6,7 @@
   可以将结果保存到全局变量或者输出io返回。
   非0(错误)都会退出整个程序，不想退出可以捕获异常，比如：dir=$(cd .; pwd) || dir=
 如果
-dir=$(cd .; pwd) // 获取上层的绝对路径
+dir=$(cd .; pwd) // 获取本层的绝对路径
 dir=$(cd ..; pwd) // 获取上层的绝对路径
 $(dirname "$path") // 获取path的上级目录绝对路径，path必须是绝对路径
 $(basename "$path") // 获取path的名称，path必须是绝对路径
@@ -134,8 +134,11 @@ fi
 
 // 命令执行
 if ! command; then
-  echo "cmd failed"
+  echo "cmd返回非零"
   exit 1
+else
+  echo "cmd返回零"
+  exit 0
 fi
 
 // 命令执行结果判断，处理错误
