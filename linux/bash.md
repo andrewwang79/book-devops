@@ -18,6 +18,8 @@ ls $DIR | grep .jar | awk '{print $0}' | tr "\n" ":" // 遍历目录里的所有
 . data.properties，source data.properties // 加载属性文件的变量成为临时环境变量
 source common.sh // 加载通用函数文件，如果“加载文件”加载了x.sh，那相当于当前文件也加载了x.sh。不要用相对路径加载，因为相对路径是相对于第一个执行的bash文件的路径。
 grep $old -rl $path | xargs -r sed -i "s#$old#$new#g" // 替换path下所有文件内容old->new
+使用envsubst命令替换掉配置文件中的配置项: https://blog.csdn.net/zh515858237/article/details/79218176
+_variable_names="\${V1} \${V2}" && envsubst "${_variable_names}" < ${tplFilePath} > ${targetFilePath}
 var=${1:-"DefaultValue"} // 设置var值，输入参数1不存在则是默认值。[参考](http://www.mojidong.com/linux/2012/09/08/shell-set-default-value/)
 ```
 
@@ -254,6 +256,6 @@ echo -e "\033[4;32;47m"hi\""\033[0m" // hi"
 
 ### 方案
 * shell调用：1个参数有多个值时中间有空格，则调用参数必须加双引号。如p1="-a -b"，sh xxx.sh "${p1}"
-* Ubuntu用bash替换dash：sudo dpkg-reconfigure dash，选择“No”, ls -l /bin/sh
+* Ubuntu用bash替换dash：检查(ls -l /bin/sh), 替换(sudo dpkg-reconfigure dash，选择“No”), [dash和bash区别](https://www.jianshu.com/p/762d4cccee7e)
 * [创建交互式shell脚本对话框](https://www.linuxprobe.com/create-interactive-shell-script.html)
 * [linux expect 自动交互脚本用法](https://yq.aliyun.com/articles/701512)
