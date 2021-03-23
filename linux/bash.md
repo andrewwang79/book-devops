@@ -14,7 +14,7 @@ echo PWD:\`pwd` // 显示当前路径
 exit 0 // 退出，0是成功，>0是错误
 $(date +%s) // 自1970年到现在的秒数
 $(date +%Y%m%d-%H%M%S) // 年月日时分秒
-ls $DIR | grep .jar | awk '{print "'$DIR'/"$0}' | tr "\n" ":" // 把目录里的所有jar文件用":"组成字符串
+ls $DIR | grep .jar | awk '{print $0}' | tr "\n" ":" // 遍历目录里的所有jar文件用":"组成字符串
 . data.properties，source data.properties // 加载属性文件的变量成为临时环境变量
 source common.sh // 加载通用函数文件，如果“加载文件”加载了x.sh，那相当于当前文件也加载了x.sh。不要用相对路径加载，因为相对路径是相对于第一个执行的bash文件的路径。
 grep $old -rl $path | xargs -r sed -i "s#$old#$new#g" // 替换path下所有文件内容old->new
@@ -55,7 +55,7 @@ command || exit 1
 ```
 function fa() {
   name=$1
-  echo hello${name}
+  echo "hello${name}"
 }
 name1=andrew
 text=$(fa ${name1})
@@ -132,8 +132,11 @@ if [ -f "${file}" ]
 then
 fi
 
+function commandxyz() {
+    return 0
+}
 // 命令执行
-if ! command; then
+if ! commandxyz; then
   echo "cmd返回非零"
   exit 1
 else

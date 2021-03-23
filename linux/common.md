@@ -106,6 +106,7 @@ apt-get install aptitude // 软件包安装情况的软件
 
 ## 文件
 * [find示例](http://blog.csdn.net/windowschengxisheji/article/details/51019280)
+  * find结果路径是绝对还是相对来自于查询的路径是绝对还是相对，比如find /opt/ -name xxx，结果是绝对路径
   * find / -name xyz // 指定文件全路径查找(xyz)
   * find / -name *xyz* // 指定文件全路径模糊查找(xyz)
   * find . -type f -size +100M // 查找大文件(100M)
@@ -166,11 +167,14 @@ service iptables stop
 * [ Ubuntu下使用sysv-rc-conf管理服务](http://blog.csdn.net/gatieme/article/details/45251389)
 
 ## 远程免密码登录设置
-* [远程免密码登录设置](http://www.2cto.com/os/201304/205141.html)
+* [远程免密码登录设置](http://www.2cto.com/os/201304/205141.html), https://blog.csdn.net/alifrank/article/details/48241699
 * 步骤：
   1. 本地：生成公共密钥，用默认值。ssh-keygen -t rsa
-  1. 本地：公共密钥上传到远程。scp ~/.ssh/id_rsa.pub root@192.168.161.138:/root/.ssh/id_rsa.136.pub
-  1. 远程：将上传的本地公共密钥加到远程授权列表。cat ~/.ssh/id_rsa.136.pub>>~/.ssh/authorized_keys
+  1. 公共密钥授权
+    ssh-copy-id root@192.168.161.138
+  1. 公共密钥授权
+    1. 本地：公共密钥上传到远程。scp ~/.ssh/id_rsa.pub root@192.168.161.138:/root/.ssh/id_rsa.136.pub
+    1. 远程：将上传的本地公共密钥加到远程授权列表。cat ~/.ssh/id_rsa.136.pub>>~/.ssh/authorized_keys
 
 * 其中2和3步可合成一步本地操作：
 ```
@@ -363,8 +367,9 @@ umount /biz/
 ## ssh
 * sh -p port user@host  如：ssh -p 2222 pika@192.168.0.111
 * [sshpass](https://www.cnblogs.com/mianbaoshu/p/9648241.html)
-  * 命令带密码登录: sshpass -p password ssh -p 2222 pika@192.168.0.111
-  * 命令带密码文件登录: sshpass -f mypasswd.txt ssh -p 2222 pika@192.168.0.111 // echo 'password' >mypasswd.txt
+  * 命令带密码登录: sshpass -p "password" ssh -p 2222 pika@192.168.0.111
+  * 密码文件生成: echo 'password' > mypasswd.txt
+  * 命令带密码文件登录: sshpass -f mypasswd.txt ssh -p 2222 pika@192.168.0.111
   * 命令带密码文件SCP: sshpass -f mypasswd.txt scp -r -p 2222 pika@192.168.0.111:/opt/foo/ .
 
 ## diff
