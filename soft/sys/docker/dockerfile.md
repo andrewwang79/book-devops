@@ -14,7 +14,12 @@ ENV MYSQL_MAJOR 5.7
 ENV SITE_HOME /usr/local/mysql/$MYSQL_MAJOR
 RUN mkdir -p "$SITE_HOME"
 
+# 拷贝文件
 COPY file/docker-entrypoint.sh /usr/local/bin/
+# 拷贝目录，新建目录，将*拷贝过去
+RUN mkdir -p "abc"
+COPY file/bb/* abc/
+
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 3306
