@@ -18,7 +18,7 @@ RUN mkdir -p "$SITE_HOME"
 COPY file/docker-entrypoint.sh /usr/local/bin/
 # 拷贝目录，新建目录，将*拷贝过去
 RUN mkdir -p "abc"
-COPY file/bb/* abc/
+COPY file/bb/. abc/  .是所有，*是文件
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 

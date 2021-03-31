@@ -119,8 +119,9 @@ apt-get install aptitude // 软件包安装情况的软件
 
 ## 内存
 * sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches' // 清除不用的缓存
-* top // 查看内存使用情况，输入shift + m可根据内存使用量进行排序
+* top // 查看内存使用情况，输入shift + m可根据内存使用量进行排序。输入e切换进程信息，切换单位是k,m,g,t,p
 * top -p 1111 // 查看特定进程号的内存(1111)
+* top -c // 显示进程命令的全路径与参数
 * ps -aux | sort -k4nr | head -5 // 使用内存最多的5个进程
 
 ## 进程
@@ -259,6 +260,10 @@ DatabaseMirror db.jp.clamav.net
   1. tar -zxvf example.tar.gz -C dir // 压缩包的文件放到目录dir下
   1. tar -zxvf a.tar.gz -C /opt/b/ --strip-components 1 // 把a的内容放到/opt/b/下面(不含a目录)
     1. --strip-components 1：取压缩包第几层文件夹文件，1就相当于解压时去掉压缩包的根目录
+
+### rar
+1. rar a all *.jpg // 将所有jpg文件压缩成all.rar
+1. unrar e all.rar
 
 ## windows和linux回车不一样的处理(LF/CRLF)
 * dos2unix/unix2dos：find . -type f -exec dos2unix {} \;

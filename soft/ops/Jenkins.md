@@ -131,4 +131,12 @@ script {
 * [Jenkins 插件开发之旅：两天内从 idea 到发布](https://cloud.tencent.com/developer/article/1426418)
 * [插件扩张点](https://www.jenkins.io/doc/developer/extensions/): 插件的继承类
 * 脚本命令行: http://%jenkins%/script
+```
+重置build number
+item = Jenkins.instance.getItemByFullName("jobName")
+item.builds.each() { build ->
+  build.delete()
+}
+item.updateNextBuildNumber(1)
+```
 * [官方市场](https://plugins.jenkins.io/)

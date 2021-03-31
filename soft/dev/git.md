@@ -283,6 +283,7 @@ git config --global core.safecrlf true
 1. [git多账号提交适配](https://www.jianshu.com/p/d696b5fef750)
 1. [git中detached HEAD、amend、rebase和reset](https://cloud.tencent.com/developer/article/1446002)
 1. [Detached HEAD](https://zhuanlan.zhihu.com/p/66460426)
+1. 分支整体图用TortoiseGit的[Reversion Graph](https://blog.csdn.net/zh_ITRoad/article/details/84857531)
 
 ### 账号
 1. git账号：通过邮箱区分
