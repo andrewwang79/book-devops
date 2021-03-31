@@ -1,15 +1,15 @@
 # 版本模型
 * 原则：新分支只能合并到来源分支(不能在新分支之间做合并)，来源分支可以将部分改进合并到新分支
-* 资料：[分支模型](http://blog.csdn.net/qq_34651940/article/details/51891767)，[英文原版](http://nvie.com/posts/a-successful-git-branching-model/)
+* 资料：[分支模型](http://blog.csdn.net/qq_34651940/article/details/51891767)，[英文原版](http://nvie.com/posts/a-successful-git-branching-model/)，master上可能会混合版本【世界是个树，不是线】，不建议用master
 ![](http://img.blog.csdn.net/20160716144249144?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 
 |分支类型 | 名称 | 永久 | 命名规范 | 来源 | 操作 | 合并到 | 角色 |
 | -------- | ----- | ----- | ----- | ---- |----- | ----- | ---- |
 | master | 主干，正式环境 | Y | master | release，hotfix | 无 | 无 | 发布人员 |
 | develop  | 开发分支，开发环境，测试环境 | Y |  dev | 无 | 任意 | 无 | 开发人员 |
-| feature | 功能分支 | N |  V2.3_ft_pay_lyx。V版本号__ft_功能说明_负责人 | dev | 任意 | dev | 开发人员 |
-| release | 版本发布分支 | N | V2.3_rl_20161111。V版本号__rl_版本日期 | dev | bugfix | dev | 发布人员，开发人员 |
-| hotfix | 补丁分支 | N | V2.2_hf_123456-332452_wyq。V版本号__hf_bug说明_负责人 | master | bugfix | dev | 发布人员，开发人员 |
+| feature | 功能分支 | N |  f-pay。f-功能说明 | dev | 任意 | dev | 开发人员 |
+| release | 版本发布分支 | N | r-2.3。r-版本号 | dev | bugfix | dev | 发布人员，开发人员 |
+| hotfix | 补丁分支 | N | h-332452。h-bug说明 | master | bugfix | dev | 发布人员，开发人员 |
 
 精简模型的操作：
 1. hotfix无需另开分支，直接在master开发【否则还需部署一套环境】。合并操作同hotfix。
