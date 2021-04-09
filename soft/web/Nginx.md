@@ -13,6 +13,8 @@
 * [nginx常量](https://www.yuque.com/hello-qtl5f/oa6pqr/lgfh4n)
 
 ## 配置
+* [未绑定域名禁止访问](https://shockerli.net/post/nginx-forbidden-unbound-domain-access/)
+
 ### 负载均衡
 * [nginx的upstream目前支持的5种方式](https://www.oschina.net/question/12_24613)
 * [nginx使用用户真实IP做hash（解决经过CND后ip_hash失效问题）](https://blog.51cto.com/983836259/1864239)
@@ -87,7 +89,7 @@ nginx.conf调整
 proxy_http_version 1.1;
 proxy_set_header Upgrade $http_upgrade;
 proxy_set_header Connection "upgrade";
-proxy_read_timeout 86400s;
+# proxy_read_timeout 86400s;
 # proxy_connect_timeout 60s;
 # proxy_send_timeout 60s;
 ```
