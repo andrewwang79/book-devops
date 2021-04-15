@@ -200,10 +200,26 @@ echo $res1
 ```
 
 ### json解析
+* https://mozillazg.com/2018/01/jq-use-examples-cookbook.html
+* [在线测试网址](https://jqplay.org/)
+
 ```
+# 获取json属性值
 jsontext='{"version" : "si", "ackage_time" : "eti"}'
 ver=$(echo $jsontext | jq ".version")
 echo ver
+
+# 遍历json数组
+jd='[["a1", "b1"], ["a2", "b2"]]'
+echo ${jd} | jq -c '.[]' > $$tmp # 写到文件
+while read i; do # 遍历数组，内部变量和外面是相通的
+  echo i=${i}
+  echo $(echo ${i} | jq -c '.[0]') # 获取数组第n个值
+  echo ${i} | jq -c '.[]' | while read j; do # 遍历数组，管道后遍历的内部变量和外面是不通的
+    echo j=${j}
+  done
+done < $$tmp
+rm -f $$tmp
 ```
 
 ### 文件操作

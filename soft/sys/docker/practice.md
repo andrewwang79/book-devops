@@ -2,8 +2,8 @@
 ## 标准
 目录是"dockerfiletest_0.1"
 
-### 在dockerA里执行dockerB
-#### 宿主机上启动dockerA
+## 在dockerA里执行dockerB
+### 宿主机上启动dockerA
 ```
 docker stop dockerA && docker rm dockerA
 // dockerA运行参数配置：
@@ -18,11 +18,18 @@ cap_add:
   - SYS_PTRACE
 ```
 
-#### dockerA里执行dockerB(dockerfiletest:0.1)
+### dockerA里执行dockerB(dockerfiletest:0.1)
 ```
 // 等同于在宿主机上执行docker命令，所以此处所有的定义都是基于宿主机的，比如volume的/home就是宿主机的/home
 // dockerfiletest:0.1参数说明：ttttt是写到的文件名，b.out是执行的文件。其中b.out返回值是1，a.out返回值是0
 docker run -v /home:/data dockerfiletest:0.1 ttttt b.out
+```
+
+### 获取系统配置，如内存
+```
+volumes:
+  - /sbin/dmidecode:/sbin/dmidecode
+  - /dev/mem:/dev/mem
 ```
 
 ## 配置文件可基于环境变量动态化
