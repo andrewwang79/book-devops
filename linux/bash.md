@@ -18,7 +18,7 @@ ls $DIR | grep .jar | awk '{print $0}' | tr "\n" ":" // 遍历目录里的所有
 . data.properties，source data.properties // 加载属性文件的变量成为临时环境变量
 source common.sh // 加载通用函数文件，如果“加载文件”加载了x.sh，那相当于当前文件也加载了x.sh。不要用相对路径加载，因为相对路径是相对于第一个执行的bash文件的路径。
 grep $old -rl $path | xargs -r sed -i "s#$old#$new#g" // 替换path下所有文件内容old->new
-使用envsubst命令替换掉配置文件中的配置项: https://blog.csdn.net/zh515858237/article/details/79218176
+使用envsubst命令替换掉配置文件中的配置项: https://blog.csdn.net/zh515858237/article/details/79218176，源路径和目标路径必须不一样
 _variable_names="\${V1} \${V2}" && envsubst "${_variable_names}" < ${tplFilePath} > ${targetFilePath}
 var=${1:-"DefaultValue"} // 设置var值，输入参数1不存在则是默认值。[参考](http://www.mojidong.com/linux/2012/09/08/shell-set-default-value/)
 ```
