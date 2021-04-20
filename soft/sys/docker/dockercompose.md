@@ -54,7 +54,10 @@ networks:
     name: abcd
     driver: bridge
 ```
-1. docker启动后不关闭的命令(docker无命令会自动关闭)：tail -f /dev/null
+1. docker启动后不关闭的命令(docker无命令会自动关闭)
+```
+command: sh -c "tail -f /dev/null"
+```
 1. [语法](https://www.cnblogs.com/freefei/p/5311294.html)
 1. [控制docker-compose中服务的启动顺序](https://blog.csdn.net/xiao_jun_0820/article/details/78676765)
 ```

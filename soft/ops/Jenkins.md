@@ -93,6 +93,7 @@ echo "${git_password}" // 必须要有单引号或者双引号
 #### bash相关
 * [jenkins pipeline中获取shell命令的标准输出或者状态](https://blog.csdn.net/liurizhou/article/details/86670092)
 * [shell内的变量定义使用](https://stackoverflow.com/questions/34013854/jenkins-workflow-environment-variables-causing-a-failure/44296015),【加"\"】
+
 ```
 result = sh(script: "<shell command>", returnStatus: true).trim()
 
