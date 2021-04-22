@@ -9,6 +9,7 @@
 1. [JDBC查询条件输入中文，查询为空](http://www.it610.com/article/1824094.htm)：String url = "jdbc:mysql://127.0.0.1:3306/mydata?useUnicode=true&characterEncoding=utf-8";
 1. [MySQL Workbench的安全更新模式](http://www.cnblogs.com/zgqys1980/p/4129239.html)：SET SQL_SAFE_UPDATES=0;
 1. [mysql max_allowed_packet自动重置为1024 终结解决](http://www.cnblogs.com/qdpurple/p/5742059.html)，查询max_allowed_packet重置的日志，日志文件是“general_log_file”
+1. [mysql的sql_mode合理设置](http://xstarcd.github.io/wiki/MySQL/MySQL-sql-mode.html)
 1. [不区分大小写，默认是区分大小写的](http://blog.csdn.net/tengdazhang770960436/article/details/53337338)
   1. nano /etc/my.cnf
   1. 在[mysqld]节点下，加入一行： lower_case_table_names=1
