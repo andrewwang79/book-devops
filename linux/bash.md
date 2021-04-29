@@ -94,6 +94,13 @@ else
   echo "exist"
 fi
 
+// 整数判断
+_file_count=`ls -l | grep "^-" | wc -l` # 文件数量
+if [ ! ${_file_count} == 3 ]; then
+  echo "error : file number is wrong"
+  exit 1
+fi
+
 // bool值判断
 var=true
 if [ ${var} = true ]; then

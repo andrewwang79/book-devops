@@ -5,7 +5,8 @@
 ## 使用
 * 工作目录参数：%workspace%
 * [提交代码触发](https://medium.com/@xfstart07/devops-gitlab-%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%E8%A7%A6%E5%8F%91-jenkins-%E9%83%A8%E7%BD%B2-43601d7baf34)
-* [Pipeline发送邮件](https://blog.csdn.net/u011541946/article/details/84034272)
+* [Pipeline发送邮件-email](https://blog.csdn.net/u011541946/article/details/84034272), [email-ext](http://ikeptwalking.com/using-email-ext-plugin-in-jenkins-pipeline/)
+  * 多个附件: attachmentsPattern: 'test/forEmail*, test/myPdf3*'
 
 ## 资料
 * [Ubuntu安装](http://blog.csdn.net/fenglailea/article/details/25919367)
@@ -54,8 +55,10 @@ msBuild {
 #### 常用语法
 ```
 // 局部变量使用
-script里局部变量除了赋值和echo时要$和引号，其他都是直接使用。比如
+script里局部变量除了赋值和echo时要$和引号，其他都是直接使用。本质有2种使用方案："${PRODUCT}" PRODUCT
+示例：
 def pp="${PRODUCT}"
+echo "I am ${PRODUCT}"
 def productGitUrl=aaa.get(PRODUCT)
 
 // 输入参数
@@ -93,9 +96,10 @@ echo "${git_password}" // 必须要有单引号或者双引号
 #### bash相关
 * [jenkins pipeline中获取shell命令的标准输出或者状态](https://blog.csdn.net/liurizhou/article/details/86670092)
 * [shell内的变量定义使用](https://stackoverflow.com/questions/34013854/jenkins-workflow-environment-variables-causing-a-failure/44296015),【加"\"】
-
+* [获取shell命令的标准输出或执行状态](https://www.cnblogs.com/chenyishi/p/10943352.html)
 ```
-result = sh(script: "<shell command>", returnStatus: true).trim()
+text = sh(script: "<shell command>", returnStdout: true).trim() // 标准输出
+result = sh(script: "<shell command>", returnStatus: true) // 执行状态
 
 sh """
   _match=`ls`
