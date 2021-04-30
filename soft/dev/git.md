@@ -163,15 +163,25 @@
 
 | 方式 | 我的(LOCAL) | 他人(REMOTE) |
 | :----: | ---- | ---- |
-| 暂存 | 本地文件 | 暂存 |
-| 分支合并 | 目标分支(LOCAL) | 源分支(REMOTE, 被合并的) |
-| 补丁 | 本地文件 | 补丁 |
+| 使用暂存 | 本地文件 | 暂存 |
+| 分支A合并到分支B | B | A |
+| 使用补丁 | 本地文件 | 补丁 |
 
-#### 代码合并
+### 代码合并
+
+| 方式 | 说明 |
+| :----: | ---- |
+| 分支merge |  |
+| [cherry-pick](https://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html) | 指定commit列表 |
+| [打补丁](https://my.oschina.net/sdlvzg/blog/1608861) | 指定文件列表或指定commit列表 |
+
+* [Git - 分支的新建与合并](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6)
 * [Git – Fast Forward 和 no fast foward](https://my.oschina.net/yuzn/blog/82297)
-* BASE是双方的父亲
+* [多个commit合并成1个commit](https://segmentfault.com/a/1190000007748862)
 * [冲突文件说明](https://blog.csdn.net/zhangbinsijifeng/article/details/49332615)
 ```
+BASE是双方的父亲
+
 <<<<<<< HEAD
 我的
 =======
@@ -179,6 +189,17 @@
 >>>>>>>6853e5ff961e684d3a6c02d4d06183b5ff330dcc
 ```
 * 取消合并: git merge --abort
+
+### 变基(rebase)
+* merge和rebase的最终结果没有任何区别
+* https://xiaozhuanlan.com/topic/6873210549
+* https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA
+* https://blog.csdn.net/kuangdacaikuang/article/details/79619828
+
+| 方式 | 说明 | 优点 | 缺点 |
+| :----: | ---- | ---- | ---- |
+| merge | 合并时遇到冲突，修改后重新commit | 记录commit的实际情况，方便查看 | 无改动会快进合并，否则自动创建一个新的merge commit |
+| rebase | 将commit历史进行合并，并行变串行。本质是补丁模式 | 提交历史更加整洁 | 发生冲突时不容易定位问题，因为rewrite了history |
 
 ### 仓库迁移
 * https://help.github.com/cn/articles/duplicating-a-repository
@@ -191,17 +212,6 @@
 * git -C $3 symbolic-ref --short -q HEAD // 分支
 * git -C $3 describe --always --tag // 标签
 * git -C $3 rev-parse --short HEAD // 提交
-
-### 变基(rebase)
-* merge和rebase的最终结果没有任何区别
-* https://xiaozhuanlan.com/topic/6873210549
-* https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA
-* https://blog.csdn.net/kuangdacaikuang/article/details/79619828
-
-| 方式 | 说明 | 优点 | 缺点 |
-| :----: | ---- | ---- | ---- |
-| merge | 合并时遇到冲突，修改后重新commit | 记录commit的实际情况，方便查看 | 无改动会快进合并，否则自动创建一个新的merge commit |
-| rebase | 将commit历史进行合并，并行变串行。本质是补丁模式 | 提交历史更加整洁 | 发生冲突时不容易定位问题，因为rewrite了history |
 
 ### 清除已删除的文件(其存在于历史提交中)
 [寻找并删除Git记录中的大文件](https://harttle.land/2016/03/22/purge-large-files-in-gitrepo.html)
@@ -296,7 +306,6 @@ git config --global core.safecrlf true
 1. [Learn Git Branching](https://learngitbranching.js.org/)，很好的示范
 1. [猴子都能懂的GIT入门](https://backlog.com/git-tutorial/cn/intro/intro5_2.html)
 1. **[git push & git pull 推送/拉取分支](http://blog.csdn.net/litianze99/article/details/52452521)**
-1. **[Git - 分支的新建与合并](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6)**
 1. [git – 简易指南](http://www.bootcss.com/p/git-guide/)
 1. [Git下的冲突解决](http://www.cnblogs.com/sinojelly/archive/2011/08/07/2130172.html)
 1. [git多账号提交适配](https://www.jianshu.com/p/d696b5fef750)
