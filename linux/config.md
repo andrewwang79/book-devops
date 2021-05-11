@@ -94,3 +94,10 @@ nano /etc/docker/daemon.json，修改好后重启docker(service docker restart)
 * [通过Linux 日志查看系统异常原因](https://blog.51cto.com/svsky/1672587)
 * 硬盘扩容：mount /dev/vdc /data && resize2fs /dev/vdc
 * [系统自启动配置](https://andrewwang79.gitbooks.io/ops/linux/common.html#%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE)
+* [CentOS分区容量扩容](https://blog.csdn.net/qingchi62/article/details/106939855)
+```
+yum install -y epel-release
+yum install -y cloud-utils
+growpart /dev/vdb
+resize2fs /dev/vdb
+```

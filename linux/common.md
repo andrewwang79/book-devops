@@ -123,6 +123,12 @@ apt-get install aptitude // 软件包安装情况的软件
 * top -p 1111 // 查看特定进程号的内存(1111)
 * top -c // 显示进程命令的全路径与参数
 * ps -aux | sort -k4nr | head -5 // 使用内存最多的5个进程
+* [单个进程的内存查看](https://www.cnblogs.com/jiayy/p/3458076.html) : cat /proc/[pid]/文件名。文件有maps/smaps/status。如“cat /proc/5346/status”
+* [自动清理内存配置](https://blog.csdn.net/feiteyizu123/article/details/84910505)
+```
+sudo crontab -e
+*/60 * * * * sh -c 'sync && echo 3 > /proc/sys/vm/drop_caches'
+```
 
 ## 进程
 * nohup 命令 >/dev/null & // 后台运行命令
@@ -195,7 +201,7 @@ cat ~/.ssh/id_rsa.pub | ssh root@192.168.161.138 "mkdir ~/.ssh; cat >> ~/.ssh/au
 ## 定时任务
 1. 资料
   1. [使用方法](http://blog.chinaunix.net/uid-15007890-id-106828.html)
-  1. [crontab编辑器](http://www.cronmaker.com/)
+  1. [crontab编辑器](http://www.cronmaker.com/), [时间示例](https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/crontab.html)
   1. [语法](https://www.cnblogs.com/aminxu/p/5993769.html)
   1. [crontab不能执行git等命令](http://blog.csdn.net/gggxin/article/details/34434811)
   1. [UBUNTU开启CRONTAB日志记录及解决NO MTA INSTALLED, DISCARDING OUTPUT](https://blog.csdn.net/disappearedgod/article/details/43191693)
