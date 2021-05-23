@@ -49,6 +49,7 @@
   * [dubbo](soft/base/dubbo.md)
 
 * 运维软件
+  * [Zabbix](soft/ops/zabbix.md)
   * [Jenkins](soft/ops/Jenkins.md)
   * [SaltStack](soft/ops/SaltStack.md)
   * [Ansible](soft/ops/Ansible.md)

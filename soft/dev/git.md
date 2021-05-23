@@ -101,7 +101,6 @@
 1. 查看某次commit中具体某个文件的修改：git show commitSHA fileName
 
 ### 其他
-1. git fetch && git reset --hard @{upstream} && git clean -ffdx // [重置目录到服务器状态](https://bitmingw.com/2018/01/28/git-branch-factory-reset/)
 1. git status // 显示当前目录的文件情况
 1. git blame file_path // 显示文件内容的具体修改情况
 1. git cat-file -p commitid // 显示提交号的具体内容
@@ -205,8 +204,17 @@ BASE是双方的父亲
 * https://help.github.com/cn/articles/duplicating-a-repository
 
 ### 重置目录
-* "git -C src fetch && git -C src reset --hard && git -C src checkout B1 && git -C src pull"
-* src是git目录路径，B1是分支或者标签。如是标签pull会失败，可忽略
+* [重置目录到服务器状态](https://bitmingw.com/2018/01/28/git-branch-factory-reset/)
+
+```
+src_path=.
+branch_name=dev
+git -C ${src_path} fetch
+git -C ${src_path} reset --hard
+git -C ${src_path} clean -d -fx
+git -C ${src_path} checkout ${branch_name}
+git -C ${src_path} pull
+```
 
 ### 信息获取
 * git -C $3 symbolic-ref --short -q HEAD // 分支
@@ -300,6 +308,19 @@ git config --global core.safecrlf true
 1. gitlfs安装后默认git clone是下载lfs文件的
 1. 不下载lfs文件 配置: git config --global filter.lfs.smudge "git-lfs smudge --skip"
 1. 下载lfs文件 配置: git config --global filter.lfs.smudge "git-lfs smudge -- %f"
+
+### 取消合并
+1. 未commit(恢复index)：git merge --abort
+1. 已commit未push：git reset --hard commitid
+1. 已push
+```
+1.git revert 优点，记录撤回前的操作。缺点，如果存在两个或多个父分支不能恢复。
+git revert commitid
+git push origin 分支
+2.git reset --hard，删除了提交过的记录。
+git reset --hard commitid
+git push origin 分支 -f
+```
 
 ## 资料
 ### 参考
