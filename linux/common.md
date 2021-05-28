@@ -85,8 +85,8 @@ apt-get install aptitude // 软件包安装情况的软件
 * [linux修改文件所属用户和组](http://www.cnblogs.com/jdonson/archive/2011/04/28/2031878.html)
 * chmod -R 766 Document // 修改目录Document的权限。[命令详细 ](https://www.linuxdaxue.com/linux-command-intro-chmod.html)
 * chmod -R ug+x Document // 目录Document的所有文件都加上执行权限(user + owner)
-* chown -R www-data Document // -R 所有者 路径。修改目录Document的所有者成www-data
-* chgrp -R www-data Document // -R 所在组 路径。修改目录Document的所在组成www-data
+* chown -R user1 Document // -R 所有者 路径。修改目录Document的所有者成user1
+* chgrp -R user1 Document // -R 所在组 路径。修改目录Document的所在组成user1
 
 ## 文件和目录
 * mkdir -p /d1/d2 // 自动创建多层

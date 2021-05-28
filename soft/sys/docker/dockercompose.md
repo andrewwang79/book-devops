@@ -31,12 +31,14 @@ networks:
     name: XX-network
     driver: bridge
 ```
+## 资料
+1. [语法](https://www.cnblogs.com/freefei/p/5311294.html)
 
 ## 使用
 1. 环境变量
-* https://www.jianshu.com/p/c87d4031413c
-* https://zhuanlan.zhihu.com/p/55486428
-* https://segmentfault.com/a/1190000023655147
+  * https://www.jianshu.com/p/c87d4031413c
+  * https://zhuanlan.zhihu.com/p/55486428
+  * https://segmentfault.com/a/1190000023655147
 ```
 定义变量：
 export DB_PORT=3306 && export DB_IP=111 && docker-compose config
@@ -45,7 +47,7 @@ DB_PORT=3306 DB_IP=111 docker-compose config
 ${nginx_port}:80
 ${nginx_port-81}:80 // -后面是默认值
 ```
-* serviceName和networkName定义不能动态，用envsubst解决
+  * serviceName和networkName定义不能动态，用envsubst解决
 
 1. [Docker Compose 方式下的容器网络基础知识点](https://michael728.github.io/2019/06/15/docker-compose-networks)，https://docs.docker.com/compose/networking/
 ```
@@ -59,7 +61,6 @@ networks:
 ```
 // 方案1，命令挂起，有时候sh无效，原因未知
 command: sh -c "tail -f /dev/null"
-
 // 方案2，外挂挂起文件，有效
 volumes:
   - ./:/opt/xxx/
@@ -68,10 +69,33 @@ hang.sh
 #!/bin/bash
 tail -f /dev/null
 ```
-1. [语法](https://www.cnblogs.com/freefei/p/5311294.html)
 1. [控制docker-compose中服务的启动顺序](https://blog.csdn.net/xiao_jun_0820/article/details/78676765)
 ```
 depends_on:
   - "db"
 command: ["./wait-for-it.sh", "db:3306", "--", "python", "app.py"]
+```
+1. CPU资源限制
+* https://www.cnblogs.com/sparkdev/p/8052522.html。docker支持的--cpu-shares，不能在docker-compose使用。docker-compose只支持绝对值
+* 测试方法：stress -c 2
+```
+nano docker-compose.yml && docker-compose --compatibility up -d // docker-compose版本低于1.27需加--compatibility
+version: "3.7"
+services:
+  s1:
+    image: redis:latest
+    container_name: s1
+    deploy:
+      resources:
+        limits:
+          cpus: '2.50'
+    command: sh -c "tail -f /dev/null"
+  s2:
+    image: redis:latest
+    container_name: s2
+    deploy:
+      resources:
+        limits:
+          cpus: '1.20'
+    command: sh -c "tail -f /dev/null"
 ```
