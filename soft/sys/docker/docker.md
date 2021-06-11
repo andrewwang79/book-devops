@@ -111,13 +111,29 @@ find /var/lib/docker/containers/ -name *-json.log
 cat /dev/null > *-json.log
 rm -f *-json.log
 ```
+
 ### 删除无效镜像和容器
 ```
 docker stop $(docker ps -a | grep "Exited" | awk '{print $1 }')
 docker rm $(docker ps -a | grep "Exited" | awk '{print $1 }')
 docker rmi $(docker images | grep "none" | awk '{print $3}')
-
 确保系统使用中且无异常，执行：docker system prune -a && docker volume prune
+```
+
+### 获取镜像创建的命令列表(类似Dockerfile)
+```
+docker history --no-trunc=true 镜像名:版本
+docker history --no-trunc=true openjdk:8-jdk
+```
+
+### HTTP协议的Harbor服务，在docker login时connection refused[默认使用了SSL]
+```
+nano /etc/docker/daemon.json
+{
+"insecure-registries" : ["domain"]
+}
+service docker restart
+docker login -u ACCOUNT -p PASSWORD http://domain
 ```
 
 ## 命令
