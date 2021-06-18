@@ -1,50 +1,3 @@
-# 主流版本模型
-* 原则：新分支只能合并到来源分支(不能在新分支之间做合并)，来源分支可以将部分改进合并到新分支
-* 资料：[分支模型](http://blog.csdn.net/qq_34651940/article/details/51891767)，[英文原版](http://nvie.com/posts/a-successful-git-branching-model/)。master上可能会发生多个版本混合事情【世界是个树，不是线】，不建议用master
-![](http://img.blog.csdn.net/20160716144249144?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
-
-|分支类型 | 名称 | 永久 | 命名规范 | 来源 | 操作 | 合并到 | 角色 |
-| -------- | ----- | ----- | ----- | ---- |----- | ----- | ---- |
-| master | 主干，正式环境 | Y | master | release，hotfix | 无 | 无 | 发布人员 |
-| develop  | 开发分支，开发环境，测试环境 | Y |  dev | 无 | 任意 | 无 | 开发人员 |
-| feature | 功能分支 | N |  f-pay。f-功能说明 | dev | 任意 | dev | 开发人员 |
-| release | 版本发布分支 | N | r-2.3。r-版本号 | dev | bugfix | dev | 发布人员，开发人员 |
-| hotfix | 补丁分支 | N | h-332452。h-bug说明 | master | bugfix | dev | 发布人员，开发人员 |
-
-# 最佳实践
-## 原则
-1. 未经测试或代码审核的，不准发生产环境
-1. 构建必须基于tag
-1. 除了开发环境，其他都必须是tag
-
-### 分支tag命名规范
-| 类型 | 格式 | 示例 | 说明 |
-| :-: | - | - | - |
-| 主干/开发分支 | dev | dev | 默认 |
-| 功能分支 | f-功能说明 | f-pay |  |
-| 发布分支 | r-版本 | r-4.0 | 2位，3位会有大量合并要做 |
-| hotfix分支 | h-jira号 | h-123 |  |
-| 发布tag | v版本 | v4.0.1 | 3位 |
-
-## 工作流程
-![](../../s/git_workflow.png)
-
-| 项 | 步骤 | 说明 |
-| :-: | - | - |
-| 封版 | 1. 新开发布分支 | 基于主干分支 |
-| 发版 | 1. 打发布tag<br>2. 分支合并回主干<br>3. 基于发布tag构建包 | 基于发布分支 |
-| hotfix | 1. fix：二选一，推荐1.1<br>1.1. 发布分支fix<br>1.2. hotfix分支fix<br>1.2.1. 基于发布分支新开hotfix分支<br>1.2.2. fix后hotfix分支合回发布分支<br>2. “发版” | 有多个hotfix版本情况下，非最新hotfix版本出问题的处理方案：hotfix后打成最新的tag。<br>比如：v1.2.1上hotfix后打tag成v1.2.9 |
-
-
-## 环境清单
-1. 每个环境都有独立的一套：执行程序，数据库，配置
-
-| 环境 | 分支tag | 说明 |
-| :----: | ---- | ---- |
-| 开发环境 | 开发分支 | 开发人员自行搭建环境 |
-| 测试环境 | 发布分支 |  |
-| 正式环境 | 发布tag |  |
-
 # git
 ## 流程
 ### 初始化
@@ -324,6 +277,7 @@ git push origin 分支 -f
 
 ## 资料
 ### 参考
+1. [版本模型的最佳实践](https://rd.wangyaqi.cn/#/dev/model)
 1. [Learn Git Branching](https://learngitbranching.js.org/)，很好的示范
 1. [猴子都能懂的GIT入门](https://backlog.com/git-tutorial/cn/intro/intro5_2.html)
 1. **[git push & git pull 推送/拉取分支](http://blog.csdn.net/litianze99/article/details/52452521)**
