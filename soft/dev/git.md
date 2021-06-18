@@ -27,7 +27,7 @@
 1. 部署
 
 ## 命令脚本
-### branch
+### branch/tag
 1. git clone URL 目录 // 下载到指定目录，默认是仓库名。默认分支是master
 1. git clone --depth 1 URL // 克隆最后一次commit。加快速度，会有信息吗？
 1. git clone -b master --single-branch URL // 克隆指定的版本。加快速度，非本分支信息缺失
@@ -41,6 +41,7 @@
   1. 下载远程标签并切换【下载前先git pull同步】：git checkout -b <本地分支> origin/<远程tag>
 1. 基于当前分支创建新分支/切换分支：git branch <分支>
 1. 删除分支：git branch -d <远程分支>
+1. 删除tag：git tag -d <tag>
 
 ### commit
 1. [add命令](https://www.yiibai.com/git/git_add.html)
@@ -272,6 +273,22 @@ git push origin 分支
 2.git reset --hard，删除了提交过的记录。
 git reset --hard commitid
 git push origin 分支 -f
+```
+
+### 输入类型判断: 分支/tag/sha
+判断commit的类型
+```
+_match=`git -C ${dirName} branch -r | grep -w origin/${commit}` || _match=
+if [ ! -z "\${_match}" ] ;then # branch匹配
+  return 1
+fi
+_match=`git -C ${dirName} tag -l | grep -w ${commit}` || _match=
+if [ ! -z "\${_match}" ] ;then # tag匹配
+  return 2
+fi
+_match=`git -C ${dirName} show -s ${commit} | grep -w commit` || _match=
+if [ ! -z "\${_match}" ] ;then # sha匹配
+  return 3
 ```
 
 ## 资料
