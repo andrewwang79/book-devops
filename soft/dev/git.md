@@ -278,17 +278,23 @@ git push origin 分支 -f
 ### 输入类型判断: 分支/tag/sha
 判断commit的类型
 ```
-_match=`git -C ${dirName} branch -r | grep -w origin/${commit}` || _match=
-if [ ! -z "\${_match}" ] ;then # branch匹配
+_match=`git -C ${path} branch -r | grep -w origin/${commit}` || _match=
+if [ ! -z "${_match}" ] ;then # branch匹配
   return 1
 fi
-_match=`git -C ${dirName} tag -l | grep -w ${commit}` || _match=
-if [ ! -z "\${_match}" ] ;then # tag匹配
+_match=`git -C ${path} tag -l | grep -w ${commit}` || _match=
+if [ ! -z "${_match}" ] ;then # tag匹配
   return 2
 fi
-_match=`git -C ${dirName} show -s ${commit} | grep -w commit` || _match=
-if [ ! -z "\${_match}" ] ;then # sha匹配
+_match=`git -C ${path} show -s ${commit} | grep -w commit` || _match=
+if [ ! -z "${_match}" ] ;then # sha匹配
   return 3
+fi
+```
+
+### 获取仓库的sha
+```
+_sha=`git -C ${path} rev-parse HEAD`
 ```
 
 ## 资料
