@@ -133,7 +133,6 @@
 * [冲突文件说明](https://blog.csdn.net/zhangbinsijifeng/article/details/49332615)
 ```
 BASE是双方的父亲
-
 <<<<<<< HEAD
 我的
 =======
