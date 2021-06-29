@@ -1,11 +1,12 @@
 # Redis
 
-1. 命令
+## 命令
   * [redis开启远程访问](http://www.cnblogs.com/liusxg/p/5712493.html)
   * 重新加载配置文件：redis-server /etc/redis.conf
   * 启动：service redis start。/usr/local/redis/bin/redis-server /usr/local/redis/redis.conf &
+  * 版本：redis-server -v
 
-1. 客户端命令
+## 客户端命令
   * 本机无密登录：redis-cli
   * 本地密码登录：redis-cli -a 密码
   * 远程登录：redis-cli -a 密码 -h 主机名

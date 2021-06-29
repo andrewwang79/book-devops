@@ -453,5 +453,11 @@ hwclock --hctosys // bios时间同步到操作系统
 * ps -e -o ppid,stat,cmd | grep defunct // 查询僵尸进程
 * ps -e -o ppid,stat,cmd | grep defunct | cut -d" " -f2 | xargs kill -9 // kill僵尸进程
 
-## 系统日志
-* 清除journal日志 : journalctl --vacuum-size=500M https://blog.csdn.net/ithomer/article/details/89530790
+## 系统日志(systemd-journal)
+* (清除journal日志](https://blog.csdn.net/ithomer/article/details/89530790) : journalctl --vacuum-size=500M
+* 查 : journalctl --disk-usage
+* [自动清除](http://manpages.ubuntu.com/manpages/bionic/zh_CN/man5/journald.conf.5.html)：nano /etc/systemd/journald.conf
+```
+SystemMaxUse=200m
+ForwardToSyslog=no
+```
