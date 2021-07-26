@@ -53,6 +53,7 @@
 1. 查看最新的commit：git show
 1. 查看指定commit的所有修改：git show commitSHA
 1. 查看某次commit中具体某个文件的修改：git show commitSHA fileName
+1. 查看commit属于哪个分支 git branch -r --contains commitSHA
 
 ### 其他
 1. git status // 显示当前目录的文件情况
