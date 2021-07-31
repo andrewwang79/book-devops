@@ -59,15 +59,17 @@ networks:
 ```
 1. docker启动后不关闭的命令(docker无命令会自动关闭)
 ```
-// 方案1，命令挂起，有时候sh无效，原因未知
+// 方案1，命令挂起。有时候sh无效，原因未知
 command: sh -c "tail -f /dev/null"
-// 方案2，外挂挂起文件，有效
+// 方案2，外挂挂起文件。有时候sh无效，原因未知
 volumes:
   - ./:/opt/xxx/
 command: ["/opt/xxx/hang.sh"]
 hang.sh
 #!/bin/bash
 tail -f /dev/null
+// 方案3，1和2组合
+command: sh -c "sh /opt/xxx/hang.sh"
 ```
 1. [控制docker-compose中服务的启动顺序](https://blog.csdn.net/xiao_jun_0820/article/details/78676765)
 ```
