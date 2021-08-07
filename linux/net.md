@@ -32,6 +32,10 @@
   * tcpdump -i lo -nnA 'port 9020' // 监控本机回路网卡的9020端口
 1. traceroute www.baidu.com -路由跃点检查
 1. [linux绑定域名和IP](http://ttwang.iteye.com/blog/1955590)
+```
+echo "127.0.0.1 www.baidu.com" >> /etc/hosts
+sudo /etc/init.d/networking restart
+```
 
 # 路由
 * [资料](http://baike.baidu.com/link?url=3OWZNh6IVWlbyjsJIk41NClQT2ueZ8i3AQszfA_M8zTjP9GbZ77PdvA7xEQGCWY7vncnOD0jOy9jnKl20zCvH_)
@@ -84,11 +88,9 @@ curl -H "Content-type: application/json" -H 'token:abc123' -X POST -d '{"phone":
 
 # DNS
 * [配置DNS服务](https://www.cnblogs.com/EasonJim/p/7857671.html)
-* 增加DNS映射关系
 ```
-sudo nano /etc/hosts
-  127.0.0.1 www.baidu.com
-sudo /etc/init.d/networking restart
+echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
+/etc/init.d/networking restart
 ```
 
 # 网络监控

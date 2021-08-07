@@ -7,6 +7,7 @@
 * [提交代码触发](https://medium.com/@xfstart07/devops-gitlab-%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%E8%A7%A6%E5%8F%91-jenkins-%E9%83%A8%E7%BD%B2-43601d7baf34)
 * [Pipeline发送邮件-email](https://blog.csdn.net/u011541946/article/details/84034272), [email-ext](http://ikeptwalking.com/using-email-ext-plugin-in-jenkins-pipeline/)
   * 多个附件: attachmentsPattern: 'test/forEmail*, test/myPdf3*'
+* [Jenkins 添加配置Git账号密码凭据](https://blog.csdn.net/qq_40943363/article/details/104220944)，只是配置账号密码，具体对应系统或url，是使用时的url
 
 ## 资料
 * [Ubuntu安装](http://blog.csdn.net/fenglailea/article/details/25919367)
@@ -18,6 +19,8 @@
 * [jenkins用户权限配置](https://www.jianshu.com/p/fca6c3ecde5d)，新建标准用户，然后赋权：https://blog.csdn.net/xuhailiang0816/article/details/80307523
 * Jenkins workflow job: Use parameter as branch specifier
   * 解决方法：disable "Lightweight checkout" checkbox
+* [Jenkins+Git 基于Tag进行构建](https://www.jianshu.com/p/b0989979066a)
+* [job自带的源码管理下载时lfs的启用方法](https://medium.com/@priya_talreja/git-lfs-setup-in-jenkins-ee80879007e3)
 
 ## 流水线
 ### 资料
