@@ -219,22 +219,24 @@ echo $res1
 ```
 
 ### json解析
-* https://mozillazg.com/2018/01/jq-use-examples-cookbook.html
+* [jq 常用操作](https://mozillazg.com/2018/01/jq-use-examples-cookbook.html)
+  * jq -h
+  * jq -r '.[]' // 使用 -r 选项输出字符串原始值而不是 json 序列化后的值。相当于字符串去掉""
 * [在线测试网址](https://jqplay.org/)
 
 ```
 # 获取json属性值
 jsontext='{"version" : "si", "ackage_time" : "eti"}'
-ver=$(echo $jsontext | jq ".version")
+ver=$(echo $jsontext | jq -cr ".version")
 echo ver
 
 # 遍历json数组
 jd='[["a1", "b1"], ["a2", "b2"]]'
-echo ${jd} | jq -c '.[]' > $$tmp # 写到文件
+echo ${jd} | jq -cr '.[]' > $$tmp # 写到文件
 while read i; do # 遍历数组，内部变量和外面是相通的
   echo i=${i}
-  echo $(echo ${i} | jq -c '.[0]') # 获取数组第n个值
-  echo ${i} | jq -c '.[]' | while read j; do # 遍历数组，管道后遍历的内部变量和外面是不通的
+  echo $(echo ${i} | jq -cr '.[0]') # 获取数组第n个值
+  echo ${i} | jq -cr '.[]' | while read j; do # 遍历数组，管道后遍历的内部变量和外面是不通的
     echo j=${j}
   done
 done < $$tmp

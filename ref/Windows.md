@@ -21,7 +21,12 @@ IF "%BOOLVAL%"=="true" (
 ) ELSE (
   echo "no"
 )
+```
 
+### 日期时间设置
+```
+date 2021 11 18
+time 12:23:09
 ```
 
 ### 增加DNS映射
