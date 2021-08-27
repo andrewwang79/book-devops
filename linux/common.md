@@ -409,7 +409,8 @@ umount /biz/
 
 ## sha签名
 ```
-sha512sum file | awk '{print $1}' > file.sha512 // 签名 sha512sum
+sha512sum file | awk '{print $1}' > file.sha512 // Linux sha512sum 签名
+certutil -hashfile CoronaryViewV1.0.1.2.tar.gz SHA512 // Windows签名
 find . -type f -not \( -name '.*' \) -print0 | xargs -0 sha512sum | sort > sign.sha512 // 指定目录的所有文件签名排序保存
 ```
 
