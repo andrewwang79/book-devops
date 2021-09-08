@@ -258,15 +258,15 @@ DatabaseMirror db.jp.clamav.net
 |  | 解压tar.gz文件到tar，自动成为a.tar | gzip -d a.tar.gz |
 
 ### tar.gz
-1. 压缩
-  1. tar -zcvf e.tar.gz path // path可以是相对路径或绝对路径，压缩包里根目录是path。
-  1. tar -zcvf e.tar.gz -C dir path // 被压缩目录是“dir/path”，压缩包里根目录是path。
-    1. tar -zcvf abc.tar.gz -C /opt/ abc // 被压缩目录是/opt/abc/，压缩包里根目录是abc
-1. 解压
-  1. tar -zxvf example.tar.gz // 压缩包的文件放到当前目录下
-  1. tar -zxvf example.tar.gz -C dir // 压缩包的文件放到目录dir下
-  1. tar -zxvf a.tar.gz -C /opt/b/ --strip-components 1 // 把a的内容放到/opt/b/下面(不含a目录)
-    1. --strip-components 1：取压缩包第几层文件夹文件，1就相当于解压时去掉压缩包的根目录
+#### 压缩
+1. tar -zcvf e.tar.gz path // path可以是相对路径或绝对路径，压缩包里根目录是path。
+1. tar -zcvf e.tar.gz -C dir path // 被压缩目录是“dir/path”，压缩包里根目录是path。
+  1. tar -zcvf abc.tar.gz -C /opt/ abc // 被压缩目录是/opt/abc/，压缩包里根目录是abc
+#### 解压
+1. tar -zxvf example.tar.gz // 压缩包的文件放到当前目录下
+1. tar -zxvf example.tar.gz -C dir // 压缩包的文件放到目录dir下
+1. tar -zxvf a.tar.gz -C /opt/b/ --strip-components 1 // 把a的内容放到/opt/b/下面(不含a目录)
+  1. --strip-components 1：取压缩包第几层文件夹文件，1就相当于解压时去掉压缩包的根目录
 
 ### rar
 1. rar a all *.jpg // 将所有jpg文件压缩成all.rar
@@ -463,3 +463,6 @@ hwclock --hctosys // bios时间同步到操作系统
 SystemMaxUse=200m
 ForwardToSyslog=no
 ```
+
+## Ubuntu改坏sudoers后无法使用sudo的解决办法
+https://www.qedev.com/linux/222196.html

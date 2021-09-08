@@ -241,6 +241,22 @@ echo linux > README.md && git add -A && git commit -am "Initial commit" // 空�
 git branch -D master && git branch -m master && git push -f origin master // 删除master，将空分支提交到master
 ```
 
+### 下载失败-压缩导致内存不做
+```
+错误：
+fatal: The remote end hung up unexpectedly
+fatal: early EOF
+fatal: index-pack failed
+```
+
+```
+关闭压缩：
+命令行：git config --global core.compression 0
+.gitconfig文件：
+[core]
+    compression = 0
+```
+
 ### git 免除账号密码的设置
 * [git 免除账号密码的设置](http://blog.csdn.net/guang11cheng/article/details/50537759)
 * git config --global credential.helper store // 记住账号密码
