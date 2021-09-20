@@ -1,4 +1,10 @@
 # Docker
+## 介绍
+1. Docker基于Linux内核提供，[核心技术与实现原理](https://draveness.me/docker/)
+  1. [namespace](https://www.cnblogs.com/bakari/p/8560437.html) : 资源隔离
+  1. [cgroups(Control Groups)](https://developer.51cto.com/art/202102/644401.htm) : 限制容器在运行时的资源使用，比如内存、CPU、I/O、网络等
+  1. chroot : 隔离的目录结构
+1. Docker的集装箱原则：将代码或文件拆分出container，放到宿主机(container通过卷组映射来读取)，违背了原则。
 
 ## 安装
 * [CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
@@ -7,8 +13,6 @@
 
 ## 资料
 ### 重要
-1. Docker基于Linux内核提供的cgroups功能，可以限制容器在运行时使用到的资源，比如内存、CPU、I/O、网络等
-1. Docker的集装箱原则：将代码或文件拆分出container，放到宿主机(container通过卷组映射来读取)，违背了原则。
 1. image是镜像，container是容器，有id和name
 1. [Docker — 从入门到实践](https://yeasy.gitbooks.io/docker_practice/)，推荐教程和手册
 1. [官方命令集](https://docs.docker.com/reference/)

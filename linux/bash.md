@@ -64,6 +64,10 @@ command || exit 1
 1. declare -A map // 字典定义。由字符串索引的关联数组
 
 ## 常用语法
+### 暂停
+```
+read -p "press any key to continue"
+```
 
 ### 获取函数返回值
 ```

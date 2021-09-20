@@ -176,15 +176,19 @@ service iptables stop
 
 ## 远程免密码登录设置
 * [远程免密码登录设置](http://www.2cto.com/os/201304/205141.html), https://blog.csdn.net/alifrank/article/details/48241699
+* 秘钥是服务器级别的。登录账号同秘钥，放在远程服务器的对应账号的authorized_keys里。如秘钥放在用户A的authorized_keys里，那只能用户A登录远程服务器。
 * 步骤：
   1. 本地：生成公共密钥，用默认值。ssh-keygen -t rsa
-  1. 公共密钥授权
+  1. 公共密钥授权方案1
     ssh-copy-id root@192.168.161.138
-  1. 公共密钥授权
-    1. 本地：公共密钥上传到远程。scp ~/.ssh/id_rsa.pub root@192.168.161.138:/root/.ssh/id_rsa.136.pub
-    1. 远程：将上传的本地公共密钥加到远程授权列表。cat ~/.ssh/id_rsa.136.pub>>~/.ssh/authorized_keys
+  1. 公共密钥授权方案2
+    1. 本地：公共密钥上传到远程。scp ~/.ssh/id_rsa.pub root@192.168.161.138:/root/.ssh/id_rsa.tmp.pub
+    1. 远程：将上传的本地公共密钥加到远程授权列表。cat ~/.ssh/id_rsa.tmp.pub>>~/.ssh/authorized_keys && rm ~/.ssh/id_rsa.tmp.pub
+  1. 公共密钥授权方案3
+    1. 本地：cat ~/.ssh/id_rsa.pub
+    1. 远程：nano ~/.ssh/authorized_keys，将本地文本拷贝进去
 
-* 其中2和3步可合成一步本地操作：
+* 一步本地操作：
 ```
 cat ~/.ssh/id_rsa.pub | ssh root@192.168.161.138 "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys" // 同时创建目录.ssh
 ```
@@ -456,12 +460,15 @@ hwclock --hctosys // bios时间同步到操作系统
 * ps -e -o ppid,stat,cmd | grep defunct | cut -d" " -f2 | xargs kill -9 // kill僵尸进程
 
 ## 系统日志(systemd-journal)
-* (清除journal日志](https://blog.csdn.net/ithomer/article/details/89530790) : journalctl --vacuum-size=500M
+* [Centos 7/8 日志管理](https://www.cnblogs.com/vincenshen/p/12441492.html)
+* [清除journal日志](https://blog.csdn.net/ithomer/article/details/89530790) : journalctl --vacuum-size=500M
 * 查 : journalctl --disk-usage
-* [自动清除](http://manpages.ubuntu.com/manpages/bionic/zh_CN/man5/journald.conf.5.html)：nano /etc/systemd/journald.conf
+* [自动清除](http://manpages.ubuntu.com/manpages/bionic/zh_CN/man5/journald.conf.5.html)
 ```
+nano /etc/systemd/journald.conf
 SystemMaxUse=200m
 ForwardToSyslog=no
+重启服务 : systemctl restart systemd-journald.service
 ```
 
 ## Ubuntu改坏sudoers后无法使用sudo的解决办法

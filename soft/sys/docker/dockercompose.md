@@ -77,6 +77,15 @@ depends_on:
   - "db"
 command: ["./wait-for-it.sh", "db:3306", "--", "python", "app.py"]
 ```
+1. 进程优先级
+```
+命令如下：优先级最低-20
+renice -10 4753 // renice [优先级] PID
+nice -n -5 service httpd start // nice [-n NI值] 命令
+docker-compose使用方法：
+cap_add:
+     - SYS_NICE
+```
 1. CPU资源限制
 * https://www.cnblogs.com/sparkdev/p/8052522.html。docker支持的--cpu-shares，不能在docker-compose使用。docker-compose只支持绝对值
 * 测试方法：stress -c 2
