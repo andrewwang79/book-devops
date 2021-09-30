@@ -22,6 +22,10 @@
 * [Jenkins+Git 基于Tag进行构建](https://www.jianshu.com/p/b0989979066a)
 * [job自带的源码管理下载时lfs的启用方法](https://medium.com/@priya_talreja/git-lfs-setup-in-jenkins-ee80879007e3)
 
+### 数据目录结构
+* Jenkins没有数据库，采用目录结构存储
+* job的build结构是：/jobs/%job名%/builds/%build号%，如/jobs/www-abc/builds/1
+
 ## 流水线
 ### 资料
 * [官方资料](https://www.jenkins.io/zh/doc/book/pipeline/)

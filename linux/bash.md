@@ -8,9 +8,9 @@
   非0(错误)都会退出整个程序，不想退出可以捕获异常，比如：dir=$(cd .; pwd) || dir=
 如果
 dir=$(cd .; pwd) // 获取本层的绝对路径
-dir=$(cd ..; pwd) // 获取上层的绝对路径
-$(dirname "$path") // 获取path的上级目录绝对路径，path必须是绝对路径
-$(basename "$path") // 获取path的名称，path必须是绝对路径
+parent_dir=$(cd ..; pwd) // 获取上层的绝对路径
+parent_dir=$(dirname "$path") // 获取path的上级目录绝对路径，path必须是绝对路径
+name=$(basename "$path") // 获取path的名称，path必须是绝对路径
 echo PWD:\`pwd` // 显示当前路径
 exit 0 // 退出，0是成功，>0是错误
 $(date +%s) // 自1970年到现在的秒数
@@ -220,6 +220,16 @@ res1=$(func1)
 res2=`echo $?`
 echo $res2
 echo $res1
+```
+
+### 字符串转成数组
+```
+string="hello shell split test"  
+array=(`echo $string`)  
+for var in ${array[@]}
+do
+   echo "${var}"
+done
 ```
 
 ### json解析

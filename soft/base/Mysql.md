@@ -32,6 +32,7 @@ systemctl disable firewalld.service #禁止firewall开机启动
     1. [日志general-log的开启和分析方法](http://blog.51cto.com/arthur376/1853924)
 1. [整理Mysql "Too many connections" 解决办法](https://blog.csdn.net/q549244663/article/details/78205247)
 1. [生产环境中MySQL Drop 删除(百G级、T级)大表的解决方法](http://www.jiagoumi.com/work/1487.html)
+1. [ERROR 2026 (HY000): SSL connection error: protocol version mismatch](https://blog.csdn.net/qq_34168515/article/details/105575110) : --ssl-mode=DISABLED
 
 ### 性能
 * MySQL5.7中新增的sys schema。是由一系列对象（视图、存储过程、存储方法、表和触发器）组成的schema，它本身不采集和存储什么信息，而是将performance_schema 和 information_schema中的数据以更容易理解的方式总结出来归纳为“视图”。
@@ -108,6 +109,7 @@ mysql.cnf slave
 * 错误处理: https://blog.51cto.com/suifu/1845114
 
 ## 管理命令
+1. 安装：yum install mysql -y
 1. 启动：service mysql restart
 1. 登录客户端：mysql -u{account} -p{pwd} -h{ip} -P{port}。如mysql -uroot -p123123 -h192.168.1.10 -P3311
 1. [新建mysql备份账号](http://blog.csdn.net/wengyupeng/article/details/3290415)
