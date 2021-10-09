@@ -42,6 +42,14 @@
 ### 修改Docker默认存储位置
 http://blog.51cto.com/forangela/1949947
 
+* 官方推荐方案
+```
+/etc/docker/daemon.json 添加data-root
+{
+  "data-root": "/home/hellxz/docker-home"
+}
+```
+* 链接方案
 ```
 service docker stop
 mv /var/lib/docker /data/docker
