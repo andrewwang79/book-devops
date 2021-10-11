@@ -158,6 +158,8 @@ DROP INDEX {column};
 ```
 select concat('select "', TABLE_name, '", count(*) from ', TABLE_SCHEMA, '.', TABLE_name, ' union all') from information_schema.tables where TABLE_SCHEMA='20191024_huadong_ring_server';
 ```
+* 旧表复制到新表
+CREATE TABLE if not exists 新表 SELECT * FROM 老表 where ...
 
 ## 安装
 * [安装](http://www.cnblogs.com/jerrylz/p/5645224.html)

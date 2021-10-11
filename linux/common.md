@@ -473,3 +473,6 @@ ForwardToSyslog=no
 
 ## Ubuntu改坏sudoers后无法使用sudo的解决办法
 https://www.qedev.com/linux/222196.html
+
+## 其他
+* [linux查看已删除空间却没有释放的进程](https://blog.51cto.com/chentongsan/2459740):导致空间不足。lsof -n | grep deleted, kill -9 进程号(第二列)
