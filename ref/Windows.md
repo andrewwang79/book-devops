@@ -24,6 +24,7 @@ IF "%BOOLVAL%"=="true" (
 ```
 
 ### 日期时间设置
+ctime改时间
 ```
 date 2021 11 18
 time 12:23:09

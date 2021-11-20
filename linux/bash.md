@@ -104,6 +104,9 @@ else
 fi
 
 // 变量var存在
+返回"not exist" : var=""
+返回"exist" : var="abc" var=1
+
 if [ -z ${var} ];then
 	echo "not exist"
 else

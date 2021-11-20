@@ -54,6 +54,8 @@
 1. 查看指定commit的所有修改：git show commitSHA
 1. 查看某次commit中具体某个文件的修改：git show commitSHA fileName
 1. 查看commit属于哪个分支 git branch -r --contains commitSHA
+1. [修改最近一次提交](https://blog.csdn.net/AlexAoMin/article/details/51244486) : git add . && git commit --amend && git push -f
+1. [同时修改多个提交：从回退的提交到最后一次提交](https://www.programminghunter.com/article/2686872794/) : git rebase --i HEAD~2 && pick修改为edit && git add . && git commit --amend && git rebase --continue && git push -f
 
 ### 其他
 1. git status // 显示当前目录的文件情况
@@ -312,6 +314,12 @@ fi
 ### 获取仓库的sha
 ```
 _sha=`git -C ${path} rev-parse HEAD`
+```
+
+### 同步和远程tag一致
+* 远程tags删除了但本地一直在
+```
+git tag -l | xargs git tag -d && git fetch origin --prune # 删除所有本地分支，从远程拉取所有信息
 ```
 
 ## 资料

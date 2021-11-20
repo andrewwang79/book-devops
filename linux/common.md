@@ -93,6 +93,7 @@ apt-get install aptitude // 软件包安装情况的软件
 * mv/cp src dest // 【dest目录存在则dest目录下是src目录(dest/src)，dest目录不存在则dest目录下是src目录里的具体内容(dest/*)】。
 * /bin/cp -R dir1 dir2 // 用/bin/cp不提示覆盖overwrite，cp默认有-i
 * /bin/cp -R /dir1/. /dir2/ // 拷贝所有文件，含隐藏文件
+* mv dir1/{.,}* /dir2/ || echo "no file" // 移动所有文件，含隐藏文件。异常会报错阻止主流程执行，当前用||处理掉
 * mv/cp dir1/* ./ 比如cp -rf /etc/abc/* /opt/abc/，会把/etc/abc/下的内容拷贝到/opt/abc/，不会到/opt/abc/abc/  // dir1目录所有内容(不含dir1层级)移动/拷贝到当前目录。如dir1里有个dir2目录，则当前目录下有个dir2目录，没有dir1目录
 * mv/cp dir1 ./ // dir1目录移动/拷贝到当前目录。即当前目录下有个dir1目录
 * cp -rf path1 path2 destPath // 多个目录复制到目标路径
@@ -413,8 +414,8 @@ umount /biz/
 
 ## sha签名
 ```
-sha512sum file | awk '{print $1}' > file.sha512 // Linux sha512sum 签名
-certutil -hashfile CoronaryViewV1.0.1.2.tar.gz SHA512 // Windows签名
+sha512sum file | awk '{print $1}' > sign.sha512 // Linux sha512sum 签名
+certutil -hashfile AbcV1.0.1.2.tar.gz SHA512 // Windows签名
 find . -type f -not \( -name '.*' \) -print0 | xargs -0 sha512sum | sort > sign.sha512 // 指定目录的所有文件签名排序保存
 ```
 
