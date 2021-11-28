@@ -178,10 +178,10 @@ service iptables stop
 ## 远程免密码登录设置
 * [远程免密码登录设置](http://www.2cto.com/os/201304/205141.html), https://blog.csdn.net/alifrank/article/details/48241699
 * 秘钥是服务器级别的。登录账号同秘钥，放在远程服务器的对应账号的authorized_keys里。如秘钥放在用户A的authorized_keys里，那只能用户A登录远程服务器。
-* 步骤：
+* 步骤：在本地电脑通过ssh免密登录远程服务器
   1. 本地：生成公共密钥，用默认值。ssh-keygen -t rsa
   1. 公共密钥授权方案1
-    ssh-copy-id root@192.168.161.138
+    本地：ssh-copy-id root@192.168.161.138
   1. 公共密钥授权方案2
     1. 本地：公共密钥上传到远程。scp ~/.ssh/id_rsa.pub root@192.168.161.138:/root/.ssh/id_rsa.tmp.pub
     1. 远程：将上传的本地公共密钥加到远程授权列表。cat ~/.ssh/id_rsa.tmp.pub>>~/.ssh/authorized_keys && rm ~/.ssh/id_rsa.tmp.pub
@@ -311,6 +311,7 @@ sudo systemctl restart sshd
 * sudo su // 用户切换到root。[Ubuntu中root用户和user用户的相互切换](https://www.cnblogs.com/weiweiqiao99/archive/2010/11/10/1873761.html)
 * 用户启用sudo：需将账号加入到/etc/sudoers，user1 ALL=(ALL)NOPASSWD:ALL
 * usermod -a -G groupA user1 // 用户user1添加到组groupA
+* [linux下开启SSH，并且允许root用户远程登录,允许无密码登录](https://www.cnblogs.com/toughlife/p/5633510.html) : PermitEmptyPasswords yes
 
 ## 硬盘
 * df // 硬盘容量

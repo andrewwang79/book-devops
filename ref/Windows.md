@@ -24,11 +24,12 @@ IF "%BOOLVAL%"=="true" (
 ```
 
 ### 日期时间设置
-ctime改时间
+* 命令改系统时间：新建bat文件写入以下内容，执行【cmd里无法执行】
 ```
-date 2021 11 18
-time 12:23:09
+date 2021 11 26
+time 11:43:09
 ```
+* 改文件时间：软件ctime
 
 ### 增加DNS映射
 ```
@@ -41,4 +42,6 @@ cmd：ipconfig /flushdns
 * [windows CMD命令大全及详细解释和语法](http://xstarcd.github.io/wiki/windows/windows_cmd_syntax.html)
 * 时间: %date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%%time:~6,2%
 * [Windows: Ignore errors with Xcopy and RoboCopy](https://djlab.com/2010/12/windows-ignore-errors-with-xcopy-and-robocopy/)
-* Win10 SSH 免密登录 linux : https://zhuanlan.zhihu.com/p/80364375, https://blog.csdn.net/lisongjia123/article/details/78513244
+* Win10 SSH 免密登录 linux
+ * IP方式：https://zhuanlan.zhihu.com/p/80364375
+ * 域名/IP方式：https://segmentfault.com/a/1190000038657243, IdentityFile是私钥文件
