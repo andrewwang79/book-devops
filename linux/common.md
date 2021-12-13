@@ -22,6 +22,7 @@
 
 * ls -tl /var/lib/dpkg/info/*.list | head -n 10 // 查看最近安装的10个deb
 * alien package_name.rpm // RPM转成DEB
+* [Ubuntu16.04更换阿里云apt-get软件源](https://blog.csdn.net/yjk13703623757/article/details/79860133)
 
 * CentOS
   * 命令：telnet软件的安装

@@ -35,6 +35,8 @@ systemctl disable firewalld.service #禁止firewall开机启动
 1. [ERROR 2026 (HY000): SSL connection error: protocol version mismatch](https://blog.csdn.net/qq_34168515/article/details/105575110) : --ssl-mode=DISABLED
 
 ### 性能
+* 性能统计 : MySQLworkbench左侧导航中选择管理（"management"）选项卡。然后单击仪表盘("Performance Reports")。
+* 获取表记录数和空间数 : select TABLE_NAME, TABLE_ROWS, CONCAT(ROUND(DATA_LENGTH/1024/1024,2),'MB') as size from information_schema.TABLES WHERE table_schema='数据库名' order by TABLE_ROWS DESC, DATA_LENGTH desc;
 * MySQL5.7中新增的sys schema。是由一系列对象（视图、存储过程、存储方法、表和触发器）组成的schema，它本身不采集和存储什么信息，而是将performance_schema 和 information_schema中的数据以更容易理解的方式总结出来归纳为“视图”。
 * [MySQL-Performance-Schema和sys-schema介绍](https://rj03hou.github.io/mysql/MySQL-Performance-Schema%E5%92%8Csys-schema%E4%BB%8B%E7%BB%8D/)
 * [MySql监控分析视图-sys schema](https://cloud.tencent.com/developer/article/1674623)
@@ -44,7 +46,7 @@ systemctl disable firewalld.service #禁止firewall开机启动
 * [Mysql性能优化神器Explain使用](https://c.m.163.com/news/a/F2SAA50I0517P77J.html﻿)
 * [MySQL CPU 使用率高的原因和解决方法](https://blog.csdn.net/u011239989/article/details/72863333)
 
-#### 常用语句
+#### 常用性能语句
 1. 查询表的访问量 : select table_schema,table_name,sum(io_read_requests+io_write_requests) as io from schema_table_statistics group by table_schema,table_name order by io desc;
 1. [MysqlWorkBench性能分析工具--性能仪表盘](https://www.jianshu.com/p/bb42f18ae5c3), 耗时sql清单
 1. [Mysql监控执行速度慢的语句](http://www.2cto.com/database/201304/201668.html)
@@ -108,6 +110,10 @@ mysql.cnf slave
 * http://static.kancloud.cn/ichenpeng/blog/1134189
 * 错误处理: https://blog.51cto.com/suifu/1845114
 
+## 常用sql
+* SELECT * FROM 表名 LIMIT 1 # 一条记录
+* DELETE FROM 表名 WHERE create_time<(curdate() - interval 1 month); # 删除一个月前的所有表记录
+
 ## 管理命令
 1. 安装：yum install mysql -y
 1. 启动：service mysql restart
@@ -125,7 +131,7 @@ mysql.cnf slave
     * mysql控制台：mysql> use xyz;source /path/xyz.db;
 * UTF8的数据库创建：CREATE DATABASE `db1` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-## SQL命令
+## 功能命令
 * 修改账号密码
 ```
 use mysql;
@@ -160,6 +166,8 @@ select concat('select "', TABLE_name, '", count(*) from ', TABLE_SCHEMA, '.', TA
 ```
 * 旧表复制到新表
 CREATE TABLE if not exists 新表 SELECT * FROM 老表 where ...
+* 删除记录后数据库空间和硬盘空间没有变小
+[mysql ibd文件特别大的问题](https://blog.csdn.net/weixin_44032384/article/details/108580471) : OPTIMIZE TABLE 表名
 
 ## 安装
 * [安装](http://www.cnblogs.com/jerrylz/p/5645224.html)

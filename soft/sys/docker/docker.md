@@ -205,7 +205,7 @@ docker restart myNginx
 * docker stop container // 停止docker实例，依旧存在
 * docker start container // 启动docker实例，run的简化命令
 * docker rm container // 删除docker实例，类似stop
-* docker rm $(docker ps -qa --filter status=exited) // 删除所有Exited的docker实例
+* docker rm $(docker ps -qa --filter status=exited) // 删除所有Exited的docker实例，Dockerfile失败用的比较多
 * docker ps -a --filter status=exited --format {{.ID}} // 获取列“ID”的值
 * docker rm $(docker ps -a -q) // 删除所有stop的docker实例
 * docker rmi image // 删除docker image
