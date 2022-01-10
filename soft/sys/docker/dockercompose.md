@@ -32,6 +32,7 @@ networks:
     driver: bridge
 ```
 ## 资料
+* [compose-file-v3](https://docs.docker.com/compose/compose-file/compose-file-v3/)
 1. [语法](https://www.cnblogs.com/freefei/p/5311294.html)
 
 ## 使用
@@ -89,8 +90,9 @@ cap_add:
 1. CPU资源限制
 * https://www.cnblogs.com/sparkdev/p/8052522.html。docker支持的--cpu-shares，不能在docker-compose使用。docker-compose只支持绝对值
 * 测试方法：stress -c 2
+* docker-compose协议3的
 ```
-nano docker-compose.yml && docker-compose --compatibility up -d // docker-compose版本低于1.27需加--compatibility
+nano docker-compose.yml && docker-compose --compatibility up -d // docker-compose版本低于1.27需加--compatibility【不建议生产环境使用】
 version: "3.7"
 services:
   s1:
@@ -100,6 +102,8 @@ services:
       resources:
         limits:
           cpus: '2.50'
+        	memory: 1G
+        	memory-swap: -1
     command: sh -c "tail -f /dev/null"
   s2:
     image: redis:latest
@@ -108,5 +112,17 @@ services:
       resources:
         limits:
           cpus: '1.20'
+        	memory: 1G
+      	reservations:
+        	memory-swap: -1
     command: sh -c "tail -f /dev/null"
+```
+* docker-compose协议2的，交换内存配置项测试下来是无效的，原因未知
+```
+version: "2.4"
+services:
+  s1:
+  mem_limit: 4M
+  mem_swappiness: 10
+  memswap_limit: 8M
 ```

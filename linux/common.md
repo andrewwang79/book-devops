@@ -119,6 +119,7 @@ apt-get install aptitude // 软件包安装情况的软件
 * cat srcfile >> destfile // 将文件内容追加到另一个文件末尾
 * rm -rf方式删除文件后，通过df -h会发现磁盘空间并没有释放
   * 原因是在Linux或者Unix系统中，通过rm -rf或者文件管理器删除文件，将会从文件系统的目录结构上解除链接（unlink）。如果文件是被打开的（有一个进程正在使用），那么进程将仍然可以读取该文件，磁盘空间也一直被占用。正确姿势是cat /dev/null > file，当然你也可以通过rm -rf删除后重启宿主进程
+* rm -rf !(1.cf|2.conf) // 保留1和2，其他都删除
 
 ## 内存
 * sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches' // 清除不用的缓存
@@ -476,6 +477,13 @@ ForwardToSyslog=no
 
 ## Ubuntu改坏sudoers后无法使用sudo的解决办法
 https://www.qedev.com/linux/222196.html
+
+## 压测工具
+stress进行内存、CPU的压测
+```
+stress --vm 1 --vm-bytes 1000M  # 占用 1000MB 内存
+stress -c 1                     # 占用 1core CPU
+```
 
 ## 其他
 * [linux查看已删除空间却没有释放的进程](https://blog.51cto.com/chentongsan/2459740):导致空间不足。lsof -n | grep deleted, kill -9 进程号(第二列)

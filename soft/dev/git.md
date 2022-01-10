@@ -42,6 +42,7 @@
 1. 基于当前分支创建新分支/切换分支：git branch <分支>
 1. 删除分支：git branch -d <远程分支>
 1. 删除tag：git tag -d <tag>
+1. 同步tag，pull时tag不会更新：git fetch origin tag <任意tag号>
 
 ### commit
 1. [add命令](https://www.yiibai.com/git/git_add.html)
@@ -70,7 +71,7 @@
 1. 清除当前目录下所有没commit的管理文件的修改：git checkout .
 1. 清除当前目录下所有非管理文件：git -C . clean -xdf
 1. [Git查看和修改账户](https://blog.csdn.net/junloin/article/details/75197880), git config
-
+1. 取消变基rebase：git am --abort
 ## 操作
 ### 选择提交的分支
 按照以下顺序选择：

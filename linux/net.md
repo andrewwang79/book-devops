@@ -51,7 +51,9 @@ sudo /etc/init.d/networking restart
 * [brctl](http://blog.csdn.net/x_nazgul/article/details/20233237)
 * [配置](http://fp-moon.iteye.com/blog/1468650)
 
-# [防火墙(iptables)](http://blog.chinaunix.net/uid-26495963-id-3279216.html)
+# 防火墙
+* [iptables](http://blog.chinaunix.net/uid-26495963-id-3279216.html)
+* [UFW是Ubuntu系统上配置iptables防火墙的工具](https://www.jianshu.com/p/1069fecb588a)
 
 ## 命令
 * iptables -nvL INPUT // 查看定义规则的详细信息

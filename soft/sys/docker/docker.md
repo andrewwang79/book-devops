@@ -79,6 +79,7 @@ docker push hub.docker.com/wangyaqi/xxx:1.0
 ### 内存使用
 * 容器默认没有内存限制
 * [参数说明](https://blog.csdn.net/CSDN_duomaomao/article/details/78567859)
+* [内存和交换内存上限设置](https://blog.csdn.net/lee_cv/article/details/108035200)
 * [docker container 动态修改内存限制](https://blog.csdn.net/fuck487/article/details/86096134),docker update --memory 2048m --memory-swap -1 container_name
 
 ### image文件
