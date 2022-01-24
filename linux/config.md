@@ -22,7 +22,7 @@ root soft nproc unlimited
 ```
 创建4G的交换内存(/var/swapfile)
 
-dd if=/dev/zero of=/var/swapfile bs=1024 count=4194304 && chmod 0600 /var/swapfile   //创建交换空间，count当前单位是K，因为bs是1024byte
+dd if=/dev/zero of=/var/swapfile bs=1M count=1024 && chmod 0600 /var/swapfile   //创建交换空间1G
 mkswap /var/swapfile
 swapon /var/swapfile // 启用
 echo '/var/swapfile swap swap default 0 0' >> /etc/fstab // 永久生效

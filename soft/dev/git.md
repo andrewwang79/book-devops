@@ -46,7 +46,7 @@
 
 ### commit
 1. [add命令](https://www.yiibai.com/git/git_add.html)
-1. git add -f . && git commit -m "msg" && git push // 快速提交
+1. git add -f . && git commit -m "msg" && git push // 快速提交，如果仓库是空的，需要git push origin master:master
 1. git checkout -b abc && git push origin abc:abc // 本地创建分支并推送到远程同名分支
 1. 添加所有的文件，包括删除的[所有跟踪文件中被修改过或已删除文件,所有未跟踪的文件]：git add -A .
 1. 查看所有的commit提交记录：git log
@@ -58,6 +58,19 @@
 1. [修改最近一次提交](https://blog.csdn.net/AlexAoMin/article/details/51244486) : git add . && git commit --amend && git push -f
 1. [同时修改多个提交：从回退的提交到最后一次提交](https://www.programminghunter.com/article/2686872794/) : git rebase --i HEAD~2 && pick修改为edit && git add . && git commit --amend && git rebase --continue && git push -f
 
+### reset
+1. 清除当前目录所有文件，包括commit冲突的文件：git reset hard
+1. git reset .
+1. [强制删除远程分支上的某次提交](http://blog.csdn.net/qqxiaoqiang1573/article/details/68074847)
+```
+git reset --hard HEAD~1 # 这是当前commit-1，不是最终commit-1。每次都会后退一个commit
+git push origin master -f
+```
+
+### revert
+1. git revert commitid // 单父亲的revert
+1. git revert -m 1 commitid // 多父亲的revert，1代表被合并的分支(一般是主干，要选择保留哪个父亲)。如分支需要再次合并到主干，需把上次的revert再revert掉[原因](https://www.cnblogs.com/bescheiden/articles/10563651.html)
+
 ### 其他
 1. git status // 显示当前目录的文件情况
 1. git blame file_path // 显示文件内容的具体修改情况
@@ -66,12 +79,11 @@
 1. 拉取当前分支：git pull
 1. 拉取分支：git pull <远程主机> <远程分支>:<本地分支>，git pull origin master:master
 1. 合并分支(远程分支合并到当前分支)：git merge <远程分支>
-1. 清除当前目录所有commit冲突的文件，不会回退：git reset hard
-1. git reset .
 1. 清除当前目录下所有没commit的管理文件的修改：git checkout .
 1. 清除当前目录下所有非管理文件：git -C . clean -xdf
 1. [Git查看和修改账户](https://blog.csdn.net/junloin/article/details/75197880), git config
 1. 取消变基rebase：git am --abort
+
 ## 操作
 ### 选择提交的分支
 按照以下顺序选择：
@@ -225,13 +237,6 @@ git init && git config core.sparseCheckout true && echo "design/" >> .git/info/s
 git remote add -f origin url && git pull origin master
 ```
 
-### 强制删除远程分支上的某次提交
-1. [强制删除远程分支上的某次提交](http://blog.csdn.net/qqxiaoqiang1573/article/details/68074847)
-```
-git reset --hard HEAD~1
-git push origin master -f
-```
-
 ### 重置branch
 * [重置branch](https://blog.csdn.net/weixin_33974433/article/details/87963137)
 * 结果是重建分支，一般用于master。其他分支直接删除即可。
@@ -277,23 +282,24 @@ git config --global core.safecrlf true
 ```
 
 ### gitlfs
+#### 安装和配置
 1. [安装详见gitlab](./soft/dev/gitlab)
 1. gitlfs安装后默认git clone是下载lfs文件的
 1. 不下载lfs文件 配置: git config --global filter.lfs.smudge "git-lfs smudge --skip"
 1. 下载lfs文件 配置: git config --global filter.lfs.smudge "git-lfs smudge -- %f"
 
+#### 操作
+1. [Git LFS 操作指南](https://zzz.buzz/zh/2016/04/19/the-guide-to-git-lfs/)
+1. 设置活跃超时秒数，解决客户端上传失败(read tcp i/o timeout)：git config --global lfs.activitytimeout 3600
+1. 设置不压缩：git config --global core.compression 0
+1. 设置上传buffer，一般都够的：git config --global http.postBuffer 5368709120
+1. 设置通讯协议：git config --global http.version HTTP/1.1
+1. [git-lfs-config](https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-config.5.ronn)
+
 ### 取消合并
 1. 未commit(恢复index)：git merge --abort
 1. 已commit未push：git reset --hard commitid
-1. 已push
-```
-1.git revert 优点，记录撤回前的操作。缺点，如果存在两个或多个父分支不能恢复。
-git revert commitid
-git push origin 分支
-2.git reset --hard，删除了提交过的记录。
-git reset --hard commitid
-git push origin 分支 -f
-```
+1. 已push：reset，revert
 
 ### 输入类型判断: 分支/tag/sha
 判断commit的类型
@@ -326,7 +332,9 @@ git tag -l | xargs git tag -d && git fetch origin --prune # 删除所有本地�
 ## 资料
 ### 参考
 1. [版本模型的最佳实践](https://rd.wangyaqi.cn/#/dev/model)
-1. [Learn Git Branching](https://learngitbranching.js.org/)，很好的示范
+1. [Learn Git Branching](https://learngitbranching.js.org/)，很好的示范实例
+1. [Git常用命令速查表](https://www.w3cschool.cn/git/git-cheat-sheet.html)
+1. [Git常用命令备忘录](https://bbs.huaweicloud.com/blogs/320900)
 1. [猴子都能懂的GIT入门](https://backlog.com/git-tutorial/cn/intro/intro5_2.html)
 1. **[git push & git pull 推送/拉取分支](http://blog.csdn.net/litianze99/article/details/52452521)**
 1. [git – 简易指南](http://www.bootcss.com/p/git-guide/)

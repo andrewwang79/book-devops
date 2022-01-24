@@ -27,6 +27,8 @@ RUN ./install.sh
 1. 1G文件无法上传：注意文件后缀，比如git lfs track "*.part0" && git lfs track "*.part1" && git lfs track "*.part2" && git lfs track "*.part3" && git lfs track "*.part4" && git lfs track "*.part5" && git lfs track "*.part6"
 
 # 资料
+* [gitlab-workhorse](https://juejin.cn/post/6844903860016775175)
+
 ## 配置
 ```
 git：https://manpages.debian.org/testing/git-lfs/git-lfs-config.5.en.html

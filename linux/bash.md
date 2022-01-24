@@ -164,6 +164,13 @@ function commandxyz() {
     return 0
 }
 // 命令执行
+if commandxyz; then
+  echo "cmd返回零"
+  exit 0
+else
+  echo "cmd返回非零"
+  exit 1
+fi
 if ! commandxyz; then
   echo "cmd返回非零"
   exit 1
@@ -292,8 +299,11 @@ echo -e "\033[4;32;47m"hi\""\033[0m" // hi"
 
 ## 资料
 ### 语法
+* https://www.shellcheck.net/
 * [SHELL(bash)脚本编程二：语法](https://segmentfault.com/a/1190000008080537)
-* [函数](https://www.runoob.com/linux/linux-shell-func.html)
+* [函数](https://www.runoob.com/linux/linux-shell-func.html): 两种返回方式：
+  1. return int, 区间在0-255
+  1. echo "字符串", 通过$()获取。函数内不能用echo做debug了
 * [数组](https://blog.csdn.net/ysdaniel/article/details/7909824)
 * [整数型变量自增（加1）的实现方式](https://blog.csdn.net/yumushui/article/details/53469845)
 * [$() ` `，${}，$[] $(())，[ ] (( )) [[ ]]作用与区别](https://blog.csdn.net/x1269778817/article/details/46535729)
