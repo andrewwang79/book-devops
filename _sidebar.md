@@ -21,8 +21,6 @@
 
 * 开发软件
   * [Java](soft/dev/java.md)
-  * [Python](soft/dev/Python.md)
-  * [Ruby](soft/dev/Ruby.md)
   * [编译Maven](soft/dev/compile.md)
   * [源码管理-Git](soft/dev/git.md)
   * [源码管理-Gitlab](soft/dev/gitlab.md)
