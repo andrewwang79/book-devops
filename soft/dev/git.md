@@ -56,7 +56,6 @@
 1. 查看某次commit中具体某个文件的修改：git show commitSHA fileName
 1. 查看commit属于哪个分支 git branch -r --contains commitSHA
 1. [修改最近一次提交](https://blog.csdn.net/AlexAoMin/article/details/51244486) : git add . && git commit --amend && git push -f
-1. [同时修改多个提交：从回退的提交到最后一次提交](https://www.programminghunter.com/article/2686872794/) : git rebase --i HEAD~2 && pick修改为edit && git add . && git commit --amend && git rebase --continue && git push -f
 
 ### reset
 1. 清除当前目录所有文件，包括commit冲突的文件：git reset hard
@@ -82,7 +81,6 @@ git push origin master -f
 1. 清除当前目录下所有没commit的管理文件的修改：git checkout .
 1. 清除当前目录下所有非管理文件：git -C . clean -xdf
 1. [Git查看和修改账户](https://blog.csdn.net/junloin/article/details/75197880), git config
-1. 取消变基rebase：git am --abort
 
 ## 操作
 ### 选择提交的分支
@@ -159,7 +157,28 @@ BASE是双方的父亲
 * 取消合并: git merge --abort
 
 ### 变基(rebase)
+#### 说明
+* 作者和message默认不变，时间和提交号会变
+* 取消变基rebase：git am --abort
+* git rebase --continue是继续下一个事项(有冲突需先解决)，最后一个事项做完后会自动完成rebase
+* 冲突时的“我”是当前事项
+* 核武器级选项：filter-branch
+
+#### [主干(rebase)合并到分支](https://backlog.com/git-tutorial/cn/stepup/stepup2_8.html)
+1. 主干到指定位置(否则是合并主干全部提交)：git checkout master && git reset --hard HEAD~
+1. 合并：git checkout tmmm && git pull && git rebase master
+1. 提交：git push
+
+#### [分支历史编辑](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2)
+1. 到指定位置开始互动编辑：git rebase --interactive HEAD~2
+1. 配置调整事项(每行是一个事项)：pick修改为edit，可以不编辑也可以选择其他操作
+1. 循环处理每个事项：
+  1. 编辑内容：编辑，git add . && git commit --amend && git rebase --continue
+1. 提交：git push -f
+
+#### rebase和merge比对
 * merge和rebase的最终结果没有任何区别
+* https://www.waynerv.com/posts/git-rebase-intro/
 * https://xiaozhuanlan.com/topic/6873210549
 * https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA
 * https://blog.csdn.net/kuangdacaikuang/article/details/79619828
@@ -167,7 +186,7 @@ BASE是双方的父亲
 | 方式 | 说明 | 优点 | 缺点 |
 | :----: | ---- | ---- | ---- |
 | merge | 合并时遇到冲突，修改后重新commit | 记录commit的实际情况，方便查看 | 无改动会快进合并，否则自动创建一个新的merge commit |
-| rebase | 将commit历史进行合并，并行变串行。本质是补丁模式 | 提交历史更加整洁 | 发生冲突时不容易定位问题，因为rewrite了history |
+| rebase | 将commit历史进行合并，并行变串行。本质同补丁 | 提交历史更加整洁 | 发生冲突时不容易定位问题，因为rewrite了history |
 
 ### 仓库迁移
 * https://help.github.com/cn/articles/duplicating-a-repository

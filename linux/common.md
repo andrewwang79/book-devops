@@ -102,6 +102,9 @@ apt-get install aptitude // 软件包安装情况的软件
 * ln -s src_dir dest_dir // [建立软连接](https://www.cnblogs.com/peida/archive/2012/12/11/2812294.html)，从dest_dir[快捷目录]链接到src_dir[真实目录]
 * unlink dest_dir // 取消软连接
 * ls -a dir1 // 查看隐藏文件
+* ls -l --time-style=full // 查看文件的年月日
+* ls -lt // 时间最近的在前面
+* ls -ltr // 时间从前到后
 * [提取文件名和目录名](https://www.cnblogs.com/nzbbody/p/4391802.html)
 * 统计文件夹下文件的个数: sudo ls -lR | grep "^-" | wc -l
 * 统计文件夹下文件夹的个数: sudo ls -lR | grep "^d" | wc -l
@@ -114,6 +117,7 @@ apt-get install aptitude // 软件包安装情况的软件
   * find / -name *xyz* // 指定文件全路径模糊查找(xyz)
   * find . -type f -size +100M // 查找大文件(100M)
   * find ${PATH} -type f -mtime +15 -exec rm {} \; // 删除目录下非最近15天的文件(不含目录)，-mmin是分钟
+  * find ${PATH} -type f -mtime +15 -exec mv {} destPath \; // 删除目录下非最近15天的文件(不含目录)，-mmin是分钟
   * find ${PATH} -name "*.log"  | xargs rm -f// 删除目录下匹配的文件
 * echo > filePath // 清空文件内容
 * cat srcfile >> destfile // 将文件内容追加到另一个文件末尾
@@ -158,11 +162,10 @@ sudo crontab -e
   * scp -r account@localIP:remoteFilePath localFilePath // 下载
   * 注意，如目标路径后面是"/*"，则全部文件拷贝到目标路径根目录。
 * sync -av --exclude excludePath /data/src/ /data/dest // 本地同步，排除文件夹(/data/src/excludePath)
-* [远程同步](https://www.howtoing.com/rsync-local-remote-file-synchronization-commands/)
-  * 语法：rsync 源端目录 目标端目录，如rsync abc/ backup/abc，目标端目录不要加/否则会在下层再创建个目录abc
-  * 使用"--delete"选项，需注意源端和目标端，反了会数据丢失！目标端rsync会先删除目标端目录下已经存在，但源端目录不存在的文件。也就是目标端"多则删之，少则补之"。
-  * rsync -avz --delete /src_path account@host:/dest_path // 同步删除了的文件，确保两个目录一致
-  * rsync -avz --remove-source-files backup.tar /tmp/backups/ // 同步后自动删除源文件，场景是每次都是个新文件
+* [远程同步](https://einverne.github.io/post/2017/07/rsync-introduction.html)
+  * 语法：rsync 源端目录 目标端目录，如rsync -avz abc/ backup/abc，目标端目录不要加/否则会在下层再创建个目录abc
+  * rsync -avz --delete /src_path account@host:/dest_path // 目标端"多则删之"，确保两个目录一致
+  * rsync -avz --remove-source-files backup.tar /tmp/backups/ // 同步后自动删除源文件，使用场景是源文件每次都是个新文件
 
 ## 系统自启动配置
 * 方法1：systemctl enable mysql
