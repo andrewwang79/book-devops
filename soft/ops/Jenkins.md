@@ -16,7 +16,7 @@
 * [Process leaked file descriptors error on JENKINS](http://stackoverflow.com/questions/17024441/process-leaked-file-descriptors-error-on-jenkins)：-Dhudson.util.ProcessTree.disable=true
 * [解决无法切换到jenkins用户的问题](http://blog.csdn.net/csfreebird/article/details/27968019)
 * [jenkins 入门教程(上)](http://www.cnblogs.com/yjmyzz/p/jenkins-tutorial-part-1.html)
-* [jenkins用户权限配置](https://www.jianshu.com/p/fca6c3ecde5d)，新建标准用户，然后赋权：https://blog.csdn.net/xuhailiang0816/article/details/80307523
+* [jenkins用户权限配置](https://www.jianshu.com/p/fca6c3ecde5d)，新建标准用户，然后授权(ManageRoles添加ProjectRole,AssignRoles为用户指派ItemRole角色)：https://blog.csdn.net/xuhailiang0816/article/details/80307523
 * Jenkins workflow job: Use parameter as branch specifier
   * 解决方法：disable "Lightweight checkout" checkbox
 * [Jenkins+Git 基于Tag进行构建](https://www.jianshu.com/p/b0989979066a)

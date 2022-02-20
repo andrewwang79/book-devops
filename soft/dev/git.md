@@ -43,6 +43,7 @@
 1. 删除分支：git branch -d <远程分支>
 1. 删除tag：git tag -d <tag>
 1. 同步tag，pull时tag不会更新：git fetch origin tag <任意tag号>
+1. 查看tag信息：git show <tag>
 
 ### commit
 1. [add命令](https://www.yiibai.com/git/git_add.html)
@@ -62,7 +63,8 @@
 1. git reset .
 1. [强制删除远程分支上的某次提交](http://blog.csdn.net/qqxiaoqiang1573/article/details/68074847)
 ```
-git reset --hard HEAD~1 # 这是当前commit-1，不是最终commit-1。每次都会后退一个commit
+git reset --hard HEAD~1 # 这是当前head所在commit-1，同时head后退一个commit
+git reset --hard SHA // 到指定sha的commit
 git push origin master -f
 ```
 
@@ -260,10 +262,10 @@ git remote add -f origin url && git pull origin master
 * [重置branch](https://blog.csdn.net/weixin_33974433/article/details/87963137)
 * 结果是重建分支，一般用于master。其他分支直接删除即可。
 ```
-思路：用空分支替换需重置的branch(master)
+思路：用空分支替换需重置的branch(master)，注意其tag无法自动清除
 步骤：
 git clone并进入目录
-git checkout --orphan new_branch && rm * -rf // 创建孤儿空分支，清空
+git checkout master && git checkout --orphan new_branch && rm * -rf && rm -f .gitattributes .gitignore // 创建孤儿空分支，清空
 echo linux > README.md && git add -A && git commit -am "Initial commit" // 空分支加一个文件，没有文件无法创建commit，就没法替换master
 git branch -D master && git branch -m master && git push -f origin master // 删除master，将空分支提交到master
 ```
