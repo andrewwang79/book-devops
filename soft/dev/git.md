@@ -42,6 +42,7 @@
 1. 基于当前分支创建新分支/切换分支：git branch <分支>
 1. 删除分支：git branch -d <远程分支>
 1. 删除tag：git tag -d <tag>
+1. 删除远程所有tag：git fetch && git push origin --delete $(git tag -l)
 1. 同步tag，pull时tag不会更新：git fetch origin tag <任意tag号>
 1. 查看tag信息：git show <tag>
 
@@ -350,6 +351,12 @@ _sha=`git -C ${path} rev-parse HEAD`
 git tag -l | xargs git tag -d && git fetch origin --prune # 删除所有本地分支，从远程拉取所有信息
 ```
 
+### gitlab的开发分支合并到主干
+1. master合并到dev（有冲突时使用我的）
+1. 发起MR(dev合并到master)，启用“Squash commits when merge request is accepted”
+
+* 如果没有启用Squash导致提交历史乱了，可在master合并前的commit上拉新分支，即可恢复原来的历史
+
 ## 资料
 ### 参考
 1. [版本模型的最佳实践](https://rd.wangyaqi.cn/#/dev/model)
@@ -373,6 +380,7 @@ git tag -l | xargs git tag -d && git fetch origin --prune # 删除所有本地�
 1. 服务商账号：服务商自定义，比如github账号密码
 
 ### 提交
+1. git的author时间是提交电脑操作(git commit)是的本机时间，不是服务器的。git 修改上次git commit的时间: git commit --amend --date="Sun, 25 Dec 2016 19:42:09 +0800"
 1. github提交时不会检查服务商账号是否和git的committer一致，所以只要有github仓库权限就可以伪造成其他人的提交
 1. github仓库首次输入会记忆
 

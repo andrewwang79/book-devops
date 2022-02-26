@@ -263,7 +263,7 @@ DatabaseMirror db.jp.clamav.net
 | tar.gz/tgz | 压缩 |  |
 |  | 解压 |  |
 | zip | 压缩目录 | zip -r example.zip abc |
-|  | 解压，可以用于windows的文件 | unzip example.zip |
+|  | 解压，可以用于windows的文件和jar包 | unzip example.zip/jar |
 | gzip | 压缩tar文件到tar.gz，自动成为a.tar.gz，目录结构不变 | gzip a.tar |
 |  | 解压tar.gz文件到tar，自动成为a.tar | gzip -d a.tar.gz |
 
@@ -420,10 +420,15 @@ umount /biz/
 
 ## sha签名
 ```
-sha512sum file | awk '{print $1}' > sign.sha512 // Linux sha512sum 签名
-certutil -hashfile AbcV1.0.1.2.tar.gz SHA512 // Windows签名
+sha512sum file | awk '{print $1}' > sign.sha512 // Linux的sha512单文件签名保存
+find . -type f -not \( -name '.*' \) -print0 | xargs -0 sha512sum > sign.sha512 // 指定目录的所有文件签名保存
 find . -type f -not \( -name '.*' \) -print0 | xargs -0 sha512sum | sort > sign.sha512 // 指定目录的所有文件签名排序保存
+certutil -hashfile AbcV1.0.1.2.tar.gz SHA512 // Windows的sha512单文件签名保存
 ```
+
+* 同样的内容和操作，两次操作的签名却不一致原因
+  1. tar压缩，会加上压缩时间
+  1. jar包生成，maven会加入当前时间到文件META-INF/maven/[package]/pom.properties
 
 ## 大文件分割合并
 ```
