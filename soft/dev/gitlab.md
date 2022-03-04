@@ -61,3 +61,4 @@ git config --global pack.packSizeLimit 256m
 
 ## 其他
 * [GitLab 之 Git LFS 大文件存储的配置](https://blog.csdn.net/aixiaoyang168/article/details/76012094)
+* 项目清空内容：分支，tag，MR

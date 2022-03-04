@@ -66,7 +66,7 @@
 ```
 git reset --hard HEAD~1 # 这是当前head所在commit-1，同时head后退一个commit
 git reset --hard SHA // 到指定sha的commit
-git push origin master -f
+git push origin -f
 ```
 
 ### revert

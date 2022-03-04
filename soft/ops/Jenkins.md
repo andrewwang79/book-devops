@@ -9,6 +9,9 @@
   * 多个附件: attachmentsPattern: 'test/forEmail*, test/myPdf3*'
 * [Jenkins 添加配置Git账号密码凭据](https://blog.csdn.net/qq_40943363/article/details/104220944)，只是配置账号密码，具体对应系统或url，是使用时的url
 
+### 坑
+* (插件checkout + gitlfs + 时间改到以前)，会随机狗血的卡在(git lfs pull)下载不了，怀疑是插件做了强时间要求。
+
 ## 资料
 * [Ubuntu安装](http://blog.csdn.net/fenglailea/article/details/25919367)
 * [关闭部分日志功能](http://blog.csdn.net/qq_33588470/article/details/54647496)，javax.jmdns

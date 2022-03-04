@@ -193,6 +193,7 @@ docker restart myNginx
 1. 外部运行container实例的脚本：docker exec -d myHttpd sh -c "echo 'export LC_ALL=zh_CN.UTF-8'  >>  /etc/profile"
 
 ### 全部
+* systemctl enable docker // 开机自启动
 * dockerd // 直接启动，可以看启动log，查看问题
 * docker search image // 搜索仓库的image
 * docker pull image:tag // 下载仓库的image，tag不写就用最新的
@@ -224,4 +225,4 @@ docker restart myNginx
 * docker system prune // 清理
 * docker system prune -a // 没使用的image也会清理，慎用
 * docker cp container-name:/container-path/ /host-path/ // 命令需在宿主机执行，可以宿主机和容器互拷。例子是从容器到宿主机。
-* docker update --restart=no/always <CONTAINER ID> 取消/生效docker镜像自启动
+* docker update --restart=no/always <CONTAINER ID> 取消/生效docker容器自启动
