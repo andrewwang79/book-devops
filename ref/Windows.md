@@ -10,6 +10,8 @@
 * tasklist | findstr 4872
 
 ## 批处理
+* [WindowDos批处理命令大全](https://gist.github.com/675816156/7bcec2bc6f45faa64acdb75acfef6912)
+
 ```
 md a\b // 创建多层目录
 rd /s/q build // 删除目录

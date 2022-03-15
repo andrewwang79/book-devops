@@ -106,8 +106,8 @@ apt-get install aptitude // 软件包安装情况的软件
 * ls -lt // 时间最近的在前面
 * ls -ltr // 时间从前到后
 * [提取文件名和目录名](https://www.cnblogs.com/nzbbody/p/4391802.html)
-* 统计文件夹下文件的个数: sudo ls -lR | grep "^-" | wc -l
-* 统计文件夹下文件夹的个数: sudo ls -lR | grep "^d" | wc -l
+* 统计文件夹下文件的个数: ls -lR | grep "^-" | wc -l
+* 统计文件夹下文件夹的个数: ls -lR | grep "^d" | wc -l
 * 分割文件批量改后缀：ls | grep .part. | xargs -n1 -i{} mv {} {}.tar.gz // XX.part.11变成XX.part.11.tar.gz
 
 ## 文件

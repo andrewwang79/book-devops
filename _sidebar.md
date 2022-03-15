@@ -52,6 +52,7 @@
   * [SaltStack](soft/ops/SaltStack.md)
   * [Ansible](soft/ops/Ansible.md)
   * [Open-Falcon](soft/ops/Open-Falcon.md)
+  * [vpn](soft/ops/vpn.md)
 
 * 参考
   * [Windows](ref/Windows.md)
