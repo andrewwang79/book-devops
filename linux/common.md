@@ -146,7 +146,8 @@ sudo crontab -e
   * lsof -i :27017 | awk '{print $2}' | xargs kill -9
 
 ## 进程查询
-* ps -ef | grep 进程号 // 查看进程对应的程序
+* ps -ef | grep 进程号 // 查看进程对应的执行命令
+* ls -l /proc/PID/exe // 查看进程对应的程序
 * ps -ef | grep java // 查看匹配名称的进程(java)
 * ps -ef | grep nginx | wc -l // 查看运行的进程总数
 * ps -fu csvn // 查看特定进程(csvn)
