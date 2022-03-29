@@ -82,6 +82,7 @@ iptables -A OUTPUT -j ACCEPT
 * [CURL命令](https://blog.csdn.net/huangzx3/article/details/80625080)
 * [做Http的Get/Post请求](https://www.jianshu.com/p/a8b648e96753)
 * [使用curl和wget发送json格式的post请求](https://blog.csdn.net/xcc_2269861428/article/details/83345351)
+
 ```
 -s 静默
 -i 返回结果包括报文头
