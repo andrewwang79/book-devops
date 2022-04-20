@@ -24,16 +24,16 @@
 * alien package_name.rpm // RPM转成DEB
 * [Ubuntu16.04更换阿里云apt-get软件源](https://blog.csdn.net/yjk13703623757/article/details/79860133)
 
-* CentOS
-  * 命令：telnet软件的安装
+### CentOS
+* 命令：telnet软件的安装
 ```
 rpm -qa | grep telnet // 是否已安装telnet
 yum -y install telnet-server
 yum -y install telnet
 ```
-  * [CentOS软件包安装](https://blog.csdn.net/yinjiabin/article/details/7654852)
-  * [执行yum命令报except KeyboardInterrupt](https://blog.csdn.net/huangjin0507/article/details/82891412)：nano /usr/bin/yum，改成python2
-  * 数据源配置：[CentOS7配置网易163的yum源](http://www.cnblogs.com/carbon3/p/5635403.html)
+* [CentOS软件包安装](https://blog.csdn.net/yinjiabin/article/details/7654852)
+* [执行yum命令报except KeyboardInterrupt](https://blog.csdn.net/huangjin0507/article/details/82891412)：nano /usr/bin/yum，改成python2
+* 数据源配置：[CentOS7配置网易163的yum源](http://www.cnblogs.com/carbon3/p/5635403.html)
 ```
 cd /etc/yum.repos.d/
 mv CentOS-Base.repo CentOS-Base.repo.backup
@@ -42,11 +42,17 @@ yum clean all
 yum makecache
 ```
 
-  * [RPM软件包的安装及卸载](http://os.51cto.com/art/201001/177866.htm)
-  * [yum命令详解](http://www.cnblogs.com/chuncn/archive/2010/10/17/1853915.html)
+* [RPM软件包的安装及卸载](http://os.51cto.com/art/201001/177866.htm)
+* [yum命令详解](http://www.cnblogs.com/chuncn/archive/2010/10/17/1853915.html)
+* [选择需安装的包](https://codeantenna.com/a/9Rh9hQpwR9)
+```
+rpm -qa | grep "g++" && yum whatprovides "*/g++"
+根据提供的包，选择适合系统的进行安装：
+yum install 包名
+```
 
-* Ubuntu
-  * 命令
+### Ubuntu
+* 命令
 ```
 apt-get install xxxxx // 安装
 apt-get remove xxxxx // 卸载
@@ -56,13 +62,15 @@ apt list –installed // 显示已安装软件包
 dpkg-query -l // 显示已安装软件包，结果同apt list
 apt-get install aptitude // 软件包安装情况的软件
 ```
-  * [Ubuntu离线安装软件包](https://blog.csdn.net/nupt123456789/article/details/11649603)
-  * [apt-get安装出现dpkg status database is lock解决](http://www.2cto.com/os/201305/208284.html)，安装失败会导致其他软件不能使用，比如MySQL
+
+* [Ubuntu离线安装软件包](https://blog.csdn.net/nupt123456789/article/details/11649603)
+* [apt-get安装出现dpkg status database is lock解决](http://www.2cto.com/os/201305/208284.html)，安装失败会导致其他软件不能使用，比如MySQL
 ```
     rm /var/lib/dpkg/lock
     dpkg --configure -a    
 ```
-  * [大量dpkg依赖错误](https://segmentfault.com/q/1010000000117928)
+
+* [大量dpkg依赖错误](https://segmentfault.com/q/1010000000117928)
 
 ## 离线安装
 * [官方安装包实例-docker](https://docs.docker.com/install/linux/docker-ce/binaries/#install-static-binaries)

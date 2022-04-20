@@ -74,6 +74,7 @@ git push origin -f
 1. git revert -m 1 commitid // 多父亲的revert，1代表被合并的分支(一般是主干，要选择保留哪个父亲)。如分支需要再次合并到主干，需把上次的revert再revert掉[原因](https://www.cnblogs.com/bescheiden/articles/10563651.html)
 
 ### 其他
+1. git remote -v // 查看项目远程地址
 1. git status // 显示当前目录的文件情况
 1. git blame file_path // 显示文件内容的具体修改情况
 1. git cat-file -p commitid // 显示提交号的具体内容
