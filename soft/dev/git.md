@@ -75,7 +75,7 @@ git push origin -f
 
 ### 其他
 1. git remote -v // 查看项目远程地址
-1. git status // 显示当前目录的文件情况
+1. git status // 显示当前目录的文件情况。如未暂存，已暂存
 1. git blame file_path // 显示文件内容的具体修改情况
 1. git cat-file -p commitid // 显示提交号的具体内容
 1. **指定在特定目录执行git：git -C <目录> 执行命令**
