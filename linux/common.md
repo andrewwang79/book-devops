@@ -191,7 +191,9 @@ service iptables stop
 
 ## 远程免密码登录设置
 * [远程免密码登录设置](http://www.2cto.com/os/201304/205141.html), https://blog.csdn.net/alifrank/article/details/48241699
-* 秘钥是服务器级别的。登录账号同秘钥，放在远程服务器的对应账号的authorized_keys里。如秘钥放在用户A的authorized_keys里，那只能用户A登录远程服务器。
+* 说明
+  1. 秘钥是服务器级别的。登录账号同秘钥，放在远程服务器的对应账号的authorized_keys里。如秘钥放在用户A的authorized_keys里，那只能用户A登录远程服务器。
+  1. 如果authorized_keys设置了但还是无效，注意目录.ssh和文件authorized_keys的权限，确保登录账号有权限
 * 步骤：在本地电脑通过ssh免密登录远程服务器
   1. 本地：生成公共密钥，用默认值。ssh-keygen -t rsa
   1. 公共密钥授权方案1
@@ -207,6 +209,7 @@ service iptables stop
 ```
 cat ~/.ssh/id_rsa.pub | ssh root@192.168.161.138 "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys" // 同时创建目录.ssh
 ```
+
 ## 自动输入密码设置
 * [资料](http://blog.itpub.net/27042095/viewspace-745587/)
 1. 安装expect
