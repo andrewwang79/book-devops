@@ -60,7 +60,7 @@
 1. [修改最近一次提交](https://blog.csdn.net/AlexAoMin/article/details/51244486) : git add . && git commit --amend && git push -f
 
 ### reset
-1. 清除当前目录所有文件，包括commit冲突的文件：git reset hard
+1. 恢复到最新commit(清除所有文件，包括commit冲突的文件)：git reset --hard
 1. git reset .
 1. [强制删除远程分支上的某次提交](http://blog.csdn.net/qqxiaoqiang1573/article/details/68074847)
 ```

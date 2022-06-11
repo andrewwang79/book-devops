@@ -11,6 +11,7 @@
 
 ## 批处理
 * [WindowDos批处理命令大全](https://gist.github.com/675816156/7bcec2bc6f45faa64acdb75acfef6912)
+* [Windows 批处理脚本指南: 变量](https://www.jianshu.com/p/5e364800955e)
 
 ```
 md a\b // 创建多层目录
