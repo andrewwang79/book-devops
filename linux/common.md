@@ -107,6 +107,7 @@ apt-get install aptitude // 软件包安装情况的软件
 * mv/cp dir1 ./ // dir1目录移动/拷贝到当前目录。即当前目录下有个dir1目录
 * cp -rf path1 path2 destPath // 多个目录复制到目标路径
 * mv path1 path2 -t destPath // 多个目录移动到目标路径
+* find . -name *.txt | xargs -I file mv file ./ // 查找txt文件并移动到当前目录
 * ln -s src_dir dest_dir // [建立软连接](https://www.cnblogs.com/peida/archive/2012/12/11/2812294.html)，从dest_dir[快捷目录]链接到src_dir[真实目录]
 * unlink dest_dir // 取消软连接
 * ls -a dir1 // 查看隐藏文件

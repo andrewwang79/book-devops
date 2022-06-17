@@ -41,6 +41,7 @@
   1. 下载远程标签并切换【下载前先git pull同步】：git checkout -b <本地分支> origin/<远程tag>
 1. 基于当前分支创建新分支/切换分支：git branch <分支>
 1. 删除分支：git branch -d <远程分支>
+1. 只推送所有的tag：git push --tags
 1. 删除tag：git tag -d <tag>
 1. 删除远程所有tag：git fetch && git push origin --delete $(git tag -l)
 1. 同步tag，pull时tag不会更新：git fetch origin tag <任意tag号>
