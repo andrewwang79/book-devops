@@ -61,13 +61,18 @@
 1. [修改最近一次提交](https://blog.csdn.net/AlexAoMin/article/details/51244486) : git add . && git commit --amend && git push -f
 
 ### reset
-1. 恢复到最新commit(清除所有文件，包括commit冲突的文件)：git reset --hard
-1. git reset .
-1. [强制删除远程分支上的某次提交](http://blog.csdn.net/qqxiaoqiang1573/article/details/68074847)
+* [Git中撤销提交](https://www.cnblogs.com/zhuxiaoxi/p/8532540.html)
+
+| 状态 | 操作 |
+| :-: | - |
+| 已修改+未暂存；已暂存+未提交 | git reset --hard |
+| 已提交+未推送 | git reset --hard origin/<远程分支> |
+| 已推送 | 见《强制删除远程分支上的某次提交》 |
+
+* [强制删除远程分支上的某次提交](http://blog.csdn.net/qqxiaoqiang1573/article/details/68074847)，操作不可逆，属于高风险操作。两种如下：
 ```
-git reset --hard HEAD~1 # 这是当前head所在commit-1，同时head后退一个commit
-git reset --hard SHA // 到指定sha的commit
-git push origin -f
+git reset --hard HEAD~1 && git push origin -f # 当前head所在commit-1，相当于后退一个commit
+git reset --hard SHA && git push origin -f // 后退到指定sha的commit
 ```
 
 ### revert

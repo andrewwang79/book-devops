@@ -10,19 +10,32 @@
 * tasklist | findstr 4872
 
 ## 批处理
-* [WindowDos批处理命令大全](https://gist.github.com/675816156/7bcec2bc6f45faa64acdb75acfef6912)
-* [Windows 批处理脚本指南: 变量](https://www.jianshu.com/p/5e364800955e)
+* [Windows批处理脚本指南: for循环](https://www.jb51.net/article/93170.htm)
+* [Windows批处理脚本指南: 变量](https://www.jianshu.com/p/5e364800955e)
+* [处理参数的引号](https://blog.csdn.net/cocokim_122/article/details/41896351): 最外层不加引号，不影响数据。如set p1="aaa" bb。%p1%会如实体现【"aaa" bb】
 
 ```
+// 操作
 md a\b // 创建多层目录
 rd /s/q build // 删除目录
-rd /s/q build & md build & cd build cmd // 一行命令执行多条指令 https://blog.csdn.net/yrk0556/article/details/104308866
+rd /s/q build & md build & cd build // 一行命令执行多条指令 https://blog.csdn.net/yrk0556/article/details/104308866
 
+// 变量，特别是中间有空格的
+SET "PATH=%PATH%;C:\Program Files (x86)\path with special characters"
+
+// 判断
 set BOOLVAL=true # 其他值都是false
 IF "%BOOLVAL%"=="true" (
   echo "yes"
 ) ELSE (
   echo "no"
+)
+
+// 遍历获取第一层目录并git pull
+set work_path=D:\book\wangyaqi\
+for /f %%i in ('dir /b /ad %work_path%') do (
+  echo pull %work_path%%%i
+  git -C %work_path%%%i pull
 )
 ```
 
