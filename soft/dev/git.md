@@ -367,7 +367,7 @@ git tag -l | xargs git tag -d && git fetch origin --prune # 删除所有本地�
 
 ## 资料
 ### 参考
-1. [版本模型的最佳实践](https://rd.wangyaqi.cn/#/dev/model)
+1. [版本模型和最佳实践](https://rd.wangyaqi.cn/#/dev/model)
 1. [Learn Git Branching](https://learngitbranching.js.org/)，很好的示范实例
 1. [Git常用命令速查表](https://www.w3cschool.cn/git/git-cheat-sheet.html)
 1. [Git常用命令备忘录](https://bbs.huaweicloud.com/blogs/320900)

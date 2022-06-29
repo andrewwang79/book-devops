@@ -66,6 +66,7 @@ sudo /etc/init.d/networking restart
 * [命令](https://wangchujiang.com/linux-command/c/iptables.html)
 * [常用套路](http://www.zsythink.net/archives/1869)
 * [配置参考](https://codeday.me/bug/20181124/405722.html)
+* [域名解析中的cname解析和显性URL跳转和隐性URL跳转](https://blog.csdn.net/qq_26291823/article/details/75090094)
 
 ## 常用配置
 ```

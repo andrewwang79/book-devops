@@ -2,6 +2,7 @@
 ## 进程和文件数量不限制
 ```
 nano /etc/security/limits.conf, 注意nofile不能写unlimited
+nofile是最大打开文件数，nproc是每个用户创建最大进程数
 
 root hard nofile 65536
 root soft nofile 65536

@@ -23,6 +23,12 @@ rd /s/q build & md build & cd build // 一行命令执行多条指令 https://bl
 // 变量，特别是中间有空格的
 SET "PATH=%PATH%;C:\Program Files (x86)\path with special characters"
 
+// 输入参数空判断
+set one=%1
+if "%one%"=="" (
+echo 空) else (
+echo %1)
+
 // 判断
 set BOOLVAL=true # 其他值都是false
 IF "%BOOLVAL%"=="true" (
