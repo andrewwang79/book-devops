@@ -295,9 +295,11 @@ fatal: index-pack failed
     compression = 0
 ```
 
-### git 免除账号密码的设置
-* [git 免除账号密码的设置](http://blog.csdn.net/guang11cheng/article/details/50537759)
-* git config --global credential.helper store // 记住账号密码
+### 账号密码记忆设置
+* [git账号密码记忆的设置](http://blog.csdn.net/guang11cheng/article/details/50537759)
+  1. 如果是docker容器需要做这一步。将容器内的.root目录映射到宿主机持久化，修改文件后重启容器: 在docker-compose.yml的volumes段落增加映射，比如“/home/user/wangyaqi/root:/root”
+  1. git config --global credential.helper store
+  1. git操作，再输1次密码
 * rm ~/.git-credentials // 取消账号密码记忆
 
 1. 忽略SSL证书：git config --global http.emptyAuth true

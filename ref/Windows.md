@@ -19,6 +19,7 @@
 md a\b // 创建多层目录
 rd /s/q build // 删除目录
 rd /s/q build & md build & cd build // 一行命令执行多条指令 https://blog.csdn.net/yrk0556/article/details/104308866
+xcopy /s /y a\\config\\ b\\config\\ // 拷贝目录"a/config"下的文件到目录"b/config"
 
 // 变量，特别是中间有空格的
 SET "PATH=%PATH%;C:\Program Files (x86)\path with special characters"

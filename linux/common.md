@@ -17,7 +17,7 @@
 ## 软件安装卸载
 | 安装方式 | CentOS | Ubuntu |
 | -- | -- | -- |
-| 离线 | rpm文件安装 | [使用dpkg安装卸载deb文件](ubuntu上安装与卸载deb文件) |
+| 离线 | rpm安装: rpm -ivh xxx.rpm | dpkg安装卸载deb文件: dpkg --install  xxx.deb <br> [ubuntu的deb安装包](http://archive.ubuntu.com/ubuntu/pool/) |
 | 在线 | yum | apt-get |
 
 * ls -tl /var/lib/dpkg/info/*.list | head -n 10 // 查看最近安装的10个deb
@@ -428,6 +428,7 @@ umount /biz/
 
 ## 字符串分割截取命令
 * [cut, printf, awk, sed](https://www.cnblogs.com/farwish/p/4806018.html)
+* [sed命令中含有转义字符的解决方法](https://www.cnblogs.com/zwldyt/p/12996846.html)
 * cut -d ' ' -f 1 // 分隔符是' '，取第一列
 * awk '{print $1}' // 无条件的取第一列
 
@@ -508,3 +509,19 @@ stress -c 1                     # 占用 1core CPU
 
 ## 其他
 * [linux查看已删除空间却没有释放的进程](https://blog.51cto.com/chentongsan/2459740):导致空间不足。lsof -n | grep deleted, kill -9 进程号(第二列)
+
+## Ubuntu20.04
+### 离线安装网络驱动
+1. 下载[e1000e显卡驱动](https://downloadmirror.intel.com/15817/eng/e1000e-3.8.4.tar.gz)
+1. [离线安装gcc和make以及网卡驱动](https://zhuanlan.zhihu.com/p/466440088)，注意内核模块加载前注意事项
+    1. 需人工拷贝网卡驱动"cp /lib/modules/\${系统版本}/updates/drivers/net/ethernet/intel/e1000e/e1000e.ko /usr/lib/modules/\${系统版本}/kernel/net/wireless/"，[参考](https://zhuanlan.zhihu.com/p/470799941)
+
+### 网络配置
+* https://www.cnblogs.com/ubuntuanzhuang/p/13131138.html
+
+## 加载Linux内核模块
+* [modprobe命令](https://www.runoob.com/linux/linux-comm-modprobe.html)
+* modprobe执行前注意事项
+  1. 进入BIOS关闭secure boot。[参考](https://www.cnblogs.com/xuyaowen/p/linux-secure-boot-disable.html)
+* lsmod | grep e1000e
+* dmesg | grep e1000e
