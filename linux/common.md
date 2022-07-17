@@ -147,6 +147,11 @@ sudo crontab -e
 */60 * * * * sh -c 'sync && echo 3 > /proc/sys/vm/drop_caches'
 ```
 
+## 终端复用,后台运行
+* [tmux vs screen](https://qianxu.run/2021/03/28/tmux-vs-screen/)
+* tmux: 一屏多窗口
+* **screen**: 多人共享
+
 ## 进程
 * nohup 命令 >/dev/null & // 后台运行命令
 * ps -ef | grep mongo | awk '{print $2}' | xargs kill -9 // kill名称对应的进程(mongo)
@@ -190,7 +195,23 @@ service iptables stop
 * [chkconfig命令](http://man.linuxde.net/chkconfig)
 * [ Ubuntu下使用sysv-rc-conf管理服务](http://blog.csdn.net/gatieme/article/details/45251389)
 
-## 远程免密码登录设置
+## ssh
+* ssh -p port user@host  如：ssh -p 2222 pika@192.168.0.111
+* [sshpass](https://www.cnblogs.com/mianbaoshu/p/9648241.html)
+  * 命令带密码登录: sshpass -p "password" ssh -p 2222 pika@192.168.0.111
+  * 密码文件生成: echo 'password' > mypasswd.txt
+  * 命令带密码文件登录: sshpass -f mypasswd.txt ssh -p 2222 pika@192.168.0.111
+  * 命令带密码文件SCP: sshpass -f mypasswd.txt scp -r -p 2222 pika@192.168.0.111:/opt/foo/ .
+
+### 连接失败的调试
+* https://www.imooc.com/article/21437
+```
+目录权限是600
+ssh客户端查看详细信息：ssh -vvv
+服务端启动ssh服务，看log: /usr/sbin/sshd -d -p 2222
+```
+
+### 远程免密码登录设置
 * [远程免密码登录设置](http://www.2cto.com/os/201304/205141.html), https://blog.csdn.net/alifrank/article/details/48241699
 * 说明
   1. 秘钥是服务器级别的。登录账号同秘钥，放在远程服务器的对应账号的authorized_keys里。如秘钥放在用户A的authorized_keys里，那只能用户A登录远程服务器。
@@ -399,14 +420,6 @@ umount /biz/
 
 ## 监控
 * watch -n 1 -d 'ps -ef | grep java' // 每秒钟执行一次命令，定时执行
-
-## ssh
-* ssh -p port user@host  如：ssh -p 2222 pika@192.168.0.111
-* [sshpass](https://www.cnblogs.com/mianbaoshu/p/9648241.html)
-  * 命令带密码登录: sshpass -p "password" ssh -p 2222 pika@192.168.0.111
-  * 密码文件生成: echo 'password' > mypasswd.txt
-  * 命令带密码文件登录: sshpass -f mypasswd.txt ssh -p 2222 pika@192.168.0.111
-  * 命令带密码文件SCP: sshpass -f mypasswd.txt scp -r -p 2222 pika@192.168.0.111:/opt/foo/ .
 
 ## diff
 * diff -r dir1 dir2 // 目录比对

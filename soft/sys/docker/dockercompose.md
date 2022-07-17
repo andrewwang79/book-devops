@@ -20,6 +20,10 @@ services:
     image: redis
     restart: always
     container_name: XX-network-redis
+    env_file:
+      sys.env
+    environment:
+      - LANG=C.UTF-8
     ports:
       - "27379:6379"
     volumes:
@@ -36,21 +40,26 @@ networks:
 1. [语法](https://www.cnblogs.com/freefei/p/5311294.html)
 
 ## 使用
-1. 环境变量
-  * https://www.jianshu.com/p/c87d4031413c
-  * https://zhuanlan.zhihu.com/p/55486428
-  * https://segmentfault.com/a/1190000023655147
+### 环境变量和yml文件里变量的使用
+* https://www.cnblogs.com/sparkdev/p/9826520.html
+* https://www.jianshu.com/p/c87d4031413c
+* https://zhuanlan.zhihu.com/p/55486428
+* https://segmentfault.com/a/1190000023655147
+* 宿主机的环境变量可在yml文件使用。serviceName和networkName定义不能用宿主机的环境变量，需用envsubst解决
+* env_file和environment定义的是容器内的环境变量，不是宿主机的环境变量
+
 ```
-定义变量：
+定义宿主机的环境变量并在yml文件验证
 export DB_PORT=3306 && export DB_IP=111 && docker-compose config
 DB_PORT=3306 DB_IP=111 docker-compose config
-使用：
-${nginx_port}:80
-${nginx_port-81}:80 // -后面是默认值
-```
-  * serviceName和networkName定义不能动态，用envsubst解决
 
-1. [Docker Compose 方式下的容器网络基础知识点](https://michael728.github.io/2019/06/15/docker-compose-networks)，https://docs.docker.com/compose/networking/
+yml文件内使用宿主机的环境变量：
+${nginx_port}:80
+${nginx_port-81}:80 // -后是默认值，默认值是81
+```
+
+### 容器网络基础知识点
+* [DockerCompose方式下的容器网络基础知识点](https://michael728.github.io/2019/06/15/docker-compose-networks)，https://docs.docker.com/compose/networking/
 ```
 指定网络名，不设置name会是"当前目录_abc"
 networks:
@@ -58,7 +67,8 @@ networks:
     name: abcd
     driver: bridge
 ```
-1. docker启动后不关闭的命令(docker无命令会自动关闭)
+
+### docker启动后不关闭的命令(docker无命令会自动关闭)
 ```
 // 方案1，命令挂起。有时候sh无效，原因未知
 command: sh -c "tail -f /dev/null"
@@ -72,13 +82,16 @@ tail -f /dev/null
 // 方案3，1和2组合
 command: sh -c "sh /opt/xxx/hang.sh"
 ```
-1. [控制docker-compose中服务的启动顺序](https://blog.csdn.net/xiao_jun_0820/article/details/78676765)
+
+### 控制服务的启动顺序
+* [控制docker-compose中服务的启动顺序](https://blog.csdn.net/xiao_jun_0820/article/details/78676765)
 ```
 depends_on:
   - "db"
 command: ["./wait-for-it.sh", "db:3306", "--", "python", "app.py"]
 ```
-1. 进程优先级
+
+### 进程优先级
 ```
 命令如下：优先级最低-20
 renice -10 4753 // renice [优先级] PID
@@ -87,7 +100,8 @@ docker-compose使用方法：
 cap_add:
      - SYS_NICE
 ```
-1. CPU资源限制
+
+### CPU资源限制
 * https://www.cnblogs.com/sparkdev/p/8052522.html。docker支持的--cpu-shares，不能在docker-compose使用。docker-compose只支持绝对值
 * 测试方法：stress -c 2
 * docker-compose协议3的
