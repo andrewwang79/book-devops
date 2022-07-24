@@ -381,6 +381,7 @@ git tag -l | xargs git tag -d && git fetch origin --prune # 删除所有本地�
 1. [git中detached HEAD、amend、rebase和reset](https://cloud.tencent.com/developer/article/1446002)
 1. [Detached HEAD](https://zhuanlan.zhihu.com/p/66460426)
 1. 分支整体图用TortoiseGit的[Reversion Graph](https://blog.csdn.net/zh_ITRoad/article/details/84857531)
+1. [submodule子模块的管理和使用](https://www.jianshu.com/p/9000cd49822c)
 
 ### 账号
 1. git账号：通过邮箱区分

@@ -152,6 +152,12 @@ sudo crontab -e
 * tmux: 一屏多窗口
 * **screen**: 多人共享
 
+```
+screen -S ABC // 新建screen
+screen -ls // 查看当前运行的screen
+screen -r 23318 // 基于pid进入指定的screen
+```
+
 ## 进程
 * nohup 命令 >/dev/null & // 后台运行命令
 * ps -ef | grep mongo | awk '{print $2}' | xargs kill -9 // kill名称对应的进程(mongo)

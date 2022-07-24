@@ -313,6 +313,7 @@ echo -e "\033[4;32;47m"hi\""\033[0m" // hi"
 * [Shell编程中Shift的用法](https://www.cnblogs.com/image-eye/archive/2011/08/20/2147153.html)
 * [遍历目录下的文件](https://www.cnblogs.com/kaituorensheng/archive/2012/12/19/2825376.html)
 * [Shell脚本递归遍历目录](https://www.jianshu.com/p/edbdff7a83c9)
+* [字符串大小写转换](https://blog.csdn.net/10km/article/details/83384145)
 
 ### 工具
 * [sed](http://jalan.space/2017/01/22/2017-01-22-shell-sed-replace-text/)
