@@ -133,14 +133,23 @@ net.ipv4.tcp_fin_timeout = 30
 ```
 
 # 代理
+## Squid(Linux上的HTTP代理服务端)
 >Squid服务是构建在Linux网关主机上的，正确设置防火墙策略，将局域网主机访问Internet的数据包转交给Squid进行处理。用到iptables的REDIRECT（重定向）策略。实现本机端口的重新定向，将访问网站协议HTTP、HTTPS的外发数据包转发交给本机的Squid服务（3128端口）
 ## 服务端安装
 1. 服务端安装Squid(https://blog.csdn.net/qy20115549/article/details/83375817)。使用正向代理，默认代理端口是3128
 1. 确保服务端开放服务端的防火墙
 1. 客户端设置代理IP
 
-## 资料
-服务端
-* [Windows下Squid 3.5安装及配置代理服务器](https://blog.csdn.net/qy20115549/article/details/83375817)
-* [squid代理服务器安装配置指南](https://zhuanlan.zhihu.com/p/32291921)
-* [Squid透明代理的配置](https://blog.51cto.com/wangfeiyu/2072663)
+### 资料
+* 服务端
+  * [Windows下Squid 3.5安装及配置代理服务器](https://blog.csdn.net/qy20115549/article/details/83375817)
+  * [squid代理服务器安装配置指南](https://zhuanlan.zhihu.com/p/32291921)
+  * [Squid透明代理的配置](https://blog.51cto.com/wangfeiyu/2072663)
+
+## proxychains4(Linux上的代理客户端)
+* [proxychains4配置使用](https://www.cnblogs.com/mwq1024/p/11582003.html)
+```
+apt install proxychains4
+echo "socks5 10.71.10.49 12306" >> /etc/proxychains4.conf
+proxychains4 curl www.httpbin.org/ip
+```

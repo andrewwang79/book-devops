@@ -66,6 +66,10 @@ notepad C:\Windows\System32\drivers\etc\hosts
 cmd：ipconfig /flushdns
 ```
 
+### 资源管理器和cmd互开
+* 资源管理器 -> cmd : 路径里输入cmd
+* cmd ->  资源管理器: start .
+
 ## 资料
 * [windows CMD命令大全及详细解释和语法](http://xstarcd.github.io/wiki/windows/windows_cmd_syntax.html)
 * 时间: %date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%%time:~6,2%

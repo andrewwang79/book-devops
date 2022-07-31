@@ -419,3 +419,8 @@ autoconf
 make
 make install
 ```
+
+### github
+* 账号密码不能登录的2个解决方法
+  1. git的url加PAT : https://${PersonAccessToken}@github.com/username/repo.git
+  1. [git标准url和账号，但密码用token](https://www.cnblogs.com/plpeng/p/15175315.html)
