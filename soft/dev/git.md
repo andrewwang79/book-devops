@@ -396,6 +396,7 @@ git tag -l | xargs git tag -d && git fetch origin --prune # 删除所有本地�
 1. github仓库首次输入会记忆
 
 ### 安装
+1. [Windows安装包](https://www.newbe.pro/Mirrors/Mirrors-Git-For-Windows/)
 1. [centos7编译安装](http://blog.csdn.net/chrislyl/article/details/70876682)，[参考2](http://blog.csdn.net/zongyinhu/article/details/54695404)
   * 脚本
 

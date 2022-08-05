@@ -12,13 +12,18 @@
 ## 批处理
 * [Windows批处理脚本指南: for循环](https://www.jb51.net/article/93170.htm)
 * [Windows批处理脚本指南: 变量](https://www.jianshu.com/p/5e364800955e)
-* [处理参数的引号](https://blog.csdn.net/cocokim_122/article/details/41896351): 最外层不加引号，不影响数据。如set p1="aaa" bb。%p1%会如实体现【"aaa" bb】
+* [参数的引号](https://blog.csdn.net/cocokim_122/article/details/41896351):
+  * 引号是字符串，加了就会体现，加N次就会有N层引号。
+    * set p1="aaa" bb && echo %p1%  ->  "aaa" bb
+    * set p1=”%p1%" && echo %p1%  ->  ""aaa" bb"
+  * 最佳实践：在字符串首次定义的地方有需要就加引号，过程中不要加引号
 
 ```
 // 操作
 md a\b // 创建多层目录
 rd /s/q build // 删除目录
-rd /s/q build & md build & cd build // 一行命令执行多条指令 https://blog.csdn.net/yrk0556/article/details/104308866
+del file // 删除文件
+rd /s/q build && md build && cd build // 一行命令执行多条指令 https://blog.csdn.net/yrk0556/article/details/104308866
 xcopy /s /y a\\config\\ b\\config\\ // 拷贝目录"a/config"下的文件到目录"b/config"
 [move](https://blog.csdn.net/zhangchao5821/article/details/78641351)，太简单，没有多少用途。且不带*的mv在脚本文件里无效。
 
@@ -48,6 +53,13 @@ for /f %%i in ('dir /b /ad %work_path%') do (
 
 // 调用脚本
 call xyz.bat
+
+// 退出
+EXIT // 整个cmd都会关闭
+GOTO :EOF // 只是退出当前脚本文件，调试比较好用
+
+// 调试常用
+PAUSE // 暂停
 ```
 
 ### 日期时间设置

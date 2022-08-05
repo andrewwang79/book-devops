@@ -172,6 +172,11 @@ screen -r 23318 // 基于pid进入指定的screen
 * ps -ef | grep nginx | wc -l // 查看运行的进程总数
 * ps -fu csvn // 查看特定进程(csvn)
 * lsof -i :9000 // 查看端口执行的进程(9000)
+* 查看容器内的进程所属容器
+```
+cat /proc/进程号/cgroup
+docker ps|grep 上个命令的容器id
+```
 
 ## 网络
 * ifconfig | grep inet // ip地址
@@ -544,3 +549,7 @@ stress -c 1                     # 占用 1core CPU
   1. 进入BIOS关闭secure boot。[参考](https://www.cnblogs.com/xuyaowen/p/linux-secure-boot-disable.html)
 * lsmod | grep e1000e
 * dmesg | grep e1000e
+
+## 端口侦测
+* telnet 192.168.0.168 12345
+* tcping64.exe 192.168.0.168 12345 [下载](https://elifulkerson.com/projects/tcping.php)
