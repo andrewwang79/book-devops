@@ -149,6 +149,14 @@ service docker restart
 docker login -u ACCOUNT -p PASSWORD http://domain
 ```
 
+### 共享Volume
+```
+docker volume create --driver local --opt type=none --opt device=/var/opt/shareData --opt o=bind shareData // 创建。名称是shareData，路径在/var下
+volumes:
+  - shareData:/opt/shareData/ // docker-compose.yml使用
+docker volume remove shareData // 删除
+```
+
 ## 命令
 ### 常用
 1. 登录实例
@@ -190,7 +198,7 @@ docker restart myNginx
 1. 关闭实例名称匹配的实例：docker stop $(docker ps -a -q --filter="name=XYZ") && docker rm $(docker ps -a -q --filter="name=XYZ")
 1. 删除内容匹配镜像：docker images -a | grep "XYZ" | awk '{print $3}' | xargs docker rmi
 1. 删除none的镜像：docker images -a | grep "<none>" | awk '{print $3}' | xargs docker rmi
-1. 外部运行container实例的脚本：docker exec -d myHttpd sh -c "echo 'export LC_ALL=zh_CN.UTF-8'  >>  /etc/profile"
+1. 宿主机运行容器内的脚本：docker exec -d myHttpd sh -c "echo 'export LC_ALL=zh_CN.UTF-8'  >>  /etc/profile"
 
 ### 全部
 * systemctl enable docker // 开机自启动

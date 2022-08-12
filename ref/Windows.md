@@ -9,7 +9,7 @@
 * kill进程：TSKILL 11111
 * tasklist | findstr 4872
 
-## 批处理
+## 批处理脚本
 * [Windows批处理脚本指南: for循环](https://www.jb51.net/article/93170.htm)
 * [Windows批处理脚本指南: 变量](https://www.jianshu.com/p/5e364800955e)
 * [参数的引号](https://blog.csdn.net/cocokim_122/article/details/41896351):
@@ -21,7 +21,7 @@
 ```
 // 操作
 md a\b // 创建多层目录
-rd /s/q build // 删除目录
+rd /s/q build // 删除目录，包括里面的所有文件子目录
 del file // 删除文件
 rd /s/q build && md build && cd build // 一行命令执行多条指令 https://blog.csdn.net/yrk0556/article/details/104308866
 xcopy /s /y a\\config\\ b\\config\\ // 拷贝目录"a/config"下的文件到目录"b/config"
@@ -60,6 +60,21 @@ GOTO :EOF // 只是退出当前脚本文件，调试比较好用
 
 // 调试常用
 PAUSE // 暂停
+```
+
+### 输入参数
+1. 输入参数使用：%N。%1第一个参数
+1. 参数数量：$#
+1. 参数所有的值：$*
+1. 有等号的字符串输入参数(如COLOR=RED)必须加双引号，否则会被分成2个参数(COLOR, RED)
+```
+echo param is [%*]
+set _argC=0
+for %%x in (%*) do Set /A _argC+=1
+if %_argC% NEQ 3 (
+    echo error : param count should be 3[%_argC%]
+    goto:eof
+)
 ```
 
 ### 日期时间设置

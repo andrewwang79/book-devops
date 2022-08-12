@@ -184,8 +184,8 @@ docker ps|grep 上个命令的容器id
 ## 传输
 * wget {url} // 公网下载
 * SCP: [SSH传输传输文件](http://blog.csdn.net/liuhongxiangm/article/details/17142611)
-  * scp -P 22 -r localFilePath account@remoteIP:remoteFilePath // 上传，-P是SSH方的端口
-  * scp -P 22 -r account@localIP:remoteFilePath localFilePath // 下载，-P是SSH方的端口
+  * scp -P 22 -r localFilePath account@remoteIP:remoteFilePath // 上传，-P是SSH服务端的端口
+  * scp -P 22 -r account@localIP:remoteFilePath localFilePath // 下载，-P是SSH服务端的端口
   * 注意，如目标路径后面是"/*"，则全部文件拷贝到目标路径根目录。
 * sync -av --exclude excludePath /data/src/ /data/dest // 本地同步，排除文件夹(/data/src/excludePath)
 * [远程同步](https://einverne.github.io/post/2017/07/rsync-introduction.html)

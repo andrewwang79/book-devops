@@ -48,6 +48,7 @@
 1. 查看tag信息：git show <tag>
 
 ### commit
+1. git diff // 查看文件差异
 1. [add命令](https://www.yiibai.com/git/git_add.html)
 1. git add -f . && git commit -m "msg" && git push // 提交[包括隐藏文件]，如果仓库是空的，需要git push origin master:master
 1. git checkout -b abc && git push origin abc:abc // 本地创建分支并推送到远程同名分支

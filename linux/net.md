@@ -1,28 +1,4 @@
 # 常用
-1. [ip](http://os.51cto.com/art/201406/441461.htm)
-  * mac=$(ip link show eth0 | awk '/ether/ {print $2}') //  获取网卡eth0的mac地址
-1. [ifconfig](http://blog.csdn.net/sdvch/article/details/12587515)
-1. netstat
-  * netstat -lntp // 查看开启了哪些端口
-  * netstat -r // 路由表的信息
-  * netstat -an | grep ^tcp | grep 9050 | awk '{print $NF}' | sort -nr | uniq -c // 连接数统计
-  * netstat -an | grep 8080 // 所有的有效连接信息列表(8080)
-  * netstat -an | grep -i listen // 目前系统侦听的端口号
-  * netstat -anp | grep 8080 // 查看哪个进程占用了端口(8080)
-
-1. 网卡
-  * ifconfig em 192.168.161.121/24 // 设置网卡
-  * ifconfig em down // 禁用网卡
-  * nano /etc/sysconfig/network-scripts/ifcfg-em // 编辑网卡
-  * nano /etc/sysconfig/network // 设置网卡的永久网关
-  * nano /etc/network/interfaces && /etc/init.d/networking restartw // [设置DHCP，静态IP，DNS](http://forum.ubuntu.org.cn/viewtopic.php?f=73&t=190174)，
-```
-  iface ens33 inet static
-  address 192.168.1.199
-  gateway 192.168.1.1
-  netmask 255.255.255.0
-  dns-nameserver 8.8.8.8
-```
 1. 重启网络服务
   * service network restart
   * service network reload
@@ -30,14 +6,26 @@
   * sysctl -p
 1. [tcpdump-抓取网络数据包](http://blog.csdn.net/kobejayandy/article/details/17208137/)
   * tcpdump -i lo -nnA 'port 9020' // 监控本机回路网卡的9020端口
-1. traceroute www.baidu.com -路由跃点检查
-1. [linux绑定域名和IP](http://ttwang.iteye.com/blog/1955590)
-```
-echo "127.0.0.1 www.baidu.com" >> /etc/hosts
-sudo /etc/init.d/networking restart
-```
 
-# 路由
+## 网络配置
+* [ip](http://os.51cto.com/art/201406/441461.htm)
+* mac=$(ip link show eth0 | awk '/ether/ {print $2}') //  获取网卡eth0的mac地址
+* [ifconfig](http://blog.csdn.net/sdvch/article/details/12587515)
+* ifconfig em 192.168.161.121/24 // 设置网卡
+* ifconfig em down // 禁用网卡
+* nano /etc/sysconfig/network-scripts/ifcfg-em // 编辑网卡
+* nano /etc/sysconfig/network // 设置网卡的永久网关
+* nano /etc/network/interfaces && /etc/init.d/networking restartw // [设置DHCP，静态IP，DNS](http://forum.ubuntu.org.cn/viewtopic.php?f=73&t=190174)，
+```
+  iface ens33 inet static
+  address 192.168.1.199
+  gateway 192.168.1.1
+  netmask 255.255.255.0
+  dns-nameserver 8.8.8.8
+```
+* [Ubuntu20.04.2配置静态固定IP地址](https://blog.csdn.net/ARPOSPF/article/details/114293277)
+
+# 路由/网关
 * [资料](http://baike.baidu.com/link?url=3OWZNh6IVWlbyjsJIk41NClQT2ueZ8i3AQszfA_M8zTjP9GbZ77PdvA7xEQGCWY7vncnOD0jOy9jnKl20zCvH_)
 * [设置](http://www.centoscn.com/CentOS/help/2014/0113/2351.html)
 * [永久路由](http://blog.csdn.net/yuanchao99/article/details/18992567)
@@ -46,6 +34,27 @@ sudo /etc/init.d/networking restart
 * IP转发
   * nano /etc/sysctl.conf或者/etc/sysctl.d/99-sysctl.conf
   * 追加内容：net.ipv4.ip_forward = 1
+* traceroute www.baidu.com // 路由跃点检查
+
+# DNS
+* [配置DNS服务](https://www.cnblogs.com/EasonJim/p/7857671.html)
+```
+echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
+/etc/init.d/networking restart
+```
+* [linux绑定域名和IP](http://ttwang.iteye.com/blog/1955590)
+```
+echo "127.0.0.1 www.baidu.com" >> /etc/hosts
+sudo /etc/init.d/networking restart
+```
+
+## netstat
+  * netstat -lntp // 查看开启了哪些端口
+  * netstat -r // 路由表的信息
+  * netstat -an | grep ^tcp | grep 9050 | awk '{print $NF}' | sort -nr | uniq -c // 连接数统计
+  * netstat -an | grep 8080 // 所有的有效连接信息列表(8080)
+  * netstat -an | grep -i listen // 目前系统侦听的端口号
+  * netstat -anp | grep 8080 // 查看哪个进程占用了端口(8080)
 
 # 网桥
 * [brctl](http://blog.csdn.net/x_nazgul/article/details/20233237)
@@ -88,13 +97,6 @@ iptables -A OUTPUT -j ACCEPT
 -s 静默
 -i 返回结果包括报文头
 curl -H "Content-type: application/json" -H 'token:abc123' -X POST -d '{"phone":"13521389587","password":"test"}' http://domain/api/v1/user.login
-```
-
-# DNS
-* [配置DNS服务](https://www.cnblogs.com/EasonJim/p/7857671.html)
-```
-echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
-/etc/init.d/networking restart
 ```
 
 # 网络监控
@@ -153,3 +155,6 @@ apt install proxychains4
 echo "socks5 10.71.10.49 12306" >> /etc/proxychains4.conf
 proxychains4 curl www.httpbin.org/ip
 ```
+
+## Windows的各种程序的代理客户端配置
+* cmd：每次打开都要配置：set http_proxy=http://192.168.0.1:12345 && set https_proxy=http://192.168.0.1:12345。验证方法：curl https://www.baidu.com

@@ -2,6 +2,7 @@
 1. Dockerfile文件格式
   * [docker——Dockerfile创建镜像](http://www.cnblogs.com/niloay/p/6261784.html)
   * CMD和ENTRYPOINT区别，前者会被docker run替代，后者不会被忽略，一定会被执行：https://www.cnblogs.com/sparkdev/p/8461576.html
+  * 来自CMD和ENTRYPOINT的容器启动脚本里操作的临时环境变量只能生效在首个terminal，ssh出来的新terminal不会生效。需要其他terminal里也生效的，需放到terminal启动文件里。
 
 1. 脚本构建image
   * 创建文件Dockfile

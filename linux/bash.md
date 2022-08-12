@@ -46,6 +46,15 @@ command1 || command2
 command || exit 1
 ```
 
+### 调试
+* 暂停，读取值到变量key: read -p "Press any key to continue..." key
+* 输出详细脚本信息
+```
+set -x
+调试脚本
+set +x
+```
+
 ### 脚本执行不输出信息
 * 有echo返回值的函数，中间脚本执行如有echo，用本方法
 
@@ -56,8 +65,21 @@ command || exit 1
 2 > &1：把出错输出也重定向输出
 ```
 
-## 参数使用
+## 输入参数
 1. 输入参数使用：$N。$1第一个参数
+1. 输入参数是空字符串时会不计成参数，\"\"会计成参数，值是""
+1. 参数数量：$#
+1. 参数所有的值：$*
+```
+echo param is [$*]
+if [ $# -ne 3 ];
+then
+    echo error : param count should be 3[$#]
+    exit
+fi
+```
+
+## 变量定义
 1. 变量定义和赋值，等号左右不能有空格：P1="ppp"
 1. 变量使用：${P1}，$P1。注意$10会成为${1}0
 1. declare -a array // 数组定义。由整数索引的数组
@@ -313,14 +335,15 @@ echo -e "\033[4;32;47m"hi\""\033[0m" // hi"
 * [Shell编程中Shift的用法](https://www.cnblogs.com/image-eye/archive/2011/08/20/2147153.html)
 * [遍历目录下的文件](https://www.cnblogs.com/kaituorensheng/archive/2012/12/19/2825376.html)
 * [Shell脚本递归遍历目录](https://www.jianshu.com/p/edbdff7a83c9)
-* [字符串大小写转换](https://blog.csdn.net/10km/article/details/83384145)
+* [字符串大小写转换](https://blog.csdn.net/10km/article/details/83384145), [各种方法](https://blog.csdn.net/asdfgh0077/article/details/103492084)
 
 ### 工具
 * [sed](http://jalan.space/2017/01/22/2017-01-22-shell-sed-replace-text/)
 * [bash/shell 解析命令行参数工具：getopts/getopt](https://my.oschina.net/leejun2005/blog/202376)
 
 ### 方案
-* shell调用：1个参数有多个值时中间有空格，则调用参数必须加双引号。如p1="-a -b"，sh xxx.sh "${p1}"
+* shell调用：1个参数有多个值时中间有空格，则调用参数必须加双引号。如p1="-a -b"，sh xxx.sh ${p1}
 * Ubuntu用bash替换dash：检查(ls -l /bin/sh), 替换(sudo dpkg-reconfigure dash，选择“No”), [dash和bash区别](https://www.jianshu.com/p/762d4cccee7e)
 * [创建交互式shell脚本对话框](https://www.linuxprobe.com/create-interactive-shell-script.html)
 * [linux expect 自动交互脚本用法](https://yq.aliyun.com/articles/701512)
+* 所有操作尽量用绝对路径，删除必须是绝对路径[减少删除硬盘风险]

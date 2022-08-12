@@ -3,20 +3,16 @@
 ```
 nano /etc/security/limits.conf, 注意nofile不能写unlimited
 nofile是最大打开文件数，nproc是每个用户创建最大进程数
-
-root hard nofile 65536
-root soft nofile 65536
-root hard nproc unlimited
-root soft nproc unlimited
-
-* hard nofile 65536
-* soft nofile 65536
-* hard nproc unlimited
-* soft nproc unlimited
+* - nofile 65536
+* - nproc unlimited
 
 检查方法: ulimit -a
 重新登录即可生效
 已开启的服务需重启才可生效【简单的方法是直接重启服务】
+
+命令临时设置：
+ulimit -n 204800
+ulimit -c unlimited
 ```
 
 ## 增加交换内存(如对内存总量有需求)
