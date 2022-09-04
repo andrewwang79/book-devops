@@ -8,6 +8,7 @@
 * 端口查进程：netstat -ano | findstr :10401
 * kill进程：TSKILL 11111
 * tasklist | findstr 4872
+* cls // 清空Cmd的屏幕，clear screen
 
 ## 批处理脚本
 * [Windows批处理脚本指南: for循环](https://www.jb51.net/article/93170.htm)
@@ -15,9 +16,10 @@
 * [参数的引号](https://blog.csdn.net/cocokim_122/article/details/41896351):
   * 引号是字符串，加了就会体现，加N次就会有N层引号。
     * set p1="aaa" bb && echo %p1%  ->  "aaa" bb
-    * set p1=”%p1%" && echo %p1%  ->  ""aaa" bb"
+    * set p2="%p1%" && echo %p2%  ->  ""aaa" bb"
   * 最佳实践：在字符串首次定义的地方有需要就加引号，过程中不要加引号
-
+  * 去掉字符串的首尾引号(字符) : set var=%var:~1,-1%
+* 脚本
 ```
 // 操作
 md a\b // 创建多层目录
@@ -35,7 +37,7 @@ set one=%1
 if "%one%"=="" (
 echo 空) else (
 echo %1)
-
+if %errorlevel% neq 0 pause exit
 // 判断
 set BOOLVAL=true # 其他值都是false
 IF "%BOOLVAL%"=="true" (
@@ -53,13 +55,20 @@ for /f %%i in ('dir /b /ad %work_path%') do (
 
 // 调用脚本
 call xyz.bat
+在call脚本CS和上级脚本PS，变量是通用的。就是说CS和PS都有var1，在CS改了var1值，PS里的var1值也会改
 
 // 退出
-EXIT // 整个cmd都会关闭
-GOTO :EOF // 只是退出当前脚本文件，调试比较好用
+EXIT // 退出所有脚本，Cmd窗口会关闭
+EXIT /B // 退出所有脚本，Cmd窗口不会关闭
+GOTO : EOF // 只是退出当前脚本文件，调试比较好用
+if %errorlevel% neq 0 EXIT /B  // 获取错误值，不等于0则退出
 
 // 调试常用
 PAUSE // 暂停
+
+// 注释
+:: 我是注释 // 按行注释，不显示
+REM 我是注释 // sh不执行后面的语句，但是会显示
 ```
 
 ### 输入参数
@@ -101,6 +110,6 @@ cmd：ipconfig /flushdns
 * [windows CMD命令大全及详细解释和语法](http://xstarcd.github.io/wiki/windows/windows_cmd_syntax.html)
 * 时间: %date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%%time:~6,2%
 * [Windows: Ignore errors with Xcopy and RoboCopy](https://djlab.com/2010/12/windows-ignore-errors-with-xcopy-and-robocopy/)
-* Win10 SSH 免密登录 linux
+* Win10里SSH免密登录Linux
  * IP方式：https://zhuanlan.zhihu.com/p/80364375
  * 域名/IP方式：https://segmentfault.com/a/1190000038657243, IdentityFile是私钥文件
