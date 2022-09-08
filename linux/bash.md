@@ -118,17 +118,20 @@ esac
 * https://www.cnblogs.com/sunyubo/archive/2011/10/17/2282047.html
 
 ```
-// 输入参数1是否存在
+// 输入参数1存在
 if [ -n "$1" ]; then
     echo "exist"
 else
     echo "not exist"
 fi
+// 输入参数1不存在
+if [ -z "$1" ]; then
 
 // 变量var存在
 返回"not exist" : var=""
 返回"exist" : var="abc" var=1
 
+// 变量var不存在
 if [ -z ${var} ];then
 	echo "not exist"
 else

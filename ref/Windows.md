@@ -35,14 +35,25 @@ SET "PATH=%PATH%;C:\Program Files (x86)\path with special characters"
 // 输入参数空判断
 set one=%1
 if "%one%"=="" (
-echo 空) else (
-echo %1)
-if %errorlevel% neq 0 pause exit
+echo 无) else (
+echo 有)
+if "%one%" NEQ "" (
+echo 有) else (
+echo 无)
+
 // 判断
 set BOOLVAL=true # 其他值都是false
-IF "%BOOLVAL%"=="true" (
+if "%BOOLVAL%"=="true" (
   echo "yes"
-) ELSE (
+) else (
+  echo "no"
+)
+set TEXTVAL="123"
+if "%TEXTVAL%"=="123" (
+  echo "yes"
+) else if "%TEXTVAL%"=="1" (
+  echo "maybe"
+) else (
   echo "no"
 )
 
