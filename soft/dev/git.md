@@ -41,6 +41,7 @@
   1. 下载远程标签并切换【下载前先git pull同步】：git checkout -b <本地分支> origin/<远程tag>
 1. 基于当前分支创建新分支/切换分支：git branch <分支>
 1. 删除分支：git branch -d <远程分支>
+1. 拉取所有tag : git fetch --tags
 1. 只推送所有的tag：git push --tags
 1. 删除tag：git tag -d <tag>
 1. 删除远程所有tag：git fetch && git push origin --delete $(git tag -l)
@@ -146,11 +147,24 @@ git reset --hard SHA && git push origin -f // 后退到指定sha的commit
 | 分支A合并到分支B | B | A |
 | 使用补丁 | 本地文件 | 补丁 |
 
-### 代码合并
+### 合并(merge)
+* [使用VSCode作为SourceTree的Diff和Merge工具](https://zhuanlan.zhihu.com/p/47852867)
+* [merge-快进合并和非快进合并](https://blog.csdn.net/andyzhaojianhui/article/details/78072143)
+  * 合并分支和被合并分支没有内容上的差异，就是说合并分支的每一个提交(commit)都已经存在被合并分支里，git会执行一个“快速向前”(fast forward)操作，不创建任何合并提交(commit),只是将合并分支指向被合并分支。
+  * 非快进合并会生成合并提交(不包含任何代码改动)，可以让我们的提交历史更加的清晰。
+* 合并后删除合并分支，历史commit还是会在
+* [merge, squash merge, 和rebase merge](https://www.jianshu.com/p/ff1877c5864e)
+
+| 方式 | 说明 | 优点 | 缺点 |
+| :----: | ---- | ---- | ---- |
+| merge | 提交历史原封不动的到被合并分支 | 记录commit的实际情况，方便查看 |  |
+| squash merge | 合并分支的所有提交压缩成1次提交提交到被合并分支，相当于合并者把所有代码改动一次性移植到被合并分支 | feature分支合并只看到1个commit，整体看的更清楚 | 无法查看历史 |
+| rebase | 保留提交的作者信息的同时可以修改commit历史。并行变串行。本质同补丁 | 保留提交信息同时使提交历史更加整洁 | 发生冲突时不容易定位问题，因为rewrite了history |
+
+* 其他合并方式
 
 | 方式 | 说明 |
 | :----: | ---- |
-| 分支merge |  |
 | [cherry-pick](https://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html) | 指定commit列表 |
 | [打补丁](https://my.oschina.net/sdlvzg/blog/1608861) | 指定文件列表或指定commit列表 |
 
@@ -166,12 +180,22 @@ BASE是双方的父亲
 他人
 >>>>>>>6853e5ff961e684d3a6c02d4d06183b5ff330dcc
 ```
-* 取消合并: git merge --abort
+#### 取消合并
+1. 未commit(恢复index)：git merge --abort
+1. 已commit未push：git reset --hard commitid
+1. 已push：reset，revert
 
 ### 变基(rebase)
+#### rebase和merge比对
+* merge和rebase的最终结果没有任何区别
+* https://www.waynerv.com/posts/git-rebase-intro/
+* https://xiaozhuanlan.com/topic/6873210549
+* https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA
+* https://blog.csdn.net/kuangdacaikuang/article/details/79619828
+
 #### 说明
 * 作者和message默认不变，时间和提交号会变
-* 取消变基rebase：git am --abort
+* 取消变基rebase：git rebase --abort
 * git rebase --continue是继续下一个事项(有冲突需先解决)，最后一个事项做完后会自动完成rebase
 * 冲突时的“我”是当前事项
 * 核武器级选项：filter-branch
@@ -187,18 +211,6 @@ BASE是双方的父亲
 1. 循环处理每个事项：
   1. 编辑内容：编辑，git add . && git commit --amend && git rebase --continue
 1. 提交：git push -f
-
-#### rebase和merge比对
-* merge和rebase的最终结果没有任何区别
-* https://www.waynerv.com/posts/git-rebase-intro/
-* https://xiaozhuanlan.com/topic/6873210549
-* https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA
-* https://blog.csdn.net/kuangdacaikuang/article/details/79619828
-
-| 方式 | 说明 | 优点 | 缺点 |
-| :----: | ---- | ---- | ---- |
-| merge | 合并时遇到冲突，修改后重新commit | 记录commit的实际情况，方便查看 | 无改动会快进合并，否则自动创建一个新的merge commit |
-| rebase | 将commit历史进行合并，并行变串行。本质同补丁 | 提交历史更加整洁 | 发生冲突时不容易定位问题，因为rewrite了history |
 
 ### 仓库迁移
 * https://help.github.com/cn/articles/duplicating-a-repository
@@ -328,11 +340,6 @@ git config --global core.safecrlf true
 1. 设置上传buffer，一般都够的：git config --global http.postBuffer 5368709120
 1. 设置通讯协议：git config --global http.version HTTP/1.1
 1. [git-lfs-config](https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-config.5.ronn)
-
-### 取消合并
-1. 未commit(恢复index)：git merge --abort
-1. 已commit未push：git reset --hard commitid
-1. 已push：reset，revert
 
 ### 输入类型判断: 分支/tag/sha
 判断commit的类型
