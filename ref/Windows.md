@@ -10,16 +10,56 @@
 * tasklist | findstr 4872
 * cls // 清空Cmd的屏幕，clear screen
 
+### 日期时间设置
+* Windows10改系统时间：“开始”菜单>“设置”>“时间和语言”>“日期和时间”>关闭“自动设置时间”>“手动设置日期和时间”
+* 命令改系统时间：新建bat文件写入以下内容，执行【cmd里无法执行】
+```
+date 2021 11 26
+time 11:43:09
+```
+* 改文件时间：软件ctime
+
+### 增加DNS映射
+```
+notepad C:\Windows\System32\drivers\etc\hosts
+编辑：IP domain
+cmd：ipconfig /flushdns
+```
+
+### 资源管理器和cmd互开
+* 资源管理器 -> cmd : 路径里输入cmd
+* cmd ->  资源管理器: start .
+
+### Win10里SSH免密登录Linux
+* IP方式：https://zhuanlan.zhihu.com/p/80364375
+* 域名/IP方式：https://segmentfault.com/a/1190000038657243, IdentityFile是私钥文件
+
 ## 批处理脚本
 * [Windows批处理脚本指南: for循环](https://www.jb51.net/article/93170.htm)
 * [Windows批处理脚本指南: 变量](https://www.jianshu.com/p/5e364800955e)
-* [参数的引号](https://blog.csdn.net/cocokim_122/article/details/41896351):
+* [参数的引号](https://blog.csdn.net/cocokim_122/article/details/41896351)
   * 引号是字符串，加了就会体现，加N次就会有N层引号。
     * set p1="aaa" bb && echo %p1%  ->  "aaa" bb
     * set p2="%p1%" && echo %p2%  ->  ""aaa" bb"
   * 最佳实践：在字符串首次定义的地方有需要就加引号，过程中不要加引号
   * 去掉字符串的首尾引号(字符) : set var=%var:~1,-1%
-* 脚本
+
+### 输入参数
+1. 输入参数使用：%N。%1第一个参数
+1. 参数数量：$#
+1. 参数所有的值：$*
+1. 有等号的字符串输入参数(如COLOR=RED)必须加双引号，否则会被分成2个参数(COLOR, RED)
+```
+echo param is [%*]
+set _argC=0
+for %%x in (%*) do Set /A _argC+=1
+if %_argC% NEQ 3 (
+    echo error : param count should be 3[%_argC%]
+    goto:eof
+)
+```
+
+### 常用脚本
 ```
 // 操作
 md a\b // 创建多层目录
@@ -57,6 +97,13 @@ if "%TEXTVAL%"=="123" (
   echo "no"
 )
 
+// 文件存在判断
+if exist %filePath% (
+  echo "exist"
+) else (
+  echo "not exist"
+)
+
 // 遍历获取第一层目录并git pull
 set work_path=D:\book\wangyaqi\
 for /f %%i in ('dir /b /ad %work_path%') do (
@@ -82,45 +129,8 @@ PAUSE // 暂停
 REM 我是注释 // sh不执行后面的语句，但是会显示
 ```
 
-### 输入参数
-1. 输入参数使用：%N。%1第一个参数
-1. 参数数量：$#
-1. 参数所有的值：$*
-1. 有等号的字符串输入参数(如COLOR=RED)必须加双引号，否则会被分成2个参数(COLOR, RED)
-```
-echo param is [%*]
-set _argC=0
-for %%x in (%*) do Set /A _argC+=1
-if %_argC% NEQ 3 (
-    echo error : param count should be 3[%_argC%]
-    goto:eof
-)
-```
-
-### 日期时间设置
-* Windows10改系统时间：“开始”菜单>“设置”>“时间和语言”>“日期和时间”>关闭“自动设置时间”>“手动设置日期和时间”
-* 命令改系统时间：新建bat文件写入以下内容，执行【cmd里无法执行】
-```
-date 2021 11 26
-time 11:43:09
-```
-* 改文件时间：软件ctime
-
-### 增加DNS映射
-```
-notepad C:\Windows\System32\drivers\etc\hosts
-编辑：IP domain
-cmd：ipconfig /flushdns
-```
-
-### 资源管理器和cmd互开
-* 资源管理器 -> cmd : 路径里输入cmd
-* cmd ->  资源管理器: start .
 
 ## 资料
 * [windows CMD命令大全及详细解释和语法](http://xstarcd.github.io/wiki/windows/windows_cmd_syntax.html)
 * 时间: %date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%%time:~6,2%
 * [Windows: Ignore errors with Xcopy and RoboCopy](https://djlab.com/2010/12/windows-ignore-errors-with-xcopy-and-robocopy/)
-* Win10里SSH免密登录Linux
- * IP方式：https://zhuanlan.zhihu.com/p/80364375
- * 域名/IP方式：https://segmentfault.com/a/1190000038657243, IdentityFile是私钥文件
