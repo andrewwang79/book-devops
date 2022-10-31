@@ -34,7 +34,7 @@ cmd：ipconfig /flushdns
 * IP方式：https://zhuanlan.zhihu.com/p/80364375
 * 域名/IP方式：https://segmentfault.com/a/1190000038657243, IdentityFile是私钥文件
 
-## 批处理脚本
+# 批处理脚本
 * [Windows批处理脚本指南: for循环](https://www.jb51.net/article/93170.htm)
 * [Windows批处理脚本指南: 变量](https://www.jianshu.com/p/5e364800955e)
 * [参数的引号](https://blog.csdn.net/cocokim_122/article/details/41896351)
@@ -44,7 +44,7 @@ cmd：ipconfig /flushdns
   * 最佳实践：在字符串首次定义的地方有需要就加引号，过程中不要加引号
   * 去掉字符串的首尾引号(字符) : set var=%var:~1,-1%
 
-### 输入参数
+## 输入参数
 1. 输入参数使用：%N。%1第一个参数
 1. 参数数量：$#
 1. 参数所有的值：$*
@@ -59,10 +59,10 @@ if %_argC% NEQ 3 (
 )
 ```
 
-### 常用脚本
+## 常用脚本
 ```
 // 操作
-md a\b // 创建多层目录
+md a\b // 创建多层目录，注意是左斜线
 rd /s/q build // 删除目录，包括里面的所有文件子目录
 del file // 删除文件
 rd /s/q build && md build && cd build // 一行命令执行多条指令 https://blog.csdn.net/yrk0556/article/details/104308866
@@ -129,8 +129,13 @@ PAUSE // 暂停
 REM 我是注释 // sh不执行后面的语句，但是会显示
 ```
 
+## 多命令执行
+* cmd1 & cmd2 & cmd3 // 前一个命令运行成败都会继续运行下一个命令
+* cmd1 && cmd2 && cmd3 // 在前一个命令运行成功（%ERRORLEVEL%==0）后会继续运行下一个命令
+* cmd1 || cmd2 || cmd3 // 在前一个命令运行失败（%ERRORLEVEL% NEQ 0）后会继续运行下一个命令
 
 ## 资料
 * [windows CMD命令大全及详细解释和语法](http://xstarcd.github.io/wiki/windows/windows_cmd_syntax.html)
 * 时间: %date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%%time:~6,2%
 * [Windows: Ignore errors with Xcopy and RoboCopy](https://djlab.com/2010/12/windows-ignore-errors-with-xcopy-and-robocopy/)
+* 打开系统的“启动”目录： Win+R，键入“shell:startup”

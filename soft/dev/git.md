@@ -56,6 +56,7 @@
 1. 添加所有的文件，包括删除的[所有跟踪文件中被修改过或已删除文件,所有未跟踪的文件]：git add -A .
 1. 查看所有的commit提交记录：git log
 1. 查看所有的commit提交记录(含文件清单)：git log --name-status
+1. 查看autho的commit提交记录：git log --author="wangyaqi"
 1. 查看最新的commit：git show
 1. 查看指定commit的所有修改：git show commitSHA
 1. 查看某次commit中具体某个文件的修改：git show commitSHA fileName
@@ -83,6 +84,7 @@ git reset --hard SHA && git push origin -f // 后退到指定sha的commit
 
 ### 其他
 1. git remote -v // 查看项目远程地址
+1. git remote set-url origin <URL> // 设置项目远程地址
 1. git status // 显示当前目录的文件情况。如未暂存，已暂存
 1. git blame file_path // 显示文件内容的具体修改情况
 1. git cat-file -p commitid // 显示提交号的具体内容
