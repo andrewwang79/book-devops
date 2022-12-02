@@ -113,6 +113,7 @@ mysql.cnf slave
 ## 常用sql
 * SELECT * FROM 表名 LIMIT 1 # 一条记录
 * DELETE FROM 表名 WHERE create_time<(curdate() - interval 1 month); # 删除一个月前的所有表记录
+* 复制表及其数据 : CREATE TABLE targetTable LIKE sourceTable; INSERT INTO targetTable SELECT * FROM sourceTable;
 
 ## 管理命令
 1. 安装：yum install mysql -y
