@@ -119,6 +119,15 @@ apt-get install aptitude // 软件包安装情况的软件
 * 统计文件夹下文件夹的个数: ls -lR | grep "^d" | wc -l
 * 分割文件批量改后缀：ls | grep .part. | xargs -n1 -i{} mv {} {}.tar.gz // XX.part.11变成XX.part.11.tar.gz
 
+### 目录栈操作
+* https://www.jianshu.com/p/53cccae3c443
+
+```
+pushd ${path} // 相对路径绝对路径都可以
+script // 在目录${path}下执行
+popd
+```
+
 ## 文件
 * [find示例](http://blog.csdn.net/windowschengxisheji/article/details/51019280)
   * find结果路径是绝对还是相对来自于查询的路径是绝对还是相对，比如find /opt/ -name xxx，结果是绝对路径
@@ -436,6 +445,7 @@ umount /biz/
 * diff -r dir1 dir2 // 目录比对
 * diff -Naur dir1 dir2 // [linux 比较两个文件夹不同 (diff命令, md5列表)](https://www.cnblogs.com/xudong-bupt/p/6493903.html)
 * [vimdiff](https://www.jianshu.com/p/0541a67c6d3f)
+* diff < (xxd A) <(xxd B) // [二进制文件比较](https://www.xiaoyuanjiu.com/108399.html)
 
 ## 补丁
 * diff的输出文件被称为补丁（patch）。patch的作用则是将补丁应用到相应文件（夹）上
