@@ -157,7 +157,8 @@ volumes:
   - shareData:/opt/shareData/ // docker-compose.yml使用
 docker volume remove shareData // 删除
 ```
-
+### inspect
+* [docker inspect访问数组和map数据](https://www.jianshu.com/p/b4fa80165908)
 ## 命令
 ### 常用
 1. 登录实例

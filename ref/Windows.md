@@ -59,6 +59,12 @@ if %_argC% NEQ 3 (
 )
 ```
 
+## 环境变量
+1. set // 查看当前所有环境变量
+1. echo %path% // 查看单个环境变量
+1. set path=d:\test // 修改单个环境变量
+1. set path=%path%;d:\test // 追加单个环境变量
+
 ## 常用脚本
 ```
 // 操作

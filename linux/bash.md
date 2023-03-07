@@ -267,6 +267,12 @@ do
 done
 ```
 
+### 字符串去双引号
+```
+echo \"hello\" | sed 's/\"//g'
+_var=$(echo ${string_var} | sed 's/\"//g')
+```
+
 ### json解析
 * [jq 常用操作](https://mozillazg.com/2018/01/jq-use-examples-cookbook.html)
   * jq -h

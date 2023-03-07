@@ -145,9 +145,10 @@ popd
 
 ## 内存
 * sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches' // 清除不用的缓存
-* top // 查看内存使用情况，输入shift + m可根据内存使用量进行排序。输入e切换进程信息，切换单位是k,m,g,t,p
-* top -p 1111 // 查看特定进程号的内存(1111)
-* top -c // 显示进程命令的全路径与参数
+* top // 查看所有进程，输入shift + m可根据内存使用量进行排序。输入e切换进程信息，切换单位是k,m,g,t,p
+* top -c // 查看所有进程，显示进程命令的全路径与参数
+* top -p 1111 // 查看特定进程(1111)
+* top -H -p 111 // 查看特定进程的线程数量和信息(1111)
 * ps -aux | sort -k4nr | head -5 // 使用内存最多的5个进程
 * [单个进程的内存查看](https://www.cnblogs.com/jiayy/p/3458076.html) : cat /proc/[pid]/文件名。文件有maps/smaps/status。如“cat /proc/5346/status”
 * [自动清理内存配置](https://blog.csdn.net/feiteyizu123/article/details/84910505)
@@ -378,6 +379,7 @@ sudo systemctl restart sshd
 * du . --max-depth=1 -h // 显示当前目录的空间容量
 * du . --max-depth=1 -h | sort -nr // 顺序排序显示当前目录的空间容量
 * df -ih // 索引文件情况
+* ncdu /data // 目录空间扫描分析
 * lsof | grep deleted // 显示已删除文件
 * fdisk -l // 查看系统磁盘设备信息
 * mount /dev/sdb1 /dir1 // 将U盘挂载到dir1
