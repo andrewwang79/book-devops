@@ -15,9 +15,9 @@
   1. 在[mysqld]节点下，加入一行： lower_case_table_names=1
 1. 开放外部访问
 ```
-// mysql的root账户放开访问限制。注意把pwd改成当前密码
+// mysql的root账户开放所有功能。%是可以远程连接，localhost只能本机连接
 mysql -u root -p
-mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '密码' WITH GRANT OPTION; FLUSH PRIVILEGES; EXIT;
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION; FLUSH PRIVILEGES;
 # 关闭防火墙
 systemctl stop firewalld.service #停止firewall
 systemctl disable firewalld.service #禁止firewall开机启动
@@ -119,11 +119,12 @@ mysql.cnf slave
 1. 安装：yum install mysql -y
 1. 启动：service mysql restart
 1. 登录客户端：mysql -u{account} -p{pwd} -h{ip} -P{port}。如mysql -uroot -p123123 -h192.168.1.10 -P3311
-1. [新建mysql备份账号](http://blog.csdn.net/wengyupeng/article/details/3290415)
+1. [新建mysql备份账号/只读账号](http://blog.csdn.net/wengyupeng/article/details/3290415)
   1. 登录
-  1. 授权
+  1. 授权(自动创建)账号ba，密码是123123
   ```
-  GRANT LOCK TABLES, SELECT ON *.* TO ba@localhost IDENTIFIED BY '123123';
+  GRANT LOCK TABLES, SELECT ON *.* TO 'ba'@'%' IDENTIFIED BY '123123';
+  FLUSH PRIVILEGES;
   ```
 1. 备份
   1. 备份：mysqldump -uba -p123123 dbName > dbName.db
