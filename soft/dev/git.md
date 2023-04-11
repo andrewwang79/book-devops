@@ -196,11 +196,11 @@ BASE是双方的父亲
 * https://blog.csdn.net/kuangdacaikuang/article/details/79619828
 
 #### 说明
-* 作者和message默认不变，时间和提交号会变
+* 作者和message都可以变、时间和提交号都会变
 * 取消变基rebase：git rebase --abort
 * git rebase --continue是继续下一个事项(有冲突需先解决)，最后一个事项做完后会自动完成rebase
-* 冲突时的“我”是当前事项
 * 核武器级选项：filter-branch
+* [多个commit通过rebase调整成1个commit](https://blog.csdn.net/Spade_/article/details/108698036)
 
 #### [主干(rebase)合并到分支](https://backlog.com/git-tutorial/cn/stepup/stepup2_8.html)
 1. 主干到指定位置(否则是合并主干全部提交)：git checkout master && git reset --hard HEAD~

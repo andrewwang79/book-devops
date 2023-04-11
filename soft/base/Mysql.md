@@ -110,12 +110,33 @@ mysql.cnf slave
 * http://static.kancloud.cn/ichenpeng/blog/1134189
 * 错误处理: https://blog.51cto.com/suifu/1845114
 
-## 常用sql
+### 时区
+* [TimeStamp、DateTime、Date关于时区(TimeZone)的问题](https://blog.csdn.net/m0_38072683/article/details/105011313), [前后端交互之时区统一](https://blog.csdn.net/alicinya/article/details/112602570)
+* 时区来源和优先级(由高到低)：数据库连接(如JDBC的serverTimezone)，数据库配置，操作系统。
+* [时区的作用](https://blog.csdn.net/shy111111111/article/details/120266768)
+    * TIMESTAMP：存储的是UTC时间戳。把客户端插入的时间从当前时区转化为UTC时间进行存储。查询时将其转化为客户端当前时区进行返回
+    * DATETIME：存储的是字符串。不做任何改变，原样输入和输出
+    * 当前时间受时区影响，如now()
+    * 用时间戳能做到：每个不同时区的数据库连接，查询结果能自动转化到当前时区。
+* [修改时区](https://blog.csdn.net/nuohaixiajihjinf/article/details/88237322)
+```
+show variables like "%time_zone%";
+set global time_zone = '+8:00';  ##修改mysql全局时区为北京时间，即我们所在的东8区
+set time_zone = '+8:00';  ##修改当前会话时区
+```
+* SQL
+```
+select now(), current_timestamp(), utc_time(), utc_timestamp();
+select convert_tz('2008-08-08 12:00:00', '+08:00', '+00:00'); // 东八区转到UTC
+```
+
+## SQL和命令
+### 常用sql
 * SELECT * FROM 表名 LIMIT 1 # 一条记录
 * DELETE FROM 表名 WHERE create_time<(curdate() - interval 1 month); # 删除一个月前的所有表记录
 * 复制表及其数据 : CREATE TABLE targetTable LIKE sourceTable; INSERT INTO targetTable SELECT * FROM sourceTable;
 
-## 管理命令
+### 管理命令
 1. 安装：yum install mysql -y
 1. 启动：service mysql restart
 1. 登录客户端：mysql -u{account} -p{pwd} -h{ip} -P{port}。如mysql -uroot -p123123 -h192.168.1.10 -P3311
@@ -133,7 +154,7 @@ mysql.cnf slave
     * mysql控制台：mysql> use xyz;source /path/xyz.db;
 * UTF8的数据库创建：CREATE DATABASE `db1` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-## 功能命令
+### 功能命令
 * 修改账号密码
 ```
 use mysql;
