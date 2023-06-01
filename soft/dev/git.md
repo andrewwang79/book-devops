@@ -40,7 +40,7 @@
   1. 下载远程分支并切换【下载前先git pull同步】：git checkout -b <本地分支> origin/<远程分支>，git checkout -b lb origin/rb
   1. 下载远程标签并切换【下载前先git pull同步】：git checkout -b <本地分支> origin/<远程tag>
 1. 基于当前分支创建新分支/切换分支：git branch <分支>
-1. 删除分支：git branch -d <远程分支>
+1. 删除分支：git branch -d <分支>
 1. 拉取所有tag : git fetch --tags
 1. 只推送所有的tag：git push --tags
 1. 删除tag：git tag -d <tag>
@@ -84,7 +84,7 @@ git reset --hard SHA && git push origin -f // 后退到指定sha的commit
 
 ### 其他
 1. git remote -v // 查看项目远程地址
-1. git remote set-url origin <URL> // 设置项目远程地址
+1. git remote set-url origin <URL> // 修改项目远程地址
 1. git status // 显示当前目录的文件情况。如未暂存，已暂存
 1. git blame file_path // 显示文件内容的具体修改情况
 1. git cat-file -p commitid // 显示提交号的具体内容
@@ -271,7 +271,8 @@ echo "详情如下:" && git log --first-parent master --author="andrew" --word-d
 ```
 cd 仓库目录
 git config --local user.name NAME
-git config --local user.email EMAIL@email.com
+git config --local user.email NAME@email.com
+git config --local user.password PASSWORD
 ```
 
 ### 下载部分文件
@@ -377,6 +378,16 @@ git tag -l | xargs git tag -d && git fetch origin --prune # 删除所有本地�
 
 * 如果没有启用Squash导致提交历史乱了，可在master合并前的commit上拉新分支，即可恢复原来的历史
 
+### submodule
+* [submodule命令](https://juejin.cn/post/6948251963133788196)
+```
+git submodule add <子模块git地址> <存放的文件名>
+git submodule update --init --recursive
+```
+* [submodule子模块的管理和使用](https://www.jianshu.com/p/9000cd49822c)
+    1. CMAKE_SOURCE_DIR是基于项目的
+    1. 项目记录了通用模块仓库的Commit
+
 ## 资料
 ### 参考
 1. [版本模型和最佳实践](https://rd.wangyaqi.cn/#/dev/model)
@@ -391,7 +402,6 @@ git tag -l | xargs git tag -d && git fetch origin --prune # 删除所有本地�
 1. [git中detached HEAD、amend、rebase和reset](https://cloud.tencent.com/developer/article/1446002)
 1. [Detached HEAD](https://zhuanlan.zhihu.com/p/66460426)
 1. 分支整体图用TortoiseGit的[Reversion Graph](https://blog.csdn.net/zh_ITRoad/article/details/84857531)
-1. [submodule子模块的管理和使用](https://www.jianshu.com/p/9000cd49822c)
 1. [在gitignore文件中设置""无视忽略"](https://blog.csdn.net/lucky__peng/article/details/124094548) : !/dist/img
 
 ### 账号
