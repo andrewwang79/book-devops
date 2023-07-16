@@ -187,6 +187,9 @@ BASE是双方的父亲
 1. 已commit未push：git reset --hard commitid
 1. 已push：reset，revert
 
+#### 分支B的多次提交合并成分组A的1次提交
+1. git checkout A && git merge --squash B
+
 ### 变基(rebase)
 #### rebase和merge比对
 * merge和rebase的最终结果没有任何区别

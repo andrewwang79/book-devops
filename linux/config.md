@@ -1,8 +1,8 @@
 # 服务器配置
-## 进程和文件数量不限制
+## 增加进程和文件打开数量
 ```
 nano /etc/security/limits.conf, 注意nofile不能写unlimited
-nofile是最大打开文件数，nproc是每个用户创建最大进程数
+nofile是进程的最大文件描述符数(打开文件数)，nproc是每个用户创建的最大进程数
 * - nofile 65536
 * - nproc unlimited
 
@@ -11,8 +11,11 @@ nofile是最大打开文件数，nproc是每个用户创建最大进程数
 已开启的服务需重启才可生效【简单的方法是直接重启服务】
 
 命令临时设置：
-ulimit -n 204800
-ulimit -c unlimited
+ulimit -n 65536
+ulimit -u unlimited
+
+设置内核最大进程数量kernel.pid_max：https://help.aliyun.com/document_detail/462551.html
+echo "kernel.pid_max=65536" >> /etc/sysctl.conf && sysctl -p
 ```
 
 ## 增加交换内存(如对内存总量有需求)

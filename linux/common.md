@@ -22,7 +22,6 @@
 
 * ls -tl /var/lib/dpkg/info/*.list | head -n 10 // 查看最近安装的10个deb
 * alien package_name.rpm // RPM转成DEB
-* [Ubuntu16.04更换阿里云apt-get软件源](https://blog.csdn.net/yjk13703623757/article/details/79860133)
 
 ### CentOS
 * 命令：telnet软件的安装
@@ -63,6 +62,7 @@ dpkg-query -l // 显示已安装软件包，结果同apt list
 apt-get install aptitude // 软件包安装情况的软件
 ```
 
+* [Ubuntu16.04更换阿里云apt-get软件源](https://blog.csdn.net/yjk13703623757/article/details/79860133): sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list
 * [Ubuntu离线安装软件包](https://blog.csdn.net/nupt123456789/article/details/11649603)
 * [apt-get安装出现dpkg status database is lock解决](http://www.2cto.com/os/201305/208284.html)，安装失败会导致其他软件不能使用，比如MySQL
 ```
@@ -105,7 +105,7 @@ apt-get install aptitude // 软件包安装情况的软件
 * mv dir1/{.,}* /dir2/ || echo "no file" // 移动所有文件，含隐藏文件。异常会报错阻止主流程执行，当前用||处理掉
 * mv/cp dir1/* ./ 比如cp -rf /etc/abc/* /opt/abc/，会把/etc/abc/下的内容拷贝到/opt/abc/，不会到/opt/abc/abc/  // dir1目录所有内容(不含dir1层级)移动/拷贝到当前目录。如dir1里有个dir2目录，则当前目录下有个dir2目录，没有dir1目录
 * mv/cp dir1 ./ // dir1目录移动/拷贝到当前目录。即当前目录下有个dir1目录
-* cp -rf path1 path2 destPath // 多个目录复制到目标路径
+* cp -rf path1 path2 destPath // 多个目录复制到目标路径，会复制链接文件。-P也会。
 * mv path1 path2 -t destPath // 多个目录移动到目标路径
 * find . -name *.txt -print0 | xargs -I file mv file ./ // 查找txt文件并移动到当前目录，只能移到当前目录。文件路径有空格会无效
 * ln -s src_dir dest_dir // [建立软连接](https://www.cnblogs.com/peida/archive/2012/12/11/2812294.html)，从dest_dir[快捷目录]链接到src_dir[真实目录]
@@ -134,6 +134,7 @@ popd
   * find / -name xyz // 指定文件全路径查找(xyz)
   * find / -name *xyz* // 指定文件全路径模糊查找(xyz)
   * find . -type f -size +100M // 查找大文件(100M)
+  * find -delete //删除当前find的所有文件目录
   * find ${PATH} -type f -mtime +15 -exec rm {} \; // 删除目录下非最近15天的文件(不含目录)，-mmin是分钟
   * find ${PATH} -type f -mtime +15 -exec mv {} destPath \; // 删除目录下非最近15天的文件(不含目录)，-mmin是分钟
   * find ${PATH} -name "*.log"  | xargs rm -f// 删除目录下匹配的文件
@@ -564,3 +565,11 @@ stress -c 1                     # 占用 1core CPU
 ## 端口侦测
 * telnet 192.168.0.168 12345
 * tcping64.exe 192.168.0.168 12345 [下载](https://elifulkerson.com/projects/tcping.php)
+
+## 终端复用工具
+screen可以让用户在同一个终端窗口中同时运行多个会话，并且可以在不同的会话之间快速切换。
+
+```
+screen -S abc // 启动screen会话，名称是abc
+screen -d -r abc // 重新连接会话
+```
