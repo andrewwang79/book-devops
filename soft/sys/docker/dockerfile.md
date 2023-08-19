@@ -1,13 +1,23 @@
 # Dockerfile
-1. Dockerfile文件格式
-  * [docker——Dockerfile创建镜像](http://www.cnblogs.com/niloay/p/6261784.html)
-  * CMD和ENTRYPOINT区别，前者会被docker run替代，后者不会被忽略，一定会被执行：https://www.cnblogs.com/sparkdev/p/8461576.html
-  * 来自CMD和ENTRYPOINT的容器启动脚本里操作的临时环境变量只能生效在首个terminal，ssh出来的新terminal不会生效。需要其他terminal里也生效的，需放到terminal启动文件里。
+> [docker——Dockerfile创建镜像](http://www.cnblogs.com/niloay/p/6261784.html)
 
-1. 脚本构建image
-  * 创建文件Dockfile
-  * docker build -t image:tag .
-  * [Dockerfile构建镜像详情](http://blog.51cto.com/nginxs/1893058)
+## 使用
+### [CMD和ENTRYPOINT](https://www.cnblogs.com/sparkdev/p/8461576.html)
+1. 1个镜像只有最后1个ENTRYPOINT和CMD指令生效。子镜像会覆盖父镜像的
+1. docker run里的命令：会替代CMD；不会替代ENTRYPOINT，一定会执行
+    1. ENTRYPOINT定义容器的主要命令或可执行文件，通过docker run把镜像当成命令使用
+    1. CMD指定容器启动时命令
+1. CMD和ENTRYPOINT脚本里赋值的环境变量只能生效在首个terminal，(ssh出来的)新terminal不会生效。如需要需放到terminal启动的执行文件(如~/.bashrc)。所以：
+    1. 一次性的命令放到CMD和ENTRYPOINT脚本(如启动ssh)
+    1. 环境变量类的放到终端启动的执行文件
+
+### 构建时的输出
+* 输出到标准输出会构建时可见：如RUN ls不可见，RUN ls -al可见
+
+## 镜像构建流程
+* 创建文件Dockfile
+* docker build -t image:tag .
+* [Dockerfile构建镜像详情](http://blog.51cto.com/nginxs/1893058)
 
 ### Dockerfile
 ```
@@ -38,7 +48,7 @@ RUN apt-get -yq install git-lfs
 COPY file/docker-entrypoint.sh /usr/local/bin/
 # 拷贝目录，新建目录，将*拷贝过去
 RUN mkdir -p "abc"
-COPY file/bb/. abc/  .是所有，*是文件
+COPY file/. abc/  .是file目录结构不变的复制，*是file目录下所有文件放到根目录的复制
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 

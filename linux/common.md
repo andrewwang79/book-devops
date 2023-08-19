@@ -572,4 +572,23 @@ screen可以让用户在同一个终端窗口中同时运行多个会话，并�
 ```
 screen -S abc // 启动screen会话，名称是abc
 screen -d -r abc // 重新连接会话
+screen -X quit // 在session里删除session
+screen -X -S 3517453.abc quit // 在session外删除session
+```
+
+## 操作模拟工具expect
+* apt-get install -y expect
+* 使用示例：-d是调试模式。可以用文件或者字符串(-c)
+```
+expect -d file
+expect -d -c "
+  exp_internal 1 # 启用调试输出
+  set timeout 120 # 超时时间设置了2分钟
+  spawn ./cuda_11.7.1_515.65.01_linux.run
+  expect \"Do you accept the above EULA?\" { send \"accept\r\" }
+  send "\r" # 回车
+  expect \"CUDA Installer\" { send \"1 2 3\r\" }
+  send "\x1b\[B" # 向下箭头键
+  expect eof
+"
 ```

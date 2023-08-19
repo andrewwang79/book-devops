@@ -118,7 +118,7 @@ for /f %%i in ('dir /b /ad %work_path%') do (
 )
 
 // 调用脚本
-call xyz.bat
+call "%script_dir%\function.bat" :fnX "C:\path\to\cicd" // 调用指定路径的脚本文件的函数fnX，参数1是字符串
 在call脚本CS和上级脚本PS，变量是通用的。就是说CS和PS都有var1，在CS改了var1值，PS里的var1值也会改
 
 // 退出
