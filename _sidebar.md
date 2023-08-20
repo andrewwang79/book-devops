@@ -10,6 +10,10 @@
   * [编辑器](linux/editor.md)
   * [知识](linux/kb.md)
 
+* Windows
+  * [常用](windows/common.md)
+  * [脚本](windows/script.md)
+
 * 系统软件
   * Docker
     * [Docker](soft/sys/docker/docker.md)
@@ -53,6 +57,3 @@
   * [Ansible](soft/ops/Ansible.md)
   * [Open-Falcon](soft/ops/Open-Falcon.md)
   * [vpn](soft/ops/vpn.md)
-
-* 参考
-  * [Windows](ref/Windows.md)

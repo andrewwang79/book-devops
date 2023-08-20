@@ -6,12 +6,11 @@
 `cmd`，$(cmd) // 反引号执行命令【不同于shell内的函数调用，相当于执行命令】
   可以将结果保存到全局变量或者输出io返回。
   非0(错误)都会退出整个程序，不想退出可以捕获异常，比如：dir=$(cd .; pwd) || dir=
-如果
-dir=$(cd .; pwd) // 获取本层的绝对路径
-parent_dir=$(cd ..; pwd) // 获取上层的绝对路径
+dir=$(cd .; pwd) // 获取工作目录的绝对路径
+parent_dir=$(cd ..; pwd) // 获取工作目录上层的绝对路径
 parent_dir=$(dirname "$path") // 获取path的上级目录绝对路径，path必须是绝对路径
-name=$(basename "$path") // 获取path的名称，path必须是绝对路径
-echo PWD:\`pwd` // 显示当前路径
+path_name=$(basename "$path") // 获取path的名称，path必须是绝对路径
+script_file_path="$(dirname "$(readlink -f "$0")")" // 当前执行脚本的所在路径
 exit 0 // 退出，0是成功，>0是错误
 $(date +%s) // 自1970年到现在的秒数
 $(date +%Y%m%d-%H%M%S) // 年月日时分秒
