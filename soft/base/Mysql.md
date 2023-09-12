@@ -148,7 +148,7 @@ select convert_tz('2008-08-08 12:00:00', '+08:00', '+00:00'); // 东八区转到
   FLUSH PRIVILEGES;
   ```
 1. 备份
-  1. 备份：mysqldump -uba -p123123 dbName > dbName.db
+  1. 备份：mysqldump -hlocalhost -uba -p123123 dbName > dbName.db
   1. 恢复(2种)
     * 系统命令：mysql -uba -p123123 dbName < dbName.db
     * mysql控制台：mysql> use xyz;source /path/xyz.db;

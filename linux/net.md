@@ -52,9 +52,9 @@ sudo /etc/init.d/networking restart
   * netstat -lntp // 查看开启了哪些端口
   * netstat -r // 路由表的信息
   * netstat -an | grep ^tcp | grep 9050 | awk '{print $NF}' | sort -nr | uniq -c // 连接数统计
-  * netstat -an | grep 8080 // 所有的有效连接信息列表(8080)
-  * netstat -an | grep -i listen // 目前系统侦听的端口号
-  * netstat -anp | grep 8080 // 查看哪个进程占用了端口(8080)
+  * netstat -an | grep 8080 // 查看指定端口(8080)的所有的有效连接信息列表
+  * netstat -an | grep -i listen // 目前系统侦听的所有端口
+  * netstat -anp | grep 8080 // 查看占用了端口(8080)的进程
 
 # 网桥
 * [brctl](http://blog.csdn.net/x_nazgul/article/details/20233237)
@@ -158,3 +158,13 @@ proxychains4 curl www.httpbin.org/ip
 
 ## Windows的各种程序的代理客户端配置
 * cmd：每次打开都要配置：set http_proxy=http://192.168.0.1:12345 && set https_proxy=http://192.168.0.1:12345。验证方法：curl https://www.baidu.com
+
+# VNC
+* 服务器有TightVNC、RealVNC、[TigerVNC](https://tigervnc.org)
+* 服务端安装：sudo apt install tigervnc-standalone-server
+```
+vncserver :2
+vncserver -geometry 1280x720
+vncserver -list
+```
+* 客户端安装：vncviewer.exe

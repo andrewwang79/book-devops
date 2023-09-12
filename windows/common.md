@@ -33,3 +33,9 @@ cmd：ipconfig /flushdns
 ### Win10里SSH免密登录Linux
 * IP方式：https://zhuanlan.zhihu.com/p/80364375
 * 域名/IP方式：https://segmentfault.com/a/1190000038657243, IdentityFile是私钥文件
+
+### 修改cmd窗口的语言代码
+```
+chcp // 查看当前cmd的代码页编号
+chcp 65001 // 修改当前cmd的代码页到UTF-8
+```
