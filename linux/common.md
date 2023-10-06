@@ -62,7 +62,9 @@ dpkg-query -l // 显示已安装软件包，结果同apt list
 apt-get install aptitude // 软件包安装情况的软件
 ```
 
-* [Ubuntu16.04更换阿里云apt-get软件源](https://blog.csdn.net/yjk13703623757/article/details/79860133): sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list
+* [Ubuntu16.04更换阿里云apt-get软件源](https://blog.csdn.net/yjk13703623757/article/details/79860133)
+    * sed -i 's#http://cn.archive.ubuntu.com#https://mirrors.163.com#g' /etc/apt/sources.list
+    * sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list
 * [Ubuntu离线安装软件包](https://blog.csdn.net/nupt123456789/article/details/11649603)
 * [apt-get安装出现dpkg status database is lock解决](http://www.2cto.com/os/201305/208284.html)，安装失败会导致其他软件不能使用，比如MySQL
 ```
@@ -171,9 +173,11 @@ screen -r 23318 // 基于pid进入指定的screen
 
 ## 进程
 * nohup 命令 >/dev/null & // 后台运行命令
-* ps -ef | grep mongo | awk '{print $2}' | xargs kill -9 // kill名称对应的进程(mongo)
-* // kill端口对应的进程(27017)，推荐第一种，第二种在Ubuntu下会把“PID”取出来导致kill失败
-  * kill -9 $(sudo lsof -t -i:27017)
+* kill名称(mongo)对应的进程
+  * pgrep -f mongo | xargs kill -9
+  * ps -ef | grep mongo | awk '{print $2}' | xargs kill -9
+* kill端口(27017)对应的进程，推荐第一种，第二种在Ubuntu下会把“PID”取出来导致kill失败
+  * kill -9 $(lsof -t -i:27017)
   * lsof -i :27017 | awk '{print $2}' | xargs kill -9
 
 ## 进程查询
@@ -370,7 +374,8 @@ sudo systemctl restart sshd
 * [扩展用户管理](https://blog.csdn.net/PianoOrRock/article/details/79199317)
 * sudo su // 用户切换到root。[Ubuntu中root用户和user用户的相互切换](https://www.cnblogs.com/weiweiqiao99/archive/2010/11/10/1873761.html)
 * 用户启用sudo：需将账号加入到/etc/sudoers，user1 ALL=(ALL)NOPASSWD:ALL
-* usermod -a -G groupA user1 // 用户user1添加到组groupA
+* usermod -aG groupA user1 // 用户user1添加到组groupA
+* groups user1 // 用户user1所属的组列表
 * [linux下开启SSH，并且允许root用户远程登录,允许无密码登录](https://www.cnblogs.com/toughlife/p/5633510.html) : PermitEmptyPasswords yes
 
 ## 硬盘

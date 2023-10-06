@@ -6,6 +6,7 @@
 1. 安装chrome浏览器：rpm -i https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 ## Ubuntu
+1. [安装桌面版](https://ubuntu.com/tutorials/install-ubuntu-desktop)
 1. [Shell重定向](https://blog.csdn.net/u011630575/article/details/52151995)
 
 ## 脚本及启动机制
