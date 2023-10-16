@@ -56,7 +56,8 @@
 1. 添加所有的文件，包括删除的[所有跟踪文件中被修改过或已删除文件,所有未跟踪的文件]：git add -A .
 1. 查看所有的commit提交记录：git log
 1. 查看所有的commit提交记录(含文件清单)：git log --name-status
-1. 查看autho的commit提交记录：git log --author="wangyaqi"
+1. 查看author的commit提交记录：git log --author="wangyaqi"
+1. 基于时间范围查author的：git log --author="wangyaqi" --since="2020-01-01" --until="2020-07-01"
 1. 查看最新的commit：git show
 1. 查看指定commit的所有修改：git show commitSHA
 1. 查看某次commit中具体某个文件的修改：git show commitSHA fileName

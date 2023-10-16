@@ -89,7 +89,7 @@ call "%script_dir%\function.bat" :fnX "C:\path\to\cicd" // 调用指定路径的
 EXIT // 退出所有脚本，Cmd窗口会关闭
 EXIT /B // 退出所有脚本，Cmd窗口不会关闭
 GOTO : EOF // 只是退出当前脚本文件，调试比较好用
-if %errorlevel% neq 0 EXIT /B  // 获取错误值，不等于0则退出
+if %errorlevel% neq 0 echo "error : ..." && exit /B // 上个命令失败(错误值不等于0)，终止当前脚本执行，返回到调用脚本的位置
 
 // 调试常用
 PAUSE // 暂停
@@ -106,7 +106,7 @@ set script_file_path="%~dp0%"
 ```
 
 ## 多命令执行
-* cmd1 & cmd2 & cmd3 // 前一个命令运行成败都会继续运行下一个命令
+* cmd1 & cmd2 & cmd3 // 前一个命令运行成功失败都会继续运行下一个命令
 * cmd1 && cmd2 && cmd3 // 在前一个命令运行成功（%ERRORLEVEL%==0）后会继续运行下一个命令
 * cmd1 || cmd2 || cmd3 // 在前一个命令运行失败（%ERRORLEVEL% NEQ 0）后会继续运行下一个命令
 

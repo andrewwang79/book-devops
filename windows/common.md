@@ -9,6 +9,7 @@
 * kill进程：TSKILL 11111
 * tasklist | findstr 4872
 * cls // 清空Cmd的屏幕，clear screen
+* dumpbin /headers <可执行文件名> // 程序是32位还是64位
 
 ### 日期时间设置
 * Windows10改系统时间：“开始”菜单>“设置”>“时间和语言”>“日期和时间”>关闭“自动设置时间”>“手动设置日期和时间”
@@ -36,6 +37,6 @@ cmd：ipconfig /flushdns
 
 ### 修改cmd窗口的语言代码
 ```
-chcp // 查看当前cmd的代码页编号
-chcp 65001 // 修改当前cmd的代码页到UTF-8
+C:\Windows\System32\chcp // 查看当前cmd的代码页编号
+C:\Windows\System32\chcp 65001 // 修改当前cmd的代码页到UTF-8
 ```
