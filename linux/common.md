@@ -80,7 +80,7 @@ apt-get install aptitude // 软件包安装情况的软件
 * [自己做yum缓存包](https://blog.csdn.net/bbg221/article/details/78360618)
 
 ## 系统信息
-* cat /etc/issue       lsb_release -a // Ubuntu系统版本
+* lsb_release -a // Ubuntu系统版本
 * last reboot // 重启记录
 * [Linux上如何查看物理CPU个数，核数，线程数](https://www.cnblogs.com/ivictor/p/6208573.html)
 * cat /proc/cpuinfo |grep MHz|uniq // 查看CPU内核频率
@@ -242,20 +242,12 @@ ssh客户端查看详细信息：ssh -vvv
   1. 秘钥是服务器级别的。登录账号同秘钥，放在远程服务器的对应账号的authorized_keys里。如秘钥放在用户A的authorized_keys里，那只能用户A登录远程服务器。
   1. 如果authorized_keys设置了但还是无效，注意目录.ssh和文件authorized_keys的权限，确保登录账号有权限
 * 步骤：在本地电脑通过ssh免密登录远程服务器
-  1. 本地：生成公共密钥，用默认值。ssh-keygen -t rsa
+  1. Windows本地生成公共密钥，秘钥在id_rsa.pub：ssh-keygen -t rsa
   1. 公共密钥授权方案1
-    本地：ssh-copy-id root@192.168.161.138
+    本地：ssh-copy-id root@192.168.1.138
   1. 公共密钥授权方案2
-    1. 本地：公共密钥上传到远程。scp ~/.ssh/id_rsa.pub root@192.168.161.138:/root/.ssh/id_rsa.tmp.pub
-    1. 远程：将上传的本地公共密钥加到远程授权列表。cat ~/.ssh/id_rsa.tmp.pub>>~/.ssh/authorized_keys && rm ~/.ssh/id_rsa.tmp.pub
-  1. 公共密钥授权方案3
     1. 本地：cat ~/.ssh/id_rsa.pub
     1. 远程：nano ~/.ssh/authorized_keys，将本地文本拷贝进去
-
-* 一步本地操作：
-```
-cat ~/.ssh/id_rsa.pub | ssh root@192.168.161.138 "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys" // 同时创建目录.ssh
-```
 
 ## 自动输入密码设置
 * [资料](http://blog.itpub.net/27042095/viewspace-745587/)
@@ -597,3 +589,6 @@ expect -d -c "
   expect eof
 "
 ```
+
+## 远程桌面
+* [Ubuntu桌面系统](https://lakhanisiddharth94.medium.com/remote-access-of-ubuntu-from-windows-using-tightvnc-viewer-e6cbd9616733)
