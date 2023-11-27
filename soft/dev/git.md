@@ -178,10 +178,10 @@ git reset --hard SHA && git push origin -f // 后退到指定sha的commit
 ```
 BASE是双方的父亲
 <<<<<<< HEAD
-我的
+我的 Current
 =======
-他人
->>>>>>>6853e5ff961e684d3a6c02d4d06183b5ff330dcc
+他人 Incoming
+>>>>>>>6853e5ff961e684d3a6c02d4d06183b5ff330dcc Incoming branch/commit
 ```
 #### 取消合并
 1. 未commit(恢复index)：git merge --abort

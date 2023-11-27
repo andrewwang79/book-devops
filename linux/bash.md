@@ -220,9 +220,9 @@ fi
 netstat -apn | grep 8080 || ! echo 'fail' || exit 1
 ```
 
-### 循坏遍历数组/字典
+### 数组/字典
 ```
-// array
+// 循坏遍历array
 declare -a abc_array
 abc_array=(135 136 158)
 abc_array=(s1 s2)
@@ -230,7 +230,7 @@ for item in ${abc_array[@]}; do
   echo "${item}"
 done
 
-// map
+// 循坏遍历map
 declare -A abc_map
 abc_map[jim]=135
 abc_map=([jim]=135 [tom]=136 [lucy]=158)
@@ -238,6 +238,16 @@ for k in ${!abc_map[@]}; do
     key=${k}
     val=${abc_map[$k]}
 done
+
+// map赋值多个KV，判断key是否不存在(!左右必须有空格)
+declare -A abc_map
+abc_map=([NONE]="1" [ALL]="1")
+key1=“ALL”
+if [[ ! -v abc_map[${key1}] ]]; then
+  echo "not exist"
+else
+  echo "exist"
+fi
 ```
 
 ### 获取函数的return：以下代码单独可以，放到复杂环境无效(原因未知)

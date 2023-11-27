@@ -102,6 +102,7 @@ apt-get install aptitude // 软件包安装情况的软件
 ## 文件和目录
 * mkdir -p /d1/d2 // 自动创建多层
 * mv/cp src dest // 【dest目录存在则dest目录下是src目录(dest/src)，dest目录不存在则dest目录下是src目录里的具体内容(dest/*)】。
+* cp -p /src dest // 属性不变的复制
 * /bin/cp -R dir1 dir2 // 用/bin/cp不提示覆盖overwrite，cp默认有-i
 * /bin/cp -R /dir1/. /dir2/ // 拷贝所有文件，含隐藏文件
 * mv dir1/{.,}* /dir2/ || echo "no file" // 移动所有文件，含隐藏文件。异常会报错阻止主流程执行，当前用||处理掉
@@ -130,7 +131,8 @@ script // 在目录${path}下执行
 popd
 ```
 
-## 文件
+## 文件操作
+* stat file // 看文件属性
 * [find示例](http://blog.csdn.net/windowschengxisheji/article/details/51019280)
   * find结果路径是绝对还是相对来自于查询的路径是绝对还是相对，比如find /opt/ -name xxx，结果是绝对路径
   * find / -name xyz // 指定文件全路径查找(xyz)
