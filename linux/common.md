@@ -325,6 +325,7 @@ DatabaseMirror db.jp.clamav.net
 1. tar -zcvf e.tar.gz path // path可以是相对路径或绝对路径，压缩包里根目录是path。
 1. tar -zcvf e.tar.gz -C dir path // 被压缩目录是“dir/path”，压缩包里根目录是path。
   1. tar -zcvf abc.tar.gz -C /opt/ abc // 被压缩目录是/opt/abc/，压缩包里根目录是abc
+1. tar -zcvf abc.tar.gz --exclude='a/b' --exclude='a/c' a // a目录下的b和c排除不压缩
 #### 解压
 1. tar -zxvf example.tar.gz // 压缩包的文件放到当前目录下
 1. tar -zxvf example.tar.gz -C dir // 压缩包的文件放到目录dir下
