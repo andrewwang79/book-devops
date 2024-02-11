@@ -335,6 +335,23 @@ done < $file
 echo -e "\033[4;32;47m"hi\""\033[0m" // hi"
 ```
 
+### 操作模拟工具expect
+* apt-get install -y expect
+* 使用示例：-d是调试模式。可以用文件或者字符串(-c)
+```
+expect -d file
+expect -d -c "
+  exp_internal 1 # 启用调试输出
+  set timeout 120 # 超时时间设置了2分钟
+  spawn ./cuda_11.7.1_515.65.01_linux.run
+  expect \"Do you accept the above EULA?\" { send \"accept\r\" }
+  send "\r" # 回车
+  expect \"CUDA Installer\" { send \"1 2 3\r\" }
+  send "\x1b\[B" # 向下箭头键
+  expect eof
+"
+```
+
 ## 资料
 ### 语法
 * https://www.shellcheck.net/

@@ -6,8 +6,9 @@
 * ipconfig /flushdns // 重置DNS
 * sc config wuauserv start= disabled // 禁用自动更新服务，下次重启电脑生效
 * 端口查进程：netstat -ano | findstr :10401
-* kill进程：TSKILL 11111
-* tasklist | findstr 4872
+* kill进程: TSKILL 11111
+* 找进程: tasklist | findstr 4872
+* kill找到的进程: tasklist | findstr target.exe & taskkill /F /PID %id%
 * cls // 清空Cmd的屏幕，clear screen
 * dumpbin /headers <可执行文件名> // 程序是32位还是64位
 

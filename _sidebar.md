@@ -8,7 +8,7 @@
   * [脚本](linux/bash.md)
   * [网络](linux/net.md)
   * [编辑器](linux/editor.md)
-  * [知识](linux/kb.md)
+  * [系统知识](linux/kb.md)
 
 * Windows
   * [常用](windows/common.md)

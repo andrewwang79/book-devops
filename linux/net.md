@@ -6,6 +6,9 @@
   * sysctl -p
 1. [tcpdump-抓取网络数据包](http://blog.csdn.net/kobejayandy/article/details/17208137/)
   * tcpdump -i lo -nnA 'port 9020' // 监控本机回路网卡的9020端口
+1. 端口侦测
+  * telnet 192.168.0.168 12345
+  * tcping64.exe 192.168.0.168 12345 [下载](https://elifulkerson.com/projects/tcping.php)
 
 ## 网络配置
 * [ip](http://os.51cto.com/art/201406/441461.htm)
@@ -13,6 +16,7 @@
 * [ifconfig](http://blog.csdn.net/sdvch/article/details/12587515)
 * ifconfig em 192.168.161.121/24 // 设置网卡
 * ifconfig em down // 禁用网卡
+* ifconfig | grep inet // ip地址
 * nano /etc/sysconfig/network-scripts/ifcfg-em // 编辑网卡
 * nano /etc/sysconfig/network // 设置网卡的永久网关
 * nano /etc/network/interfaces && /etc/init.d/networking restartw // [设置DHCP，静态IP，DNS](http://forum.ubuntu.org.cn/viewtopic.php?f=73&t=190174)，
@@ -168,3 +172,28 @@ vncserver -geometry 1280x720
 vncserver -list
 ```
 * 客户端安装：vncviewer.exe
+
+# FTP服务
+* [SFTP安装-Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-enable-sftp-without-shell-access-on-ubuntu-16-04)
+* [docker pure-ftp 搭建ftp服务器](https://blog.csdn.net/sun1021873926/article/details/70175778)：无法启动
+* 脚本
+
+```
+sudo adduser data
+sudo mkdir -p /var/ftp/upload
+sudo chown root:root /var/ftp
+sudo chmod -R 755 /var/ftp
+sudo chown data:data /var/ftp/upload
+sudo nano /etc/ssh/sshd_config
+在文件最后添加：
+Match User data
+ForceCommand internal-sftp
+PasswordAuthentication yes
+ChrootDirectory /var/ftp
+PermitTunnel no
+AllowAgentForwarding no
+AllowTcpForwarding no
+X11Forwarding no
+
+sudo systemctl restart sshd
+```
