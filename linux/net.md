@@ -58,7 +58,7 @@ sudo /etc/init.d/networking restart
   * netstat -an | grep ^tcp | grep 9050 | awk '{print $NF}' | sort -nr | uniq -c // 连接数统计
   * netstat -an | grep 8080 // 查看指定端口(8080)的所有的有效连接信息列表
   * netstat -an | grep -i listen // 目前系统侦听的所有端口
-  * netstat -anp | grep 8080 // 查看占用了端口(8080)的进程
+  * lsof -t -i :8080 // 查看占用了端口(8080)的进程
 
 # 网桥
 * [brctl](http://blog.csdn.net/x_nazgul/article/details/20233237)
