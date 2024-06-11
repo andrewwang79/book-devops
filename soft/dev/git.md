@@ -211,12 +211,13 @@ BASE是双方的父亲
 1. 合并：git checkout tmmm && git pull && git rebase master
 1. 提交：git push
 
-#### [分支历史编辑](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2)
-1. 到指定位置开始互动编辑：git rebase --interactive HEAD~2
-1. 配置调整事项(每行是一个事项)：pick修改为edit，可以不编辑也可以选择其他操作
-1. 循环处理每个事项：
-  1. 编辑内容：编辑，git add . && git commit --amend && git rebase --continue
-1. 提交：git push -f
+#### [重写历史](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2)
+* 重新排序提交, 修改提交信息, 压缩提交, 拆分提交
+1. 压缩提交(多个提交合并成1个提交)，被合并的多个提交会物理删除
+    1. git rebase -i HEAD~5
+    1. 首个是pick，其他改成s
+    1. 编辑合并的msg
+    1. git push --force
 
 ### 仓库迁移
 * https://help.github.com/cn/articles/duplicating-a-repository
