@@ -11,6 +11,7 @@
 * kill找到的进程: tasklist | findstr target.exe & taskkill /F /PID %id%
 * cls // 清空Cmd的屏幕，clear screen
 * dumpbin /headers <可执行文件名> // 程序是32位还是64位
+* 目录下所有文件批量改名(txt -> doc)：Get-ChildItem -r -Filter *.txt| Rename-Item -NewName { $_.Name -replace '\.txt$', '.doc' }
 
 ## 日期时间设置
 * Windows10改系统时间：“开始”菜单>“设置”>“时间和语言”>“日期和时间”>关闭“自动设置时间”>“手动设置日期和时间”

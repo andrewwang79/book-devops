@@ -61,6 +61,7 @@ dpkg-query -l // 显示已安装软件包，结果同apt list
 apt-get install aptitude // 软件包安装情况的软件
 ```
 
+* [清华的sources.list制作](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
 * [Ubuntu16.04更换阿里云apt-get软件源](https://blog.csdn.net/yjk13703623757/article/details/79860133)
     * sed -i 's#http://cn.archive.ubuntu.com#https://mirrors.163.com#g' /etc/apt/sources.list
     * sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list
@@ -244,4 +245,4 @@ DatabaseMirror db.jp.clamav.net
 * 备份机：创建备份目录
 
 ## 远程桌面
-* [Ubuntu桌面系统](https://lakhanisiddharth94.medium.com/remote-access-of-ubuntu-from-windows-using-tightvnc-viewer-e6cbd9616733)
+* [Ubuntu桌面系统开启远程桌面](https://lakhanisiddharth94.medium.com/remote-access-of-ubuntu-from-windows-using-tightvnc-viewer-e6cbd9616733)
