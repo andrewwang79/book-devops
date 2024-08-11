@@ -26,6 +26,9 @@ push "route %IP% 255.255.255.255 vpn_gateway"
 * [下载](https://openvpn.net/vpn-client/)
 * 使用：加入客户端证书文件
 
-## 软件安装时默认的证书两年会过期，解决方案
-* 服务端：重新安装服务端软件。修改server.conf：用历史文件，两个属性(cert和key)用新生成的文件里的
+## 软件安装时默认生成的SSL证书过期的解决方案，有效期是2年
+* 服务端
+    1. 备份server.conf
+    1. 重新安装服务端软件
+    1. server.conf：备份文件(server.conf) + 安装出来的文件(server.conf)的2个属性(cert和key)
 * 客户端：使用新安装出来的ovpn文件
