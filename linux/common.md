@@ -357,3 +357,7 @@ screen -d -r abc // 重新连接会话
 screen -X quit // 在session里删除session
 screen -X -S 3517453.abc quit // 在session外删除session
 ```
+
+## 守护进程或服务
+* Linux的Systemd
+* Windows的NSSM，SrvStart
