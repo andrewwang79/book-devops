@@ -106,7 +106,6 @@ curl -H "Content-type: application/json" -H 'token:abc123' -X POST -d '{"phone":
 # 网络监控
 * [Linux服务器上监控网络带宽的18个常用命令](https://blog.csdn.net/yygydjkthh/article/details/75269537)：iftop
 * [mtr](https://docs.ucloud.cn/unet/troubleshooting)
-* [网络工具netcat](https://www.runoob.com/linux/linux-comm-nc.html): nc -nvz 127.0.0.1 80 // 端口扫描
 
 ```
 tcpdump
@@ -117,6 +116,13 @@ iftop -BP -i eth0 -F 192.168.85.0/24
 监控总体带宽使用（批量式输出）――vnstat、ifstat、dstat和collectl
 每个套接字连接的带宽使用――iftop、iptraf、tcptrack、pktstat、netwatch和trafshow
 每个进程的带宽使用――nethogs
+```
+
+# netcat
+* [网络工具netcat](https://www.runoob.com/linux/linux-comm-nc.html)
+
+```
+nc -nvz example.com 20-80 // 端口扫描
 ```
 
 # TIME_WAIT

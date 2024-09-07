@@ -65,6 +65,7 @@ apt-get install aptitude // 软件包安装情况的软件
 * [Ubuntu16.04更换阿里云apt-get软件源](https://blog.csdn.net/yjk13703623757/article/details/79860133)
     * sed -i 's#http://cn.archive.ubuntu.com#https://mirrors.163.com#g' /etc/apt/sources.list
     * sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list
+* [ubuntu 20.04 设置国内镜像源](https://blog.csdn.net/MacWx/article/details/137689898)
 * [Ubuntu离线安装软件包](https://blog.csdn.net/nupt123456789/article/details/11649603)
 * [apt-get安装出现dpkg status database is lock解决](http://www.2cto.com/os/201305/208284.html)，安装失败会导致其他软件不能使用，比如MySQL
 ```
