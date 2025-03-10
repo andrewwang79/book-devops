@@ -217,27 +217,27 @@ DatabaseMirror db.jp.clamav.net
 ```
 
 ## 定时任务
-1. 资料
-  1. [使用方法](http://blog.chinaunix.net/uid-15007890-id-106828.html)
-  1. [crontab编辑器](http://www.cronmaker.com/), [时间示例](https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/crontab.html)
-  1. [语法](https://www.cnblogs.com/aminxu/p/5993769.html)
-  1. [crontab不能执行git等命令](http://blog.csdn.net/gggxin/article/details/34434811)
-  1. [UBUNTU开启CRONTAB日志记录及解决NO MTA INSTALLED, DISCARDING OUTPUT](https://blog.csdn.net/disappearedgod/article/details/43191693)
-  1. [crontab不会缺省的从用户profile文件中读取环境变量参数，需要手工在脚本加载profile等文件](https://blog.csdn.net/weixin_36343850/article/details/79217611)，source /etc/profile
-  1. [命令执行时间太长时防止多个并发运行](https://www.itdaan.com/tw/9d223190aa07c50d064b243281238c1f)
-1. 安装：yum -y install crontab
-1. 编辑：crontab -e
+* 资料
+    1. [使用方法](http://blog.chinaunix.net/uid-15007890-id-106828.html)
+    1. [crontab编辑器](http://www.cronmaker.com/), [时间示例](https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/crontab.html)
+    1. [语法](https://www.cnblogs.com/aminxu/p/5993769.html)
+    1. [crontab不能执行git等命令](http://blog.csdn.net/gggxin/article/details/34434811)
+    1. [UBUNTU开启CRONTAB日志记录及解决NO MTA INSTALLED, DISCARDING OUTPUT](https://blog.csdn.net/disappearedgod/article/details/43191693)
+    1. [crontab不会缺省的从用户profile文件中读取环境变量参数，需要手工在脚本加载profile等文件](https://blog.csdn.net/weixin_36343850/article/details/79217611)，source /etc/profile
+    1. [命令执行时间太长时防止多个并发运行](https://www.itdaan.com/tw/9d223190aa07c50d064b243281238c1f)
+* 编辑：crontab -e
 
 ```
-30 01 * * * sh /bin/backup.sys.sh // 每天1点30分
-*/10 * * * * flock -xn ./tmp/abc.lock -c "/bin/abc.sh > /dev/null 2>&1" // 每隔10分钟，上一个如在运行则会取消本次执行
+注意sh文件必须有执行权限，否则不会执行。赋予权限：chmod +x xxx.sh
+30 01 * * * sh /bin/xxx.sh >> /tmp/xxx.log 2>&1 // 每天1点30分
+*/10 * * * * flock -xn ./tmp/xxx.lock -c "/bin/xxx.sh >> /dev/null 2>&1" // 每隔10分钟，上一个如在运行则会取消本次执行
 ```
 
-1. 重启：service crond restart
-1. 查看执行结果：tail -f /var/log/cron
-1. 调试方法
-  1. 所有结果写到文件。如 sh xxx.sh &>/opt/debug.log
-  1. 出错结果写到文件。如 sh xxx.sh > /opt/debug.log 2>&1
+* 重启：service crond restart
+* 查看执行结果：tail -f /var/log/cron
+* 调试方法
+    * 所有结果写到文件。如 sh xxx.sh >>/opt/debug.log
+    * 出错结果写到文件。如 sh xxx.sh >> /opt/debug.log 2>&1
 
 ## 备份操作
 * 被备份机
