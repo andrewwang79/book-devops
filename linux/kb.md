@@ -247,3 +247,7 @@ DatabaseMirror db.jp.clamav.net
 
 ## 远程桌面
 * [Ubuntu桌面系统开启远程桌面](https://lakhanisiddharth94.medium.com/remote-access-of-ubuntu-from-windows-using-tightvnc-viewer-e6cbd9616733)
+
+## SSL证书
+* 分析：https://www.ssllabs.com/ssltest/analyze.html?d=域名&latest
+* 本机查看证书内容：openssl s_client -connect 域名:443 -showcerts
