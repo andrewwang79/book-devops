@@ -391,8 +391,9 @@ git tag -l | xargs git tag -d && git fetch origin --prune # 删除所有本地�
 ### submodule
 * [submodule命令](https://juejin.cn/post/6948251963133788196)
 ```
-git submodule add <子模块git地址> <存放的文件名>
-git submodule update --init --recursive
+git submodule add -b <子模块branch> <子模块git地址> <子模块存放路径>
+git submodule update --init --recursive // 首次，初始化+更新
+git submodule deinit <子模块存放路径> && git rm --cached <子模块存放路径> && rm -rf <子模块存放路径> // 删除
 ```
 * [submodule子模块的管理和使用](https://www.jianshu.com/p/9000cd49822c)
     1. CMAKE_SOURCE_DIR是基于项目的
