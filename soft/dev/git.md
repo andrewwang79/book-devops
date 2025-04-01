@@ -176,6 +176,7 @@ git reset --hard SHA && git push origin -f // 后退到指定sha的commit
 * [Git – Fast Forward 和 no fast foward](https://my.oschina.net/yuzn/blog/82297)
 * [多个commit合并成1个commit](https://segmentfault.com/a/1190000007748862)
 * [冲突文件说明](https://blog.csdn.net/zhangbinsijifeng/article/details/49332615)
+
 ```
 BASE是双方的父亲
 <<<<<<< HEAD
@@ -184,6 +185,7 @@ BASE是双方的父亲
 他人 Incoming
 >>>>>>>6853e5ff961e684d3a6c02d4d06183b5ff330dcc Incoming branch/commit
 ```
+
 #### 取消合并
 1. 未commit(恢复index)：git merge --abort
 1. 已commit未push：git reset --hard commitid
@@ -191,6 +193,18 @@ BASE是双方的父亲
 
 #### 分支B的多次提交合并成分组A的1次提交
 1. git checkout A && git merge --squash B
+
+### 现有分支清空重新添加文件
+```
+流程：新建临时分支tmp，删除现有分支master，tmp重命名成master
+git checkout --orphan tmp
+git rm -rf .
+手工添加文件
+git add .
+git push origin --delete master
+git branch -m master
+git push -f
+```
 
 ### 变基(rebase)
 #### rebase和merge比对
@@ -222,7 +236,7 @@ BASE是双方的父亲
         1. git rebase -i HEAD~5
     1. 首个是pick，其他改成s。保存退出
     1. 编辑合并的msg。保存退出
-    1. git push --force
+    1. git push -f
 
 ### 仓库迁移
 * https://help.github.com/cn/articles/duplicating-a-repository
