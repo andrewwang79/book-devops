@@ -97,6 +97,7 @@ git reset --hard SHA && git push origin -f // 后退到指定sha的commit
 1. 清除当前目录下所有没commit的管理文件的修改：git checkout .
 1. 清除当前目录下所有非管理文件：git -C . clean -xdf
 1. [Git查看和修改账户](https://blog.csdn.net/junloin/article/details/75197880), git config
+1. git fetch origin +refs/tags/*:refs/tags/* // 1个tag删除后重建到另一个commit上，另一个本地环境需要强制更新本地标签，否则还在老commit上
 
 ## 操作
 ### 选择提交的分支
@@ -232,10 +233,10 @@ git push -f
 1. 压缩提交(多个提交合并成1个提交)，被合并的多个提交会物理删除
     1. 确保工作目录没有未提交的更改
     1. 启动rebase，rebase到的是**要合并的首个提交**。可以从指定的commit开始，或者后退几个开始
-        1. git rebase -i abcdef123456^
-        1. git rebase -i HEAD~5
-    1. 首个是pick，其他改成s。保存退出
-    1. 编辑合并的msg。保存退出
+        * git rebase -i commit^
+        * git rebase -i HEAD~5
+    1. 编辑操作：首个是pick，其他改成s。保存退出
+    1. 编辑msg。保存退出
     1. git push -f
 
 ### 仓库迁移
@@ -245,6 +246,10 @@ git push -f
 * [重置目录到服务器状态](https://bitmingw.com/2018/01/28/git-branch-factory-reset/)
 
 ```
+精简版：
+git fetch origin
+git reset --hard origin/main
+完整版：
 src_path=.
 branch_name=dev
 git -C ${src_path} fetch
