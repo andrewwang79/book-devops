@@ -166,8 +166,9 @@ echo "socks5 10.71.10.49 12306" >> /etc/proxychains4.conf
 proxychains4 curl www.httpbin.org/ip
 ```
 
-## Windows的各种程序的代理客户端配置
-* cmd：每次打开都要配置：set http_proxy=http://192.168.0.1:12345 && set https_proxy=http://192.168.0.1:12345。验证方法：curl https://www.baidu.com
+## Windows的CMD窗口的网络代理配置
+* 执行：set HTTP_PROXY=http://127.0.0.1:10809 && set HTTPS_PROXY=http://127.0.0.1:10809
+* 验证：curl https://www.github.com
 
 # VNC
 * 服务器有TightVNC、RealVNC、[TigerVNC](https://tigervnc.org)
