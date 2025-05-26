@@ -40,6 +40,7 @@
 * 基础服务软件
   * [Redis](soft/base/Redis.md)
   * [MySQL](soft/base/Mysql.md)
+  * [SQLite](soft/base/sqlite.md)
   * [MongoDB](soft/base/MongoDB.md)
   * [ActiveMQ](soft/base/ActiveMQ.md)
   * [RabbitMQ](soft/base/RabbitMQ.md)
