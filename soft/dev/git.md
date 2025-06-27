@@ -230,7 +230,7 @@ git push -f
 #### [重写历史](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2)
 > 重新排序提交, 修改提交信息, 压缩提交, 拆分提交
 
-1. 压缩提交(多个提交合并成1个提交)，被合并的多个提交会物理删除
+1. **压缩提交(多个提交合并成1个提交)**，被合并的提交会物理删除
     1. 确保工作目录没有未提交的更改
     1. 启动rebase，rebase到的是**要合并的首个提交**。可以从指定的commit开始，或者后退几个开始
         * git rebase -i commit^
@@ -238,6 +238,12 @@ git push -f
     1. 编辑操作：首个是pick，其他改成s。保存退出
     1. 编辑msg。保存退出
     1. git push -f
+1. 压缩提交后，其他本地仓库的同步处理
+
+```
+git fetch origin
+git reset --hard origin/r-8.0
+```
 
 ### 仓库迁移
 * https://help.github.com/cn/articles/duplicating-a-repository
