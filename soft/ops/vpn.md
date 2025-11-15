@@ -1,11 +1,11 @@
 # vpn
 ## 服务端
 ### 安装使用
-* [CentOS8安装OpenVPN](https://blog.itnmg.net/2021/07/14/centos-8-openvpn/)
+* [CentOS8安装OpenVPN](https://blog.itnmg.net/2021/07/14/centos-8-openvpn/)，Ubuntu也一样的安装方法
     * 采用https://raw.githubusercontent.com/Angristan/OpenVPN-install/master/openvpn-install.sh
-    * 安装好后会自动生成客户端证书文件(.ovpn)
-* 重启服务 : systemctl restart openvpn-server@server
-* 状态查询 : systemctl status openvpn-server@server
+    * 安装好后在安装目录下会自动生成客户端证书文件(.ovpn)
+* 重启服务 : systemctl restart openvpn@server
+* 状态查询 : systemctl status openvpn@server
 * 配置文件路径是/etc/openvpn/server.conf，[配置项说明](http://blog.joylau.cn/2020/05/28/OpenVPN-Config/)
 
 ### 配置方法
